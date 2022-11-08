@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Vista Login
+
+Route::get('/', function () {
+    return view('login');
+});
+
 /* Vsitas de super usuario*/
 Route::get('Menu_super', function () {
     return view('superusuario/Menu_super');
@@ -38,7 +45,7 @@ Route::get('/Registro_venta', function () {
 
 
 /* Vsitas de empleado*/
-Route::get('/', function () {
+Route::get('/Menu_Empleado', function () {
     return view('empleado/menu_Empleado');
 });
 Route::get('/Inventario_empleado', function () {

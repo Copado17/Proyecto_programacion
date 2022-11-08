@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Inventario</title>
+</head>
+<body>
+
 @extends('plantillas/fondosuper')
-@section('barra_super')
+@section('navbar')
 <title>Inventario</title>
 <div class="slider-thumb">
     <h2 class="center">Inventario</h2>
@@ -8,7 +18,7 @@
 @endsection
 
 @section('contenido')
-<div class="container">
+<div class="container mt-4">
 <a  class="waves-effect waves-light btn-small" href="/Agregar_comic">Agregar comic</a>
 
 <a class="waves-effect waves-light btn-small" href="/Agregar_producto">Agregar producto</a>
@@ -68,3 +78,8 @@
 @section ('footer')
 
 @stop
+
+  
+</body>
+</html>
+
