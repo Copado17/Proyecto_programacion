@@ -1,13 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu SuperUsuario</title>
+</head>
+<body>
+
 @extends('plantillas/fondosuper')
 @section('barra_super')
+@endsection
+
+
+@section('contenido')
 <title>Menu</title>
 <div class="slider-thumb">
     <h2 class="center">Bienvenido a Weirdo Comics</h2>
-    
 </div>
-@endsection
-
-@section('contenido')
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col" style="max-width: 100rem;">
@@ -63,7 +73,12 @@
 
 @endsection
 
+@section('footer')
 
-@section ('footer')
+@endsection
 
-@stop
+    
+</body>
+</html>
+
+
