@@ -1,13 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Menu SuperUsuario</title>
+</head>
+<body>
+
 @extends('plantillas/fondosuper')
 @section('barra_super')
+@endsection
+
+
+@section('contenido')
 <title>Menu</title>
 <div class="slider-thumb">
     <h2 class="center">Bienvenido a Weirdo Comics</h2>
-    
 </div>
-@endsection
-
-@section('contenido')
 
 
 
@@ -39,15 +49,30 @@
       <h5 class="card-title">Pedidos</h5>
       <p class="card-text">En esta parte realizar los pedidos para no quedarnos sin producto y sin comics</p>
     </div>
-    <div class="card-footer">
-      <a class="waves-effect waves-light btn-small" href="/Pedidos">Vamos para alla</a>
+
+<div class="col" style="max-width: 100rem;">
+        <div class="card" >
+            <img src="https://www.esan.edu.pe/images/blog/2021/12/17/1500x844-requisitos-proveedores-17-12-2021.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Proveedores</h5>
+                <p class="card-text">Mira todos la informacion de nuestros proveedores</p>
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-secondary" href="#">Vamos para alla</button>
+                    </div>
+            </div>
+        </div>
     </div>
   </div>
 </div>
 
 @endsection
 
+@section('footer')
 
-@section ('footer')
+@endsection
 
-@stop
+    
+</body>
+</html>
+
+

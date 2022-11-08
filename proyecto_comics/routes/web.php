@@ -12,6 +12,13 @@ use App\Http\Controllers\Controlador;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Vista Login
+
+Route::get('/', function () {
+    return view('login');
+});
+
 /* Vsitas de super usuario*/
 Route::get('Menu_super', function () {
     return view('superusuario/Menu_super');
@@ -57,8 +64,11 @@ route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']
 
 
 /* Vsitas de empleado*/
-Route::get('/', function () {
+Route::get('/Menu_Empleado', function () {
     return view('empleado/menu_Empleado');
+});
+Route::get('/Punto_Venta', function () {
+    return view('empleado/punto_venta');
 });
 Route::get('/Inventario_empleado', function () {
     return view('empleado/Inventario_empleado');
