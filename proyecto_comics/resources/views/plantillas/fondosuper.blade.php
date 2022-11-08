@@ -56,7 +56,6 @@
 </head>
 
 <body>
-
     @section('navbar')
         <nav>
             <div class="nav-wrapper">
@@ -67,7 +66,6 @@
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
                     <li><a href="badges.html">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
-
 
                     <a class="waves-effect waves-light btn-small" href="">Salir</a>
 
@@ -103,7 +101,6 @@
             </div>
 
         </footer>
-
     
     {{-- @yield('footer') --}}
     <!-- Compiled and minified JavaScript -->

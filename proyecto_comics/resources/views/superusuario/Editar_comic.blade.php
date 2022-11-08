@@ -1,6 +1,6 @@
 @extends('plantillas/fondosuper')
 @section('barra_super')
-<title>Agregar comics</title>
+<title>Editar comics</title>
 <div class="slider-thumb">
     
 
@@ -13,7 +13,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {!! "<script>
     Swal.fire(
-        'Se agrego correctamente el comic',
+        'Se edito el comic correctamenta',
         'Regresa al inventario',
         'success'
     )
@@ -28,9 +28,9 @@
     <div class="card-body mt-5">
         <div class="card-header ">
         <div class="col m-3">
-                            <h1 class="display-5 ">Agregar comic</h1>
+                            <h1 class="display-5 ">Editar comic</h1>
                         </div>
-            <form action="Agregar_comic" method="post">
+            <form action="Editar_comic" method="post">
                 @csrf
                 <div class="form-group">
                     <div class="col mt-2">
