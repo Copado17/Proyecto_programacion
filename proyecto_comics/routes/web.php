@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Controlador;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +35,18 @@ Route::get('/Agregar_proveedores', function () {
 Route::get('/Registro_venta', function () {
     return view('superusuario/Registro_venta');
 });
+Route::get('/Usuarios', function () {
+    return view('superusuario/Usuarios');
+});
+
+//formrequest de agregar comic
+route::post('Agregar_comic', [Controlador::class, 'validador_comics']);
+//formrequest de agregar producto
+route::post('Agregar_producto', [Controlador::class, 'validador_producto']);
+//formrequest de agregar proveedores
+route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']);
+
+
 
 
 /* Vsitas de empleado*/

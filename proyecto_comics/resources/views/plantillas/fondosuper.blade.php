@@ -22,6 +22,7 @@
       <li><a href="/Lista_proveedores">Proovedores</a></li>
       <li><a href="badges.html">Pedidos</a></li>
       <li><a href="/Registro_venta">Registro de ventas</a></li>
+      <li><a href="/Usuarios">Usuarios</a></li>
       
       
       <a class="waves-effect waves-light btn-small" href="">Salir</a>
@@ -67,6 +68,8 @@ You need a hero, look in the mirror, there go your hero"</p>
         </footer>
             
 @yield('footer')
+<!-- Sweat alert-->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!-- JavaScript Bundle with Popper -->

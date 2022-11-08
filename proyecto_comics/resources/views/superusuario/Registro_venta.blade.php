@@ -2,15 +2,18 @@
 @section('barra_super')
 <title>Registro de ventas</title>
 <div class="slider-thumb">
-    <h2 class="center">Lista de proveedores</h2>
+    <h2 class="center">Registro de ventas</h2>
 
 </div>
 @endsection
 
 @section('contenido')
-<div class="container">
-
-    <table class="table">
+<div class="container bg-light p-2">
+    <div class=" col-mt-5">
+        <label for="exampleInputEmail1" class="form-label">Buscar proveedor</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <table class="table bg-light my-5">
         <thead>
             <tr>
                 <th scope="col">#</th>
