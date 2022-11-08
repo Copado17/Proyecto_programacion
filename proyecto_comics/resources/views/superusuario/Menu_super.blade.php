@@ -61,8 +61,8 @@
         <div class="card" >
             <img src="https://www.esan.edu.pe/images/blog/2021/12/17/1500x844-requisitos-proveedores-17-12-2021.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Proovedores</h5>
-                <p class="card-text">Mira todos la informacion de nuestros Proovedores</p>
+                <h5 class="card-title">Proveedores</h5>
+                <p class="card-text">Mira todos la informacion de nuestros proveedores</p>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-secondary" href="#">Vamos para alla</button>
                     </div>
