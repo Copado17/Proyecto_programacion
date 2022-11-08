@@ -48,6 +48,9 @@ Route::get('/Registro_venta', function () {
 Route::get('/Menu_Empleado', function () {
     return view('empleado/menu_Empleado');
 });
+Route::get('/Punto_Venta', function () {
+    return view('empleado/punto_venta');
+});
 Route::get('/Inventario_empleado', function () {
     return view('empleado/Inventario_empleado');
 });

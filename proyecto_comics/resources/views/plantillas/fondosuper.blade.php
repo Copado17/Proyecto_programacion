@@ -46,6 +46,7 @@
 
         p,
         a,
+        .card-text,
         .form-label,
         .fw-normal {
             font-family: 'Lato', sans-serif;
@@ -61,9 +62,9 @@
             <div class="nav-wrapper">
                 <a href="Menu_super" class="brand-logo">Weirdo Comics</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Ventas</a></li>
+                    <li><a href="/Punto_Venta">Punto Venta</a></li>
                     <li><a href="/Inventario_super">Inventario</a></li>
-                    <li><a href="/Lista_proveedores">Proover</a></li>
+                    <li><a href="/Lista_proveedores">Proveedores</a></li>
                     <li><a href="badges.html">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
 
@@ -87,7 +88,7 @@
 
     {{-- @yield('contenido') --}}
 
-    @section('footer')
+    @yield ('footer')
 
         <footer class="page-footer">
             <div class="container mt-6">
@@ -103,7 +104,7 @@
 
         </footer>
 
-    @show
+    
     {{-- @yield('footer') --}}
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
