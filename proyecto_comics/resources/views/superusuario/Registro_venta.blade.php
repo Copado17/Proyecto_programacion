@@ -8,10 +8,15 @@
 @endsection
 
 @section('contenido')
-<div class="container bg-light p-2">
+
+    <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
+
+
+<div class="container bg-light p-4 my-5">
+    
     <div class=" col-mt-5">
-        <label for="exampleInputEmail1" class="form-label">Buscar proveedor</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="exampleInputEmail1" class="form-label">Buscar venta</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
     </div>
     <table class="table bg-light my-5">
         <thead>

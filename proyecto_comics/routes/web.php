@@ -38,9 +38,16 @@ Route::get('/Registro_venta', function () {
 Route::get('/Usuarios', function () {
     return view('superusuario/Usuarios');
 });
+Route::get('/Editar_comic', function () {
+    return view('superusuario/Editar_comic');
+});
+
 
 //formrequest de agregar comic
 route::post('Agregar_comic', [Controlador::class, 'validador_comics']);
+
+route::post('Editar_comic', [Controlador::class, 'validador_editarC']);
+
 //formrequest de agregar producto
 route::post('Agregar_producto', [Controlador::class, 'validador_producto']);
 //formrequest de agregar proveedores
