@@ -48,6 +48,9 @@ Route::get('/Usuarios', function () {
 Route::get('/Editar_comic', function () {
     return view('superusuario/Editar_comic');
 });
+Route::get('/Pedidos_super', function () {
+    return view('superusuario/Pedidos_super');
+});
 
 
 //formrequest de agregar comic
