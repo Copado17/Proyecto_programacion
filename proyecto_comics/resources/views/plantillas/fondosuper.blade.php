@@ -20,39 +20,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato&family=Permanent+Marker&family=Raleway:wght@500&display=swap"
         rel="stylesheet">
-
-    {{-- Estilos Configuraciones --}}
-
-    <style>
-        .brand-logo {
-            text-shadow:
-                -5px 0px 0px black,
-                5px 0px 0px black,
-                0px -5px 0px black,
-                0px 5px 0px black;
-            color: white;
-            font-family: 'Permanent Marker', cursive;
-
-        }
-
-        title {
-
-            font-family: 'Raleway', sans-serif;
-        }
-
-        .card-title {
-            font-family: 'Raleway', sans-serif;
-        }
-
-        p,
-        a,
-        .card-text,
-        .form-label,
-        .fw-normal {
-            font-family: 'Lato', sans-serif;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -64,7 +31,7 @@
                     <li><a href="/Punto_Venta">Punto Venta</a></li>
                     <li><a href="/Inventario_super">Inventario</a></li>
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
-                    <li><a href="badges.html">Pedidos</a></li>
+                    <li><a href="/Pedidos_super">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
 
                     <a class="waves-effect waves-light btn-small" href="">Salir</a>
@@ -81,8 +48,6 @@
 
 
     </div>
-
-
 
     {{-- @yield('contenido') --}}
 
