@@ -34,7 +34,7 @@
                     <li><a href="/Pedidos_super">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
 
-                    <a class="waves-effect waves-light btn-small" href="">Salir</a>
+                    <a class="waves-effect waves-light btn-small" href="/">Salir</a>
 
                 </ul>
             </div>
@@ -53,20 +53,20 @@
 
     @yield ('footer')
 
-        <footer class="page-footer">
-            <div class="container mt-6">
-                <div class="row mb-0">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Weirdo Comics© 2022 Copyright</h5>
-                        <p class="grey-text text-lighten-4">"Who need a hero?
-                            You need a hero, look in the mirror, there go your hero"</p>
-                        <p class="grey-text text-lighten-4">Black panther</p>
-                    </div>
+    <footer class="page-footer">
+        <div class="container mt-6">
+            <div class="row mb-0">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Weirdo Comics© 2022 Copyright</h5>
+                    <p class="grey-text text-lighten-4">"Who need a hero?
+                        You need a hero, look in the mirror, there go your hero"</p>
+                    <p class="grey-text text-lighten-4">Black panther</p>
                 </div>
             </div>
+        </div>
 
-        </footer>
-    
+    </footer>
+
     {{-- @yield('footer') --}}
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
