@@ -1,3 +1,30 @@
+.brand-logo {
+  text-shadow:
+      -5px 0px 0px black,
+      5px 0px 0px black,
+      0px -5px 0px black,
+      0px 5px 0px black;
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+
+}
+
+title {
+
+  font-family: 'Raleway', sans-serif;
+}
+
+.card-title {
+  font-family: 'Raleway', sans-serif;
+}
+
+p,
+a,
+.card-text,
+.form-label,
+.fw-normal {
+  font-family: 'Lato', sans-serif;
+}
 
 footer {
     background-color: rgb(243, 11, 11);
