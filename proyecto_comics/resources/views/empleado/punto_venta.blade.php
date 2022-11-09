@@ -8,7 +8,6 @@
     <title>Punto Venta</title>
 
     <style>
-
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -127,7 +126,7 @@
                             </div>
 
                             <div class="col-md-7 col-lg-8">
-                                
+
                                 <h4 class="mb-3">Informacion Cliente</h4>
                                 <form class="needs-validation" novalidate>
                                     <div class="row g-3">
@@ -138,7 +137,7 @@
 
                                         <div class="col-sm-6">
                                             <label class="form-label">Telefono</label>
-                                            <input type="text" class="form-control" id="Telefono" value="" >
+                                            <input type="text" class="form-control" id="Telefono" value="">
                                         </div>
 
                                         <div class="col-12">
@@ -147,39 +146,41 @@
                                             <input type="email" class="form-control" id="Correo"
                                                 placeholder="correo@ejemplo.com">
                                         </div>
-                                    
 
 
-                                    <h4 class="mb-3">Agregar Producto/Comic</h4>
 
-                                    <div class="row gy-3">
-                                        <div class="col-12">
-                                            <label class="form-label">Codigo</label>
-                                            <input type="text" class="form-control" id="cc-name" placeholder=""
-                                                required>
+                                        <h4 class="mb-3">Agregar Producto/Comic</h4>
+
+                                        <div class="row gy-3">
+                                            <div class="col-12">
+                                                <label class="form-label">Codigo</label>
+                                                <input type="text" class="form-control" id="cc-name" placeholder=""
+                                                    required>
+                                            </div>
+
+                                            <div class="col-12">
+
+                                                <label class="form-label">Buscar</label>
+                                                <select class="form-select" data-live-search="true">
+                                                    <option>Ejemplo 1</option>
+                                                    <option>Ejemplo 2</option>
+                                                    <option>Ejemplo 3</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="number" value="1" min="1" max="1000"
+                                                    step="1" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button class="w-100 btn btn-primary btn-lg" type="submit">Agregar</button>
+
+                                            </div>
                                         </div>
 
-                                        <div class="col-12">
-                                            
-                                        <label class="form-label">Buscar</label>
-                                            <select class="form-select" data-live-search="true">
-                                                <option>Ejemplo 1</option>
-                                                <option>Ejemplo 2</option>
-                                                <option>Ejemplo 3</option>
-                                            </select>
-                                              
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input type="number" value="1" min="1" max="1000" step="1"/>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <button class="w-100 btn btn-primary btn-lg" type="submit">Agregar</button>
-    
-                                        </div>
-                                    </div>
 
-
-                                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar al checkout</button>
+                                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar al
+                                            checkout</button>
                                 </form>
                             </div>
                         </div>

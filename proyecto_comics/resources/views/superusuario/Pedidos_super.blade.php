@@ -61,7 +61,7 @@
     </div>
 
     <div class="container bg-light p-4 my-5">
-            <table class="table bg-light my-5">
+        <table class="table bg-light my-5">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -82,10 +82,9 @@
                     <td>$150</td>
                     <td>$4200</td>
                     <td>
-                        <a class="waves-effect waves-light btn-small" 
-                        href="">Eliminar</a>
+                        <a class="waves-effect waves-light btn-small" href="">Eliminar</a>
                     </td>
-        
+
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -95,20 +94,20 @@
                     <td>$4000</td>
                     <td>$12000</td>
                     <td>
-                        <a class="waves-effect waves-light btn-small" 
-                        href="">Eliminar</a>
+                        <a class="waves-effect waves-light btn-small" href="">Eliminar</a>
                     </td>
-    
+
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class=" mt-5 left">
-        <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
+    <div class="container">
+        <div class="mt-5 right">
+            <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
+        </div>
     </div>
 
-    
 
 @endsection
 
