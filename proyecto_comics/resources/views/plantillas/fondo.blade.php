@@ -19,7 +19,7 @@
   <div class="nav-wrapper">
     <a href="/" class="brand-logo">Weirdo Comics</a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="/Inventario_empleado">Ventas</a></li>
+      <li><a href="/Punto_Venta">Punto Venta</a></li>
       <li><a href="/Inventario_empleado">Inventario</a></li>
       
       <a class="waves-effect waves-light btn-small" href="">Salir</a>
@@ -37,9 +37,6 @@
 
 
     
-   
-
-
 
 @yield('contenido')
 <footer class="page-footer">
