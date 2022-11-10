@@ -5,6 +5,7 @@ use App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\validador_comic;
 use App\Http\Requests\validador_producto;
+use App\Http\Requests\validador_pedido;
 
 use App\Http\Requests\validador_proveedores;
 use App\Http\Requests\validador_editarC;
@@ -27,4 +28,10 @@ class Controlador extends Controller
         public function validador_proveedores(validador_proveedores $req){
             return redirect('/Agregar_proveedores')->with('Mensaje','Tu proveedor se agrego correctamente');
         }
+
+    // Controlador Agregar Pedido
+
+    public function validador_pedido(validador_pedido $req) {
+        return redirect('/Pedidos_super')->with('Mensaje', 'Los pedidos de agregaron correctamente');
+    }
 }
