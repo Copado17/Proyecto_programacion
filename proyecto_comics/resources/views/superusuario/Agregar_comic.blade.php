@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Editar</button>
                     </div>
                 </form>
             </div>

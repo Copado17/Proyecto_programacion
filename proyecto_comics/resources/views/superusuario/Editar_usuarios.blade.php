@@ -32,7 +32,7 @@
         <div class="card-body mt-5">
             <div class="card-header ">
                 <div class="col mb-3">
-                    <h1 class="display-5 ">Edutar Usuario</h1>
+                    <h1 class="display-5 ">Editar Usuario</h1>
                 </div>
                 <form action="Agregar_usuario" method="POST">
                     @csrf
