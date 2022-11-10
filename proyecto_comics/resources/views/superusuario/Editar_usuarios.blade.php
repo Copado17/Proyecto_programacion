@@ -11,9 +11,6 @@
 
     </div>
 
-@endsection
-
-@section('contenido')
 @if (session()->has('Mensaje'))
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {!! "<script>
@@ -35,7 +32,7 @@
         <div class="card-body mt-5">
             <div class="card-header ">
                 <div class="col mb-3">
-                    <h1 class="display-5 ">Agregar Usuarios</h1>
+                    <h1 class="display-5 ">Edutar Usuario</h1>
                 </div>
                 <form action="Agregar_usuario" method="POST">
                     @csrf
@@ -46,7 +43,7 @@
                                 <div class="row">
                                     <div class="col s6">
                                         <div class="col ">
-                                            <h6>Ingresa tu nombre completo</h6>
+                                            <h6>Nombre completo</h6>
                                             <input type="text" class="form-control" name="Nombre" placeholder="Nombre"
                                                 value="{{ old('Nombre') }}" aria-label="default input example">
                                             @if ($errors->has('Nombre'))
@@ -58,7 +55,7 @@
                                             @endif
                                         </div>
                                         <div class="col  ">
-                                            <h6>Ingresa tu nombre de usuario</h6>
+                                            <h6>Nombre de usuario</h6>
                                             <input class="form-control" type="text" placeholder="Nombre de Usuario"
                                                 name="Nombre_usuario" value="{{ old('Nombre_usuario') }}"
                                                 aria-label="default input example">
@@ -75,7 +72,7 @@
                                 <div class="row">
                                     <div class="col s6">
                                         <div class="col mb-3 p-3">
-                                            <h6>Ingresa una contraseña</h6>
+                                            <h6>Contraseña</h6>
                                             <input class="form-control" type="text" placeholder="Password"
                                                 name="Password" value="{{ old('Password') }}"
                                                 aria-label="default input example">
@@ -104,7 +101,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Editar</button>
                     </div>
                 </form>
             </div>

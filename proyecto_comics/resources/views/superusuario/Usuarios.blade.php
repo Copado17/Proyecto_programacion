@@ -11,9 +11,6 @@
 
     </div>
 
-@endsection
-
-@section('contenido')
         @if (session()->has('Mensaje'))
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {!! "<script>
