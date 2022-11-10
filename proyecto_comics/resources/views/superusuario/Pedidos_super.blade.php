@@ -2,8 +2,9 @@
 @section('barra_super')
 @endsection
 
-
 @section('contenido')
+
+
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
     </div>
@@ -79,7 +80,7 @@
         </div>
     </div>
 
-    <div class="container bg-light p-4 my-5">
+    <div class="container bg-light p-5 my-5">
         <table class="table bg-light my-5">
             <thead>
                 <tr>
@@ -119,13 +120,14 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
-    <div class="container">
-        <div class="mt-5 right">
+        <div class="container p-2 mb-5">
+        <div class="my-5 right">
             <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
         </div>
     </div>
+    </div>
+
+    
 
 
 @endsection

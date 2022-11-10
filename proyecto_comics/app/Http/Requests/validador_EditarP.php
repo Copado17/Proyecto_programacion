@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validador_producto extends FormRequest
+class validador_EditarP extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class validador_producto extends FormRequest
     public function rules()
     {
         return [
-            'Tipo' => 'required |min:3 ',
-            'Marca' => 'required |min:3|max:50',
-            'Precio_compraProducto' => 'required | numeric | min-digits:2',
-            'Precio_ventaProducto' => 'required | numeric | min-digits:2',
-            'Descripcion' => 'max:50',
-            
+            'Empresa' => 'required| min:3 | max:50',
+            'Direccion' => 'required | min:3 | max:50',
+            'Contacto' => 'required | min:3 | max:50',
+            'Telefono_Fijo' => 'required | numeric | digits:8',
+            'Telefono_Celular' => 'required | numeric | digits:10',
+            'Correo' => 'required | email | max:50',
             
             
         ];

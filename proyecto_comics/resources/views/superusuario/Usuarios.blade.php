@@ -1,13 +1,15 @@
 @extends('plantillas/fondosuper')
 @section('barra_super')
-    <title>Usuarios</title>
+   
+@endsection
+
+@section('contenido')
+
+<title>Usuarios</title>
     <div class="slider-thumb">
         <h2 class="center">Usuarios</h2>
 
     </div>
-@endsection
-
-@section('contenido')
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
     </div>

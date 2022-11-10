@@ -18,7 +18,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato&family=Permanent+Marker&family=Raleway:wght@500&display=swap"
         rel="stylesheet">
-    <title>Document</title>
+    
 </head>
 
 <body>

@@ -48,6 +48,14 @@ Route::get('/Usuarios', function () {
 Route::get('/Editar_comic', function () {
     return view('superusuario/Editar_comic');
 });
+
+Route::get('/Editar_proveedores', function () {
+    return view('superusuario/Editar_proveedores');
+});
+
+Route::get('/Editar_producto', function () {
+    return view('superusuario/Editar_producto');
+});
 Route::get('/Pedidos_super', function () {
     return view('superusuario/Pedidos_super');
 });
@@ -64,8 +72,14 @@ route::post('Editar_comic', [Controlador::class, 'validador_editarC']);
 
 //formrequest de agregar producto
 route::post('Agregar_producto', [Controlador::class, 'validador_producto']);
+
+route::post('Editar_producto', [Controlador::class, 'validador_EditarProducto']);
+
+
 //formrequest de agregar proveedores
 route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']);
+
+route::post('Editar_proveedores', [Controlador::class, 'validador_EditarP']);
 
 //formrequest de agregar pedido
 route::post('Agregar_pedido', [Controlador::class, 'validador_pedido']);

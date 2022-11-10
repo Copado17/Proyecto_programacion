@@ -33,6 +33,8 @@
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
                     <li><a href="/Pedidos_super">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
+                    
+                    <li><a href="/Usuarios">Usuarios</a></li>
 
                     <a class="waves-effect waves-light btn-small" href="/">Salir</a>
 
@@ -54,17 +56,23 @@
     @yield ('footer')
 
     <footer class="page-footer">
-        <div class="container mt-6">
+        <div class="container">
             <div class="row mb-0">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Weirdo Comics© 2022 Copyright</h5>
+                    <h5 class="white-text">Weirdo Comics</h5>
                     <p class="grey-text text-lighten-4">"Who need a hero?
                         You need a hero, look in the mirror, there go your hero"</p>
                     <p class="grey-text text-lighten-4">Black panther</p>
                 </div>
+
             </div>
         </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2022 Copyright Text
 
+            </div>
+        </div>
     </footer>
 
     {{-- @yield('footer') --}}

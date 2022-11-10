@@ -17,7 +17,7 @@
                     <h5 class="card-title">Ventas</h5>
                     <p class="card-text">Realiza una venta de un comic o un producto</p>
                     <div class="d-grid gap-2">
-                        <a type="button" class="waves-effect waves-light btn-small" href="punto_ventaSuper">Vamos para alla</a>
+                        <a type="button" class="waves-effect waves-light btn-small" href="punto_venta">Vamos para alla</a>
                     </div>
 
                 </div>

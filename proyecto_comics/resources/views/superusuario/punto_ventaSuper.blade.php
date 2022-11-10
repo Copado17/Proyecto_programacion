@@ -70,124 +70,118 @@
     @endsection
 
     @section('contenido')
-        <div class="container">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col col-xl-8">
-                    <div class="card bg-light" style="border-radius: 1rem; margin-left: 1rem; margin-right: 1rem;">
+    <div class="container my-5">
 
-                        <div class="py-5 text-center">
-                            <h2 style="color: black">Punto Venta</h2>
+<div class="card bg-light">
+
+    <div class=" text-center">
+        <h2 style="color: black">Punto Venta</h2>
+    </div>
+
+    <div class="row ">
+        <div class=" col-lg-4 order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Carrito</span>
+                <span class="badge bg-primary rounded-pill" style="color: aliceblue">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Producto</h6>
+                        <small class="text-muted">Descripcion</small>
+                    </div>
+                    <div>
+                        <h6 class="my-0">x1</h6>
+                    </div>
+                    <span class="text-muted">$90.89</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Comic</h6>
+                        <small class="text-muted">Descripcion</small>
+                    </div>
+                    <div>
+                        <h6 class="my-0">x1</h6>
+                    </div>
+                    <span class="text-muted">$43.99</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Comic</h6>
+                        <small class="text-muted">Description</small>
+                    </div>
+                    <div>
+                        <h6 class="my-0">x1</h6>
+                    </div>
+                    <span class="text-muted">$50.55</span>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total</span>
+                    <strong>$1805.42</strong>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+
+            <h4 class="mb-3">Informacion Cliente</h4>
+            <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="Nombre" value="">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="Telefono" value="">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Correo<span class="text-muted">(Opcional)</span></label>
+                        <input type="email" class="form-control" id="Correo" placeholder="correo@ejemplo.com">
+                    </div>
+
+
+
+                    <h4 class="mb-3">Agregar Producto/Comic</h4>
+
+                    <div class="row gy-3">
+                        <div class="col-12">
+                            <label class="form-label">Codigo</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
                         </div>
 
-                        <div class="row g-5">
-                            <div class="col-md-5 col-lg-4 order-md-last">
-                                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-primary">Carrito</span>
-                                    <span class="badge bg-primary rounded-pill" style="color: aliceblue">3</span>
-                                </h4>
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                                        <div>
-                                            <h6 class="my-0">Producto</h6>
-                                            <small class="text-muted">Descripcion</small>
-                                        </div>
-                                        <div>
-                                            <h6 class="my-0">x1</h6>
-                                        </div>
-                                        <span class="text-muted">$90.89</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                                        <div>
-                                            <h6 class="my-0">Comic</h6>
-                                            <small class="text-muted">Descripcion</small>
-                                        </div>
-                                        <div>
-                                            <h6 class="my-0">x1</h6>
-                                        </div>
-                                        <span class="text-muted">$43.99</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                                        <div>
-                                            <h6 class="my-0">Comic</h6>
-                                            <small class="text-muted">Description</small>
-                                        </div>
-                                        <div>
-                                            <h6 class="my-0">x1</h6>
-                                        </div>
-                                        <span class="text-muted">$50.55</span>
-                                    </li>
+                        <div class="col-12">
 
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Total</span>
-                                        <strong>$1805.42</strong>
-                                    </li>
-                                </ul>
+                            <label class="form-label">Buscar</label>
+                            <select class="form-select" data-live-search="true">
+                                <option>Ejemplo 1</option>
+                                <option>Ejemplo 2</option>
+                                <option>Ejemplo 3</option>
+                            </select>
 
-                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="number" value="1" min="1" max="1000" step="1" />
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="w-100 waves-effect waves-light btn-small"
+                                type="submit">Agregar</button>
 
-                            <div class="col-md-7 col-lg-8">
-
-                                <h4 class="mb-3">Informacion Cliente</h4>
-                                <form class="needs-validation" novalidate>
-                                    <div class="row g-3">
-                                        <div class="col-sm-6">
-                                            <label class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" id="Nombre" value="">
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <label class="form-label">Telefono</label>
-                                            <input type="text" class="form-control" id="Telefono" value="">
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label class="form-label">Correo<span
-                                                    class="text-muted">(Opcional)</span></label>
-                                            <input type="email" class="form-control" id="Correo"
-                                                placeholder="correo@ejemplo.com">
-                                        </div>
-
-
-
-                                        <h4 class="mb-3">Agregar Producto/Comic</h4>
-
-                                        <div class="row gy-3">
-                                            <div class="col-12">
-                                                <label class="form-label">Codigo</label>
-                                                <input type="text" class="form-control" id="cc-name" placeholder=""
-                                                    required>
-                                            </div>
-
-                                            <div class="col-12">
-
-                                                <label class="form-label">Buscar</label>
-                                                <select class="form-select" data-live-search="true">
-                                                    <option>Ejemplo 1</option>
-                                                    <option>Ejemplo 2</option>
-                                                    <option>Ejemplo 3</option>
-                                                </select>
-
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="number" value="1" min="1" max="1000"
-                                                    step="1" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <button class="w-100 btn btn-primary btn-lg" type="submit">Agregar</button>
-
-                                            </div>
-                                        </div>
-
-
-                                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar al
-                                            checkout</button>
-                                </form>
-                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+
+                    <button class="w-100 waves-effect waves-light btn-small" type="submit">Continuar al
+                        checkout</button>
+            </form>
         </div>
+    </div>
+</div>
+</div>
     @endsection
 
     @section('footer')

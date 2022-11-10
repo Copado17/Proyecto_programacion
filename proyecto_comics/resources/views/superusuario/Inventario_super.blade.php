@@ -27,7 +27,7 @@
 
         <a class="waves-effect waves-light btn-small" href="/Agregar_producto">Agregar producto</a>
         <div class="container bg-light col-md-7 my-5 p-4 ">
-            <h1 class="Dispaly-5">
+            <h1 class="Dispaly-5 ">
                 Comics
 
             </h1>
