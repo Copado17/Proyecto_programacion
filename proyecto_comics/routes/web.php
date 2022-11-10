@@ -45,6 +45,9 @@ Route::get('/Registro_venta', function () {
 Route::get('/Usuarios', function () {
     return view('superusuario/Usuarios');
 });
+Route::get('/Editar_usuarios', function () {
+    return view('superusuario/Editar_usuarios');
+});
 Route::get('/Editar_comic', function () {
     return view('superusuario/Editar_comic');
 });
@@ -86,6 +89,8 @@ route::post('Agregar_pedido', [Controlador::class, 'validador_pedido']);
 
 //formrequest de agregar usuario
 route::post('Agregar_usuario', [Controlador::class, 'validador_usuario']);
+//formrequest de agregar usuario
+route::post('Editar_usuarios', [Controlador::class, 'validador_editarU']);
 
 
 

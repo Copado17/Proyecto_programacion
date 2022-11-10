@@ -12,6 +12,7 @@ use App\Http\Requests\validador_proveedores;
 use App\Http\Requests\validador_editarC;
 use App\Http\Requests\validador_EditarP;
 use App\Http\Requests\validador_EditarProducto;
+use App\Http\Requests\validador_EditarU;
 
 class Controlador extends Controller
 {
@@ -44,6 +45,10 @@ class Controlador extends Controller
      //formulario de usuarios
         public function validador_usuario(validador_usuario $req){
             return redirect('/Usuarios')->with('Mensaje','Tu usuario se agrego correctamente');
+        }
+
+        public function validador_editarU(validador_EditarU $req){
+            return redirect('/Editar_usuarios')->with('Mensaje','Tu usuario se editor correctamente');
         }
 
     // Controlador Agregar Pedido

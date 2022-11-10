@@ -14,17 +14,18 @@
 @endsection
 
 @section('contenido')
-        @if (session()->has('Mensaje'))
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        {!! "<script>
-            Swal.fire(
-                'Se agrego correctamente el usuario',
-                'Regresa a la lista de usuarios',
-                'success'
-            )
+@if (session()->has('Mensaje'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'Se agrego correctamente el usuario',
+        'Regresa a la lista de usuarios',
+        'success'
+    )
 
-        </script>" !!}
-        @endif
+</script>" !!}
+@endif
+
 
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
@@ -108,75 +109,6 @@
                 </form>
             </div>
         </div>
-    </div>
-
-    <div class="container bg-light col-md-6 my-5 p-3 ">
-        <div class=" col-mt-5">
-            <label for="exampleInputEmail1" class="form-label">Buscar</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-8">
-            <p>
-                <label>
-                    <input type="checkbox" />
-                    <span>Empleado</span>
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input type="checkbox" />
-                    <span>Supervisor</span>
-                </label>
-            </p>
-
-        </div>
-
-        <table class="table bg-light  ">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Pedro Jesus Copado Andrade</td>
-                    <td>Pedro_copado</td>
-                    <td>Supervisor</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Carlos Antes de la mora</td>
-                    <td>Carlos Ante</td>
-                    <td>Empleado</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-
-                    <td>Karol Muñoz Vazquez</td>
-                    <td>Karol Muñoz</td>
-                    <td>Empleado</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
 
