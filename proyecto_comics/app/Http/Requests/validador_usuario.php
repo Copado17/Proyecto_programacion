@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class validador_pedido extends FormRequest
+class validador_usuario extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class validador_pedido extends FormRequest
     public function rules()
     {
         return [
-            'Proveedor' => 'required',
-            'PedidoID'=> 'required',
-            'NoOrden' => 'required|numeric|min:1'
-
+            'Nombre' => 'required',
+            'Nombre_usuario'=> 'required|min:3|max:20',
+            'Password' => 'required|min:8|max:20'
         ];
     }
 }

@@ -66,6 +66,9 @@ route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']
 //formrequest de agregar pedido
 route::post('Agregar_pedido', [Controlador::class, 'validador_pedido']);
 
+//formrequest de agregar usuario
+route::post('Agregar_usuario', [Controlador::class, 'validador_usuario']);
+
 
 
 /* Vsitas de empleado*/
