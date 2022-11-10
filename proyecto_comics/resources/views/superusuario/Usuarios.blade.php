@@ -10,6 +10,23 @@
         <h2 class="center">Usuarios</h2>
 
     </div>
+
+@endsection
+
+@section('contenido')
+@if (session()->has('Mensaje'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'Se agrego correctamente el usuario',
+        'Regresa a la lista de usuarios',
+        'success'
+    )
+
+</script>" !!}
+@endif
+
+
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
     </div>
@@ -20,7 +37,7 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Agregar Usuarios</h1>
                 </div>
-                <form action="Agregar_usuarios" method="post">
+                <form action="Agregar_usuario" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="col mt-2">
@@ -74,10 +91,9 @@
 
 
                                         <div class="col mt-3 p-3">
-                                            <select class="form-select" id="inputGroupSelect01">
+                                            <select class="form-select" id="Tipo">
                                                 <option value="1">Empleado</option>
                                                 <option value="2">Supervisor</option>
-
                                             </select>
 
                                         </div>

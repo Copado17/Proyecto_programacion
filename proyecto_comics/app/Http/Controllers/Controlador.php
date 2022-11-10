@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\validador_comic;
 use App\Http\Requests\validador_producto;
 use App\Http\Requests\validador_pedido;
+use App\Http\Requests\validador_usuario;
 
 use App\Http\Requests\validador_proveedores;
 use App\Http\Requests\validador_editarC;
@@ -38,6 +39,11 @@ class Controlador extends Controller
         }
         public function validador_EditarP(validador_EditarP $req){
             return redirect('/Editar_proveedores')->with('Mensaje','Tu proveedor se edito correctamente');
+        }
+
+     //formulario de usuarios
+        public function validador_usuario(validador_usuario $req){
+            return redirect('/Usuarios')->with('Mensaje','Tu usuario se agrego correctamente');
         }
 
     // Controlador Agregar Pedido
