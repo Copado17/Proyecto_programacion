@@ -1,13 +1,14 @@
 @extends('plantillas/fondosuper')
 @section('barra_super')
-    <title>Proveedores</title>
+   
+@endsection
+
+@section('contenido')
+<title>Proveedores</title>
     <div class="slider-thumb">
         <h2 class="center">Lista de proveedores</h2>
 
     </div>
-@endsection
-
-@section('contenido')
     <a class="waves-effect waves-light btn-small" href="/Agregar_proveedores">Agregar proveedor</a>
     <div class="container bg-light my-5 p-4">
 
@@ -40,8 +41,8 @@
                     <td>4751093272</td>
                     <td>9532147</td>
                     <td>pedro33333@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
+                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
+                        <a class="waves-effect waves-light btn-small" href="#">Eliminar</a>
                     </td>
 
 
@@ -55,7 +56,7 @@
                     <td>4491093272</td>
                     <td>9532147</td>
                     <td>Sanpedro123@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Editar</a>
+                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
                         <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
 
 
@@ -70,7 +71,7 @@
                     <td>4492004598</td>
                     <td>9532147</td>
                     <td>Pongame_10@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Editar</a>
+                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
                         <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
 
                 </tr>

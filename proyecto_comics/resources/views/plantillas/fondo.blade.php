@@ -12,24 +12,30 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="css/fondo.css">
     <link rel="stylesheet" href="css/estilos.css">
-    <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato&family=Permanent+Marker&family=Raleway:wght@500&display=swap"
+        rel="stylesheet">
+    
 </head>
 
 <body>
 
 
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo">Weirdo Comics</a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="/Punto_Venta">Punto Venta</a></li>
-                <li><a href="/Inventario_empleado">Inventario</a></li>
+<nav>
+            <div class="nav-wrapper">
+                <a href="/Menu_Empleado" class="brand-logo">Weirdo Comics</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/punto_venta">Punto Venta</a></li>
+                    <li><a href="/Inventario_empleado">Inventario</a></li>
+ 
+                    <a class="waves-effect waves-light btn-small" href="/">Salir</a>
 
-                <a class="waves-effect waves-light btn-small" href="/">Salir</a>
-
-            </ul>
-        </div>
-    </nav>
+                </ul>
+            </div>
+        </nav>
     @yield('barra')
 
 

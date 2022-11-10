@@ -17,7 +17,7 @@
                     <h5 class="card-title">Ventas</h5>
                     <p class="card-text">Realiza una venta de un comic o un producto</p>
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-secondary" href="#">Vamos para alla</button>
+                        <a type="button" class="waves-effect waves-light btn-small" href="punto_venta">Vamos para alla</a>
                     </div>
 
                 </div>
@@ -31,7 +31,7 @@
                     <h5 class="card-title">Inventario</h5>
                     <p class="card-text">Checa todos los productos que estan en almacen</p>
                     <div class="d-grid gap-2">
-                        <button type="button" class="btn btn-secondary" href="#">Vamos para alla</button>
+                        <a type="button" class="waves-effect waves-light btn-small" href="/Inventario_empleado">Vamos para alla</a>
                     </div>
                 </div>
             </div>

@@ -1,17 +1,17 @@
 @extends('plantillas/fondosuper')
 @section('barra_super')
+   
+@endsection
+
+@section('contenido')
+
+    
     <title>Registro de ventas</title>
     <div class="slider-thumb">
         <h2 class="center">Registro de ventas</h2>
 
     </div>
-@endsection
-
-@section('contenido')
-
     <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
-
-
     <div class="container bg-light p-4 my-5">
 
         <div class=" col-mt-5">
