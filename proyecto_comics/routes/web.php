@@ -67,6 +67,8 @@ route::post('Agregar_producto', [Controlador::class, 'validador_producto']);
 //formrequest de agregar proveedores
 route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']);
 
+//formrequest de agregar pedido
+route::post('Agregar_pedido', [Controlador::class, 'validador_pedido']);
 
 
 

@@ -36,7 +36,7 @@
                                         </h5>
 
                                         <div class="form-outline mb-4">
-                                            <input type="email" id="correoUsuario" class="form-control form-control-lg" />
+                                            <input type="text" id="correoUsuario" class="form-control form-control-lg" />
                                             <label class="form-label">Correo</label>
                                         </div>
 

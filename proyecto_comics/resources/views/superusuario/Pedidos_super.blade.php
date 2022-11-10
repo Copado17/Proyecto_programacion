@@ -14,7 +14,7 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Realizar Pedido</h1>
                 </div>
-                <form action="Agregar_usuarios" method="post">
+                <form action="Agregar_pedido" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="col mt-2">
@@ -27,6 +27,12 @@
                                             <option value="2">Proveedor2</option>
                                             <option value="3">Proveedor3</option>
                                         </select>
+                                        @if ($errors->has('Proveedor'))
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('Proveedor') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
@@ -36,17 +42,30 @@
                                             <option value="id1">Pedido Comic</option>
                                             <option value="id2">Pedido Producto</option>
                                         </select>
+                                        @if ($errors->has('PedidoID'))
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('PedidoID') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
+                                        @endif
                                     </div>
                                     <div class="col-6">
                                         <h6>Stock Actual</h6>
-                                        <input class="form-control" type="text" placeholder="5" aria-label="1" disabled>
+                                        <input class="form-control" type="text" placeholder="5" aria-label="1" disabled>                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     <h6># de Orden </h6>
-                                    <input type="number" value="1" min="1" max="1000" step="1" />
+                                    <input type="number"  id='NoOrden' value="1" step="1" />
+                                    @if ($errors->has('NoOrden'))
+                                    <div class="alert alert-warning col" role="alert">
+                                        <strong>{{ $errors->first('NoOrden') }}</strong>
+                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                    </div>
+                                    @endif
+
 
                                 </div>
                             </div>
