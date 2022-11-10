@@ -51,6 +51,10 @@ Route::get('/Editar_comic', function () {
 Route::get('/Pedidos_super', function () {
     return view('superusuario/Pedidos_super');
 });
+Route::get('/punto_ventaSuper', function () {
+    return view('superusuario/punto_ventasuper');
+});
+
 
 
 //formrequest de agregar comic
@@ -68,11 +72,14 @@ route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']
 
 /* Vsitas de empleado*/
 Route::get('/Menu_Empleado', function () {
-    return view('empleado/menu_Empleado');
+    return view('empleado/Menu_Empleado');
 });
 Route::get('/Punto_Venta', function () {
     return view('empleado/punto_venta');
 });
 Route::get('/Inventario_empleado', function () {
     return view('empleado/Inventario_empleado');
+});
+Route::get('/punto_venta', function () {
+    return view('empleado/punto_venta');
 });

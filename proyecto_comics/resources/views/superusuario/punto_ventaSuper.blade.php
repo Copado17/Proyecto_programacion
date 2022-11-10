@@ -64,9 +64,9 @@
 
 <body>
 
-    @extends('plantillas/fondo')
+    @extends('plantillas/fondosuper')
 
-    @section('barra')
+    @section('barra_super')
     @endsection
 
     @section('contenido')
