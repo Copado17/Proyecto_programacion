@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\controladorA;
+use App\Http\Requests\validador_producto;
+use DB;
+use Carbon\Carbon;
 
 class controladorA extends Controller
 {
@@ -13,7 +17,9 @@ class controladorA extends Controller
      */
     public function index()
     {
-        //
+        $resultRec= DB::table('tb_articulos' )->get();
+
+        return view('superusuario/Inventario_super', compact('resultRec'));
     }
 
     /**
@@ -23,7 +29,7 @@ class controladorA extends Controller
      */
     public function create()
     {
-        //
+        return view('superusuario/Agregar_producto');
     }
 
     /**
@@ -32,9 +38,22 @@ class controladorA extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(validador_producto $request)
     {
-        //
+        $suma = $request->input('Precio_compraProducto') + $request->input('Precio_compraProducto') * 0.4;
+        DB::table ('tb_articulos')->insert([
+            "nombre_articulo" => $request->input ('nombre_articulo'),
+            "tipo" => $request->input ('Tipo'),
+            "marca" => $request->input ('Marca'),
+            "precio_compra" => $request->input ('Precio_compraProducto'),
+            "precio_venta" => $suma,
+            "disponibilidad" => $request->input ('Disponibilidad'),
+            "descripcion" => $request->input ('Descripcion'),
+            "precio_venta" => $suma,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+         ]);
+         return redirect('/Inventario_super')->with('Confirmacion','Tu recuerdo llego al controlador') ;
     }
 
     /**
@@ -45,7 +64,8 @@ class controladorA extends Controller
      */
     public function show($id)
     {
-        //
+        $consultarId= DB::table('tb_cliente')->where('id', $id)->first();
+        return view('ModalEliminarClientes', compact('consultarId'));
     }
 
     /**
@@ -56,7 +76,8 @@ class controladorA extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultarId= DB::table('tb_cliente')->where('id', $id)->first();
+        return view('ModalEliminarClientes', compact('consultarId'));
     }
 
     /**
@@ -68,7 +89,13 @@ class controladorA extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table ('tb_cliente')->where('id', $id)->update([
+            "nombre" => $request->input ('nombre'),
+            "correo" => $request->input ('correo'),
+            "no_serie_ine" => $request->input ('no_serie_ine'),
+            "updated_at" => Carbon::now()
+         ]);
+         return redirect('TClientes')->with('Editar','Tu recuerdo llego al controlador') ;
     }
 
     /**
@@ -79,6 +106,7 @@ class controladorA extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_cliente')->where('id', $id)->delete();
+        return redirect('TClientes')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
 }

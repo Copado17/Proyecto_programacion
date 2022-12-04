@@ -24,6 +24,7 @@ class validador_EditarProducto extends FormRequest
     public function rules()
     {
         return [
+            'nombre_articulo' => 'required',
             'Tipo' => 'required |min:3 ',
             'Marca' => 'required |min:3|max:50',
             'Precio_compraProducto' => 'required | numeric | min-digits:2',

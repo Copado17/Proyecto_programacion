@@ -24,11 +24,12 @@ class validador_producto extends FormRequest
     public function rules()
     {
         return [
-            'Tipo' => 'required |min:3 ',
-            'Marca' => 'required |min:3|max:50',
-            'Precio_compraProducto' => 'required | numeric | min-digits:2',
-            'Precio_ventaProducto' => 'required | numeric | min-digits:2',
-            'Descripcion' => 'max:50',
+            'nombre_articulo' => 'required | alpha | max:50',
+            'Tipo' => 'required | string | alpha | min:3 | max:255',
+            'Marca' => 'required | string | alpha |min:3|max:50',
+            'Precio_compraProducto' => 'required | numeric ',
+            'Disponibilidad' => 'required | numeric | min-digits:2',
+            'Descripcion' => 'max:50 | string | alpha'
             
             
             

@@ -40,6 +40,19 @@
                             <div class="text-start">
 
                                 <div class="col mb-3">
+                                    <h6>Ingresa el nombre del producto</h6>
+                                    <input type="text" class="form-control" name="nombre_articulo" placeholder="Tipo"
+                                        value="{{ old('nombre_articulo') }}" aria-label="default input example">
+                                    @if ($errors->has('nombre_articulo'))
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('nombre_articulo') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                                <div class="col mb-3">
                                     <h6>Ingresa el tipo de producto</h6>
                                     <input type="text" class="form-control" name="Tipo" placeholder="Tipo"
                                         value="{{ old('Tipo') }}" aria-label="default input example">
@@ -109,7 +122,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Editar un producto</button>
                     </div>
                 </form>
             </div>

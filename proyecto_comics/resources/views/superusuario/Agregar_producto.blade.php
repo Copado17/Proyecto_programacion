@@ -9,7 +9,7 @@
 
 @section('contenido')
 
-    @if (session()->has('Mensaje'))
+    @if (session()->has('Confirmacion'))
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {!! "<script>
             Swal.fire(
@@ -32,12 +32,25 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Agregar producto</h1>
                 </div>
-                <form action="Agregar_producto" method="POST">
+                <form action="/Agregar_producto/store" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="col mt-2">
 
                             <div class="text-start">
+
+                                <div class="col mb-3">
+                                    <h6>Ingresa el nombre del producto</h6>
+                                    <input type="text" class="form-control" name="nombre_articulo" placeholder="Nombre del producto"
+                                        value="{{ old('nombre_articulo') }}" aria-label="default input example">
+                                    @if ($errors->has('nombre_articulo'))
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('nombre_articulo') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                </div>
 
                                 <div class="col mb-3">
                                     <h6>Ingresa el tipo de producto</h6>
@@ -78,14 +91,15 @@
 
                                 </div>
 
+                               
                                 <div class="col mb-3">
-                                    <h6>Ingresa el precio de venta del comic</h6>
-                                    <input class="form-control" type="number" placeholder="Precio venta"
-                                        name="Precio_ventaProducto" value="{{ old('Precio_ventaProducto') }}"
+                                    <h6>Ingresa la disponibilidad</h6>
+                                    <input class="form-control" type="number" placeholder="Disponibilidad"
+                                        name="Disponibilidad" value="{{ old('Disponibilidad') }}"
                                         aria-label="default input example">
-                                    @if ($errors->has('Precio_ventaProducto'))
+                                    @if ($errors->has('Disponibilidad'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Precio_ventaProducto') }}</strong>
+                                            <strong>{{ $errors->first('Disponibilidad') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -109,7 +123,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Editar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
                     </div>
                 </form>
             </div>

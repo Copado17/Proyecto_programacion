@@ -14,7 +14,17 @@
     @section('barra_super')
     @endsection
 
-
+    @if (session()->has('Confirmacion'))
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {!! "<script>
+        Swal.fire(
+            'Se agrego correctamente el producto',
+            'Regresa al inventario',
+            'success'
+        )
+    
+    </script>" !!}
+@endif
 
 
     @section('contenido')
@@ -28,7 +38,7 @@
         <a class="waves-effect waves-light btn-small" href="/Agregar_producto">Agregar producto</a>
         <div class="container bg-light col-md-7 my-5 p-4 ">
             <h1 class="Dispaly-5 ">
-                Comics
+                Productos
 
             </h1>
 
@@ -44,47 +54,31 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Cantidad</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Marca</th>
                         <th scope="col">Precio venta</th>
                         <th scope="col">Precio comprar</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Born again</td>
-                        <td>15</td>
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_comic">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Infinite war</td>
-                        <td>20</td>
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_comic">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-                        </td>
-
-
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-
-                        <td>Civil war</td>
-                        <td>10</td>
-
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_comic">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-                        </td>
-                    </tr>
+                    @foreach ($resultRec as $item)
+                        <tr>
+                            <th scope="row">{{ $item->id_articulo}}</th>
+                            <td>{{ $item->nombre_articulo }}</td>
+                            <td>{{ $item->disponibilidad }}</td>
+                            <td>{{ $item->tipo }}</td>
+                            <td>{{ $item->marca }}</td>
+                            <td>{{ $item->precio_venta }}</td>
+                            <td>{{ $item->precio_compra }}</td>
+                            <td>{{ $item->descripcion }}</td>
+                            <td>
+                                <a href="#" class="waves-effect waves-light btn-small">Editar</a>
+                                <a class="waves-effect waves-light btn-small" href="#">Eliminar</a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -92,7 +86,7 @@
 
         <div class="container bg-light col-md-7 my-5 p-4 ">
             <h1 class="Dispaly-5">
-                Productos
+                Comics
 
             </h1>
             <div class=" col-mt-5">
@@ -106,48 +100,20 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Cantidad</th>
+                        <th scope="col">Edicion</th>
+                        <th scope="col">Publicacion</th>
                         <th scope="col">Precio venta</th>
                         <th scope="col">Precio comprar</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Born again</td>
-                        <td>15</td>
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_producto">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_producto">Eliminar</a>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Infinite war</td>
-                        <td>20</td>
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_producto">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-                        </td>
-
-
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-
-                        <td>Civil war</td>
-                        <td>10</td>
-
-                        <td>$100</td>
-                        <td>$80</td>
-                        <td><a class="waves-effect waves-light btn-small" href="/Editar_comic">Editar</a>
-                            <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-                        </td>
-                    </tr>
+                   
+                        <tr>
+                            
+                            
+                        </tr>
+                   
                 </tbody>
             </table>
         </div>

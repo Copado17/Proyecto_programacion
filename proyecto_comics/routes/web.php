@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controlador;
+use App\Http\Controllers\controladorA;
+use App\Http\Controllers\controladorC;
+use App\Http\Controllers\controladorP;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,15 +26,11 @@ Route::get('Menu_super', function () {
     return view('superusuario/Menu_super');
 });
 
-Route::get('/Inventario_super', function () {
-    return view('superusuario/Inventario_super');
-});
+
 Route::get('/Agregar_comic', function () {
     return view('superusuario/Agregar_comic');
 });
-Route::get('/Agregar_producto', function () {
-    return view('superusuario/Agregar_producto');
-});
+
 Route::get('/Lista_proveedores', function () {
     return view('superusuario/Lista_proveedores');
 });
@@ -73,11 +71,9 @@ route::post('Agregar_comic', [Controlador::class, 'validador_comics']);
 
 route::post('Editar_comic', [Controlador::class, 'validador_editarC']);
 
-//formrequest de agregar producto
-route::post('Agregar_producto', [Controlador::class, 'validador_producto']);
+
 
 route::post('Editar_producto', [Controlador::class, 'validador_EditarProducto']);
-
 
 //formrequest de agregar proveedores
 route::post('Agregar_proveedores', [Controlador::class, 'validador_proveedores']);
@@ -91,6 +87,18 @@ route::post('Agregar_pedido', [Controlador::class, 'validador_pedido']);
 route::post('Agregar_usuario', [Controlador::class, 'validador_usuario']);
 //formrequest de agregar usuario
 route::post('Editar_usuarios', [Controlador::class, 'validador_editarU']);
+
+//vISTA DE TABLAS DE INVENTARIO
+//articulos
+Route::get('/Inventario_super',  [controladorA::class, 'index'])->name('Articulos.index');
+
+
+//create productos
+Route::get('/Agregar_producto',  [controladorA::class, 'create'])->name('Articulos.create');
+
+//Agregar productos
+Route::post('/Agregar_producto/store',  [controladorA::class, 'store'])->name('Articulos.store');
+
 
 
 
