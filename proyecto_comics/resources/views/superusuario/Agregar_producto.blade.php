@@ -79,7 +79,7 @@
 
                                 <div class="col mb-3">
                                     <h6>Ingresa el precio compra del producto</h6>
-                                    <input class="form-control" type="number" placeholder="Precio compra"
+                                    <input class="form-control" type="number" step="0.01" placeholder="Precio compra"
                                         name="Precio_compraProducto" value="{{ old('Precio_compraProducto') }}"
                                         aria-label="default input example">
                                     @if ($errors->has('Precio_compraProducto'))
