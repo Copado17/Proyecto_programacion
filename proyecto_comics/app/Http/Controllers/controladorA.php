@@ -53,6 +53,12 @@ class controladorA extends Controller
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
          ]);
+
+         $consultarLast = DB::table('tb_articulos')->latest('created_at')->first();
+         DB::table('tb_inventario')->insert([
+            "tipo_inventario" => 2,
+            "id_producto" => $consultarLast->id_articulo
+         ]);
          return redirect('/Inventario_super')->with('Confirmacion','Tu recuerdo llego al controlador') ;
     }
 
