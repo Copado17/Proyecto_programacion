@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\controladorA;
-use App\Http\Controllers\controladorC;
-use App\Http\Controllers\controladorP;
+use App\Http\Controllers\Controlador;
+use App\Http\Controllers\ControladorA;
+use App\Http\Controllers\ControladorC;
+use App\Http\Controllers\ControladorP;
+use App\Http\Controllers\ControladorPedidos;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,9 +59,7 @@ Route::get('/Editar_proveedores', function () {
 Route::get('/Editar_producto', function () {
     return view('superusuario/Editar_producto');
 });
-Route::get('/Pedidos_super', function () {
-    return view('superusuario/Pedidos_super');
-});
+
 Route::get('/punto_ventaSuper', function () {
     return view('superusuario/punto_ventasuper');
 });
@@ -101,6 +101,8 @@ Route::post('/Agregar_producto/store',  [controladorA::class, 'store'])->name('A
 
 
 
+/// DB CONTROL PEDIDOS
+Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
 
 /* Vsitas de empleado*/
 Route::get('/Menu_Empleado', function () {

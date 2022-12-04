@@ -10,8 +10,8 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/fondosuper.css">
-    <link rel="stylesheet" href="css/estilossuper.css">
+    <link rel="stylesheet" href="../css/fondosuper.css">
+    <link rel="stylesheet" href="../css/estilossuper.css">
 
     {{-- Fonts de Google --}}
 
@@ -31,7 +31,7 @@
                     <li><a href="/punto_ventaSuper">Punto Venta</a></li>
                     <li><a href="/Inventario_super">Inventario</a></li>
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
-                    <li><a href="/Pedidos_super">Pedidos</a></li>
+                    <li><a href="{{route('Pedidos_Super.index')}}">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
                     
                     <li><a href="/Usuarios">Usuarios</a></li>

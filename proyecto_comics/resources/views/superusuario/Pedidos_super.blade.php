@@ -23,48 +23,53 @@
                                 <div class="row">
                                     <div class="col">
                                         <label>Proveedor</label>
+
                                         <select class="form-select" id="Proveedor">
-                                            <option value="1">Proveedor1</option>
-                                            <option value="2">Proveedor2</option>
-                                            <option value="3">Proveedor3</option>
+                                            @foreach ($resProveedores as $proveedor)
+                                                <option value="{{ $proveedor->id_proveedor }}">
+                                                    {{ $proveedor->nombre_proveedor }}</option>
+                                            @endforeach
                                         </select>
-                                        @if ($errors->has('Proveedor'))
-                                        <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Proveedor') }}</strong>
-                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                        </div>
-                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col s3">
                                         <h6>Pedido</h6>
-                                        <select class="form-select" id="PedidoID">
-                                            <option value="id1">Pedido Comic</option>
-                                            <option value="id2">Pedido Producto</option>
+                                        <label for="PedidoTipo" class="form-label">Tipo de Pedido</label>
+                                        <select class="form-select" id="PedidoTipo">
+                                            <option value="1">Pedido Comic</option>
+                                            <option value="2">Pedido Producto</option>
                                         </select>
-                                        @if ($errors->has('PedidoID'))
-                                        <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('PedidoID') }}</strong>
-                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                        </div>
-                                        @endif
+
+                                        <label for="Pedido" class="form-label">Datalist example</label>
+                                        <input class="form-control" list="pedidoListaOp" id="Pedido"
+                                            placeholder="Ingresa pedido para buscar...">
+                                        <datalist id="pedidoListaOp">
+                                            @foreach ($resComics as $comic)
+                                                <option value="{{ $comic->id_comic }}"> {{ $comic->nombre_comic }}</option>
+                                            @endforeach
+                                            @foreach ($resArticulos as $articulo)
+                                                <option value="{{ $articulo->id_articulo }}">
+                                                    {{ $articulo->nombre_articulo }}</option>
+                                            @endforeach
+                                        </datalist>
+
                                     </div>
                                     <div class="col-6">
                                         <h6>Stock Actual</h6>
-                                        <input class="form-control" type="text" placeholder="5" aria-label="1" disabled>                                        
+                                        <input class="form-control" type="text" placeholder="5" aria-label="1" disabled>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col s6">
                                     <h6># de Orden </h6>
-                                    <input type="number"  id='NoOrden' value="1" step="1" />
+                                    <input type="number" id='NoOrden' value="1" step="1" />
                                     @if ($errors->has('NoOrden'))
-                                    <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('NoOrden') }}</strong>
-                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                    </div>
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('NoOrden') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
                                     @endif
 
 
@@ -121,13 +126,13 @@
             </tbody>
         </table>
         <div class="container p-2 mb-5">
-        <div class="my-5 right">
-            <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
+            <div class="my-5 right">
+                <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
+            </div>
         </div>
     </div>
-    </div>
 
-    
+
 
 
 @endsection
