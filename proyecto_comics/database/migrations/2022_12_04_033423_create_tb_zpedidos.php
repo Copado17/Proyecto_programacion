@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_carrito', function (Blueprint $table) {
-            $table->increments('id_carrito');
-            $table->integer('tipo_producto');
+        Schema::create('tb_pedidos', function (Blueprint $table) {
+            $table->increments('id_pedido');
+            $table->integer('tipo_pedido');
             $table->integer('id_producto');
-            $table->integer('cantidad');
+            $table->integer('id_proveedor')->unsigned()->index()->nullable();
+            $table->foreign('id_proveedor')->references('id_proveedor')->on('tb_proveedores');
+            $table->integer('cantidad_pedido');
             $table->float('total');
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_carrito');
+        Schema::dropIfExists('tb_pedidos');
     }
 };
