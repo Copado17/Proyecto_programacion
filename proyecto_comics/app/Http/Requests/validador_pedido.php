@@ -24,8 +24,8 @@ class validador_pedido extends FormRequest
     public function rules()
     {
         return [
-            'Proveedor' => 'required',
-            'PedidoID'=> 'required',
+            'Proveedor' => 'required|min_digits:1',
+            'PedidoID'=> 'required|min_digits:1',
             'NoOrden' => 'required|numeric|min:1'
 
         ];

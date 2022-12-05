@@ -6,6 +6,7 @@ use App\Http\Controllers\controladorA;
 use App\Http\Controllers\controladorC;
 use App\Http\Controllers\ControladorP;
 use App\Http\Controllers\ControladorPedidos;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -130,6 +131,9 @@ Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy
 
 /// DB CONTROL PEDIDOS
 Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
+Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create'])->name('Pedidos_Super.create');
+
+
 
 /* Vsitas de empleado*/
 Route::get('/Menu_Empleado', function () {

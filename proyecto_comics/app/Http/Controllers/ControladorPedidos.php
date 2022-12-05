@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\validador_pedido;
 use DB;
 use Carbon\Carbon;
 
@@ -16,21 +17,51 @@ class ControladorPedidos extends Controller
     public function index()
     {
         $resProveedores= DB::table('tb_proveedores' )->get();
-        $resComics= DB::table('tb_comics' )->get();
-        $resArticulos= DB::table('tb_articulos' )->get();
 
-        return view('superusuario\Pedidos_super', compact('resProveedores', 'resComics', 'resArticulos'));
+        $resComics = DB::table('tb_inventario')
+        ->leftJoin('tb_comics', 'tb_inventario.id_producto', '=', 'tb_comics.id_comic')
+        ->where('tipo_inventario', '1')->get();
+
+        $resArticulos= DB::table('tb_inventario')
+        ->leftJoin('tb_articulos', 'tb_inventario.id_producto', '=', 'tb_articulos.id_articulo')
+        ->where('tipo_inventario', '2')->get();
+
+        $resPedidos = DB::table('tb_pedidos')->get();
+
+        return view('superusuario\Pedidos_super', compact('resProveedores', 'resComics', 'resArticulos', 'resPedidos'));
 
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(validador_pedido $request)
     {
-        //
+        $id = $request->PedidoID;
+
+        $selectInv = DB::table('tb_inventario')->where('id_inventario', $id)->first();
+        $tipo = $selectInv->tipo_inventario;
+        $idProducto = $selectInv->id_producto;
+        if($tipo == 1) {
+            $queryComicsPedido = DB::table('tb_comics')->where('id_comic', $idProducto)->first();
+
+            $pedidoCantidad = $request->input('NoOrden');
+            $pedidoTotal = $pedidoCantidad * $queryComicsPedido->precio_compra;
+
+            DB::table ('tb_pedidos')->insert([
+                "id_inventario" => $request->input('PedidoID'),
+                "nombre_producto" => $queryComicsPedido->nombre_comic, 
+                "id_proveedor" => $request->input ('Proveedor'),
+                "cantidad_pedido" => $pedidoCantidad,
+                "compra" => $queryComicsPedido->precio_compra,
+                "total" => $pedidoTotal,
+             ]);    
+    
+        }
+
+        return $this->index();
     }
 
     /**
