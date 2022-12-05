@@ -107,30 +107,21 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($resPedidos as $pedido)
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Proveedor1</td>
-                    <td>Comic: Spider-man: Born again Oscar Silvestre MARVEL</td>
-                    <td>28</td>
-                    <td>$150</td>
-                    <td>$4200</td>
+                    <th scope="row">{{$pedido->id_pedido}}</th>
+                    <td>{{$pedido->nombre_proveedor}}</td>
+                    <td>{{$pedido->nombre_producto}}</td>
+                    <td>{{$pedido->cantidad_pedido}}</td>
+                    <td>{{$pedido->compra}}</td>
+                    <td>{{$pedido->total}}</td>
                     <td>
                         <a class="waves-effect waves-light btn-small" href="">Eliminar</a>
                     </td>
-
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Proveedor2</td>
-                    <td>Producto: Figura Batman Black and White DC</td>
-                    <td>3</td>
-                    <td>$4000</td>
-                    <td>$12000</td>
-                    <td>
-                        <a class="waves-effect waves-light btn-small" href="">Eliminar</a>
-                    </td>
+                @endforeach
 
-                </tr>
             </tbody>
         </table>
         <div class="container p-2 mb-5">

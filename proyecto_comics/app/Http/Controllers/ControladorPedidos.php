@@ -26,7 +26,11 @@ class ControladorPedidos extends Controller
         ->leftJoin('tb_articulos', 'tb_inventario.id_producto', '=', 'tb_articulos.id_articulo')
         ->where('tipo_inventario', '2')->get();
 
-        $resPedidos = DB::table('tb_pedidos')->get();
+        $resPedidos = DB::table('tb_pedidos')
+        ->join('tb_proveedores', 'tb_pedidos.id_proveedor', '=', 'tb_proveedores.id_proveedor')
+        ->select('tb_pedidos.*', 'tb_proveedores.nombre_proveedor')
+        ->get();
+
 
         return view('superusuario\Pedidos_super', compact('resProveedores', 'resComics', 'resArticulos', 'resPedidos'));
 
@@ -44,6 +48,7 @@ class ControladorPedidos extends Controller
         $selectInv = DB::table('tb_inventario')->where('id_inventario', $id)->first();
         $tipo = $selectInv->tipo_inventario;
         $idProducto = $selectInv->id_producto;
+
         if($tipo == 1) {
             $queryComicsPedido = DB::table('tb_comics')->where('id_comic', $idProducto)->first();
 
@@ -58,10 +63,26 @@ class ControladorPedidos extends Controller
                 "compra" => $queryComicsPedido->precio_compra,
                 "total" => $pedidoTotal,
              ]);    
-    
         }
 
-        return $this->index();
+        if($tipo == 2) {
+            $queryArticloPedido = DB::table('tb_articulos')->where('id_articulo', $idProducto)->first();
+
+            $pedidoCantidad = $request->input('NoOrden');
+            $pedidoTotal = $pedidoCantidad * $queryArticloPedido->precio_compra;
+
+            DB::table ('tb_pedidos')->insert([
+                "id_inventario" => $request->input('PedidoID'),
+                "nombre_producto" => $queryArticloPedido->nombre_articulo, 
+                "id_proveedor" => $request->input ('Proveedor'),
+                "cantidad_pedido" => $pedidoCantidad,
+                "compra" => $queryArticloPedido->precio_compra,
+                "total" => $pedidoTotal,
+             ]);    
+        }
+
+
+        return redirect('superusuario/Pedidos_super');
     }
 
     /**
