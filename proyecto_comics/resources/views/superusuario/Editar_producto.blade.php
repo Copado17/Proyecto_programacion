@@ -9,17 +9,7 @@
 
 @section('contenido')
 
-    @if (session()->has('Mensaje'))
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        {!! "<script>
-            Swal.fire(
-                'Se edito correctamente el producto',
-                'Regresa al inventario',
-                'success'
-            )
-        
-        </script>" !!}
-    @endif
+    
 
 
 
@@ -32,8 +22,9 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Editar producto</h1>
                 </div>
-                <form action="Editar_producto" method="POST">
+                <form  action="{{route('Articulos.update', $consultarId->id_articulo)}}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="form-group">
                         <div class="col mt-2">
 
@@ -42,7 +33,7 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa el nombre del producto</h6>
                                     <input type="text" class="form-control" name="nombre_articulo" placeholder="Tipo"
-                                        value="{{ old('nombre_articulo') }}" aria-label="default input example">
+                                    value="{{$consultarId->nombre_articulo}}" aria-label="default input example">
                                     @if ($errors->has('nombre_articulo'))
                                         <div class="alert alert-warning col" role="alert">
                                             <strong>{{ $errors->first('nombre_articulo') }}</strong>
@@ -55,7 +46,7 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa el tipo de producto</h6>
                                     <input type="text" class="form-control" name="Tipo" placeholder="Tipo"
-                                        value="{{ old('Tipo') }}" aria-label="default input example">
+                                    value="{{$consultarId->tipo}}" aria-label="default input example">
                                     @if ($errors->has('Tipo'))
                                         <div class="alert alert-warning col" role="alert">
                                             <strong>{{ $errors->first('Tipo') }}</strong>
@@ -67,7 +58,7 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa la marca del producto</h6>
                                     <input class="form-control" type="text" placeholder="Marca" name="Marca"
-                                        value="{{ old('Marca') }}" aria-label="default input example">
+                                    value="{{$consultarId->marca}}" aria-label="default input example">
                                     @if ($errors->has('Marca'))
                                         <div class="alert alert-warning col" role="alert">
                                             <strong>{{ $errors->first('Marca') }}</strong>
@@ -80,7 +71,7 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa el precio compra del producto</h6>
                                     <input class="form-control" type="number" placeholder="Precio compra"
-                                        name="Precio_compraProducto" value="{{ old('Precio_compraProducto') }}"
+                                        name="Precio_compraProducto" value="{{$consultarId->precio_compra}}"
                                         aria-label="default input example">
                                     @if ($errors->has('Precio_compraProducto'))
                                         <div class="alert alert-warning col" role="alert">
@@ -92,13 +83,13 @@
                                 </div>
 
                                 <div class="col mb-3">
-                                    <h6>Ingresa el precio de venta del comic</h6>
-                                    <input class="form-control" type="number" placeholder="Precio venta"
-                                        name="Precio_ventaProducto" value="{{ old('Precio_ventaProducto') }}"
+                                    <h6>Ingresa la disponibilidad</h6>
+                                    <input class="form-control" type="number" placeholder="Disponibilidad"
+                                        name="Disponibilidad" value="{{$consultarId->disponibilidad}}"
                                         aria-label="default input example">
-                                    @if ($errors->has('Precio_ventaProducto'))
+                                    @if ($errors->has('Disponibilidad'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Precio_ventaProducto') }}</strong>
+                                            <strong>{{ $errors->first('Disponibilidad') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -108,7 +99,7 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa una descripcion breve</h6>
                                     <input class="form-control" type="text" placeholder="Descripcion" name="Descripcion"
-                                        value="{{ old('Descripcion') }}" aria-label="default input example">
+                                    value="{{$consultarId->descripcion}}" aria-label="default input example">
                                     @if ($errors->has('Descripcion'))
                                         <div class="alert alert-warning col" role="alert">
                                             <strong>{{ $errors->first('Descripcion') }}</strong>

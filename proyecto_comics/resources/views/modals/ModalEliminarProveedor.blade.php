@@ -1,19 +1,9 @@
-@if (session()->has('Eliminacion'))
+<!-- Modal -->
 
-{!! "<script>
-    Swal.fire(
-        'Se elimino correctamente ',
-        ':)',
-        'success'
-    )
+@foreach ($resultRec as $items)
 
-</script>" !!}
-
-@endif
-@foreach ($resultRec as $item)
-
-<div class="modal fade" id="ModalEliminarArticulos{{$item->id_articulo}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="ModalEliminarArticulos{{$item->id_articulo}}" aria-hidden="true">
+<div class="modal fade" id="ModalEliminarProveedor{{$items->id_proveedor}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="ModalEliminarProveedor{{$items->id_proveedor}}" aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -24,24 +14,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h4 class="text-dark">¿Desea eliminar este articulo?</h4>
+                <h4 class="text-dark">¿Desea eliminar este proveedor?</h4>
 
                 <div class="text-dark">
-                    <p class="fw-bold">Nombre: {{$item->nombre_articulo}}</p>
-                    <p class="fw-bold">Tipo: {{$item->tipo}}</p>
-                    <p class="fw-bold">Marca: {{$item->marca}}</p>
+                    <p class="fw-bold">Nombre: {{$items->nombre_proveedor}}</p>
+                    <p class="fw-bold">Contacto: {{$items->contacto}}</p>
+                    <p class="fw-bold">Telefono: {{$items->numero_celular}}</p>
 
                    
                 </div>
 
             </div>
             <div class="modal-footer">
-                <form method="post" action="{{route('Articulos.destroy',$item->id_articulo)}}">
+                <form method="post" action="{{route('Proveedores.destroy',$items->id_proveedor)}}">
                     <button type="submit" class="btn btn-danger">Si, eliminalo</button>
                     @csrf
                     @method('delete')
                 </form>
-
 
                 <button class="btn btn-primary" type="button"  data-bs-dismiss="modal" >No, no lo elimines</button>
             </div>
@@ -52,4 +41,3 @@
 
 </div>
 @endforeach
-

@@ -18,8 +18,8 @@ class controladorA extends Controller
     public function index()
     {
         $resultRec= DB::table('tb_articulos' )->get();
-
-        return view('superusuario/Inventario_super', compact('resultRec'));
+        $resultRec3= DB::table('tb_comics' )->get();
+        return view('superusuario/Inventario_super', compact('resultRec', 'resultRec3'));
     }
 
     /**
@@ -70,8 +70,8 @@ class controladorA extends Controller
      */
     public function show($id)
     {
-        $consultarId= DB::table('tb_cliente')->where('id', $id)->first();
-        return view('ModalEliminarClientes', compact('consultarId'));
+        $consultarId= DB::table('tb_articulos')->where('id_articulo', $id_articulo)->first();
+        return view('ModalEliminarArticulos', compact('consultarId'));
     }
 
     /**
@@ -80,10 +80,10 @@ class controladorA extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_articulo)
     {
-        $consultarId= DB::table('tb_cliente')->where('id', $id)->first();
-        return view('ModalEliminarClientes', compact('consultarId'));
+        $consultarId= DB::table('tb_articulos')->where('id_articulo', $id_articulo)->first();
+        return view('superusuario/Editar_producto', compact('consultarId'));
     }
 
     /**
@@ -93,15 +93,20 @@ class controladorA extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_articulo)
     {
-        DB::table ('tb_cliente')->where('id', $id)->update([
-            "nombre" => $request->input ('nombre'),
-            "correo" => $request->input ('correo'),
-            "no_serie_ine" => $request->input ('no_serie_ine'),
+        $suma = $request->input('Precio_compraProducto') + $request->input('Precio_compraProducto') * 0.4;
+        DB::table('tb_articulos')->where('id_articulo', $id_articulo)->update([
+            "nombre_articulo" => $request->input ('nombre_articulo'),
+            "tipo" => $request->input ('Tipo'),
+            "marca" => $request->input ('Marca'),
+            "precio_compra" => $request->input ('Precio_compraProducto'),
+            "precio_venta" => $suma,
+            "disponibilidad" => $request->input ('Disponibilidad'),
+            "descripcion" => $request->input ('Descripcion'),
             "updated_at" => Carbon::now()
-         ]);
-         return redirect('TClientes')->with('Editar','Tu recuerdo llego al controlador') ;
+        ]);
+        return redirect('/Inventario_super')->with('Editar','Tu recuerdo llego al controlador') ;
     }
 
     /**
@@ -110,9 +115,9 @@ class controladorA extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_articulo)
     {
-        DB::table('tb_cliente')->where('id', $id)->delete();
-        return redirect('TClientes')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
+        DB::table('tb_articulos')->where('id_articulo', $id_articulo)->delete();
+        return redirect('/Inventario_super')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
 }

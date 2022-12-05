@@ -17,11 +17,24 @@
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
         </div>
 
+
+        @if (session()->has('Eliminacion'))
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {!! "<script>
+        Swal.fire(
+            'Se elimino correctamente el proveedor ',
+            'Verifica la lista de proveedores',
+            'success'
+        )
+    
+    </script>" !!}
+@endif
+@include ('modals/ModalEliminarProveedor')
         <table class="table bg-light  my-5">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Empresa</th>
+                    <th scope="col">Nombre de Empresa</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Pais</th>
                     <th scope="col">Contacto</th>
@@ -32,49 +45,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Panni</td>
-                    <td>Ramon perez viramontes #20</td>
-                    <td>Mexico</td>
-                    <td>Oscar Silvestre</td>
-                    <td>4751093272</td>
-                    <td>9532147</td>
-                    <td>pedro33333@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="#">Eliminar</a>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Panni</td>
-                    <td>Miguel Hidalgo #20</td>
-                    <td>Estados unidos</td>
-                    <td>John Jimenez</td>
-                    <td>4491093272</td>
-                    <td>9532147</td>
-                    <td>Sanpedro123@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-
-                    <td>Panni</td>
-                    <td>Villas del refugio #20</td>
-                    <td>Canada</td>
-                    <td>Sergiño De la madrid</td>
-                    <td>4492004598</td>
-                    <td>9532147</td>
-                    <td>Pongame_10@gmail.com</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_proveedores">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Editar_proveedor">Eliminar</a>
-
-                </tr>
+                @foreach ($resultRec as $item)
+                    <tr>
+                        <th scope="row">{{ $item->id_proveedor }}</th>
+                        <td>{{ $item->nombre_proveedor }}</td>
+                        <td>{{ $item->direccion }}</td>
+                        <td>{{ $item->pais }}</td>
+                        <td>{{ $item->contacto }}</td>
+                        <td>{{ $item->numero_fijo }}</td>
+                        <td>{{ $item->numero_celular }}</td>
+                        <td>{{ $item->correo }}</td>
+                        <td>
+                            <a class="waves-effect waves-light btn-small" >Editar</a>
+                            <button type="button" class="waves-effect waves-light btn-small" data-bs-toggle="modal" data-bs-target="#ModalEliminarProveedor{{$item->id_proveedor}}">
+                                <i class="bi bi-x-circle-fill"></i> Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -24,13 +24,12 @@ class validador_EditarProducto extends FormRequest
     public function rules()
     {
         return [
-            'nombre_articulo' => 'required',
-            'Tipo' => 'required |min:3 ',
-            'Marca' => 'required |min:3|max:50',
-            'Precio_compraProducto' => 'required | numeric | min-digits:2',
-            'Precio_ventaProducto' => 'required | numeric | min-digits:2',
-            'Descripcion' => 'max:50',
-            
+            'nombre_articulo' => 'required | alpha | max:50',
+            'Tipo' => 'required | string | alpha | min:3 | max:255',
+            'Marca' => 'required | string | alpha |min:3|max:50',
+            'Precio_compraProducto' => 'required | numeric ',
+            'Disponibilidad' => 'required | numeric |',
+            'Descripcion' => 'max:50  | alpha'
             
         ];
     }

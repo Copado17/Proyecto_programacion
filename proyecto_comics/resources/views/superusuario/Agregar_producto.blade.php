@@ -9,17 +9,7 @@
 
 @section('contenido')
 
-    @if (session()->has('Confirmacion'))
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        {!! "<script>
-            Swal.fire(
-                'Se agrego correctamente el producto',
-                'Regresa al inventario',
-                'success'
-            )
-        
-        </script>" !!}
-    @endif
+    
 
 
 

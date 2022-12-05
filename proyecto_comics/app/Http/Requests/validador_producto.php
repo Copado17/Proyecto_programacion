@@ -28,8 +28,8 @@ class validador_producto extends FormRequest
             'Tipo' => 'required | string | alpha | min:3 | max:255',
             'Marca' => 'required | string | alpha |min:3|max:50',
             'Precio_compraProducto' => 'required | numeric ',
-            'Disponibilidad' => 'required | numeric | min-digits:2',
-            'Descripcion' => 'max:50 | string | alpha'
+            'Disponibilidad' => 'required | numeric |',
+            'Descripcion' => 'max:50  | alpha'
             
             
             

@@ -24,12 +24,13 @@ class validador_EditarP extends FormRequest
     public function rules()
     {
         return [
-            'Empresa' => 'required| min:3 | max:50',
-            'Direccion' => 'required | min:3 | max:50',
-            'Contacto' => 'required | min:3 | max:50',
-            'Telefono_Fijo' => 'required | numeric | digits:8',
-            'Telefono_Celular' => 'required | numeric | digits:10',
-            'Correo' => 'required | email | max:50',
+            'nombre_proveedor' => 'required| min:3 | max:50',
+            'direccion' => 'required | min:3 | max:50',
+            'contacto' => 'required | min:6 | max:50',
+            'pais' => 'required | min:3 | max:50 |alpha',
+            'numero_fijo' => 'required | numeric | digits:8',
+            'numero_celular' => 'required | numeric | digits:10',
+            'correo' => 'required | email | max:50',
             
             
         ];
