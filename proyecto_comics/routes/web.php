@@ -6,6 +6,7 @@ use App\Http\Controllers\ControladorA;
 use App\Http\Controllers\ControladorC;
 use App\Http\Controllers\ControladorP;
 use App\Http\Controllers\ControladorPedidos;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,6 +104,9 @@ Route::post('/Agregar_producto/store',  [controladorA::class, 'store'])->name('A
 
 /// DB CONTROL PEDIDOS
 Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
+Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create'])->name('Pedidos_Super.create');
+
+
 
 /* Vsitas de empleado*/
 Route::get('/Menu_Empleado', function () {

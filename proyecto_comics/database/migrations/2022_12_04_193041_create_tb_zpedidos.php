@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('tb_pedidos', function (Blueprint $table) {
             $table->increments('id_pedido');
-            $table->integer('id_inventario')->unsigned()->index()->nullable();
-            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
             $table->integer('id_proveedor')->unsigned()->index()->nullable();
             $table->foreign('id_proveedor')->references('id_proveedor')->on('tb_proveedores');
+            $table->integer('id_inventario')->unsigned()->index()->nullable();
+            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+            $table->string('nombre_producto');
             $table->integer('cantidad_pedido');
+            $table->float('compra');
             $table->float('total');
         });
+
     }
 
     /**
