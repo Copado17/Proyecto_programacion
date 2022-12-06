@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pedidos_articulos', function (Blueprint $table) {
-            $table->increments('id_pedido_articulo');
-            $table->integer('id_inventario')->unsigned()->index()->nullable();
-            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+        Schema::create('tb_pedidos_temp', function (Blueprint $table) {
+            $table->increments('id_pedido_temp');
             $table->integer('id_proveedor')->unsigned()->index()->nullable();
             $table->foreign('id_proveedor')->references('id_proveedor')->on('tb_proveedores');
+            $table->integer('id_inventario')->unsigned()->index()->nullable();
+            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+            $table->string('nombre_producto');
             $table->integer('cantidad_pedido');
+            $table->float('compra');
             $table->float('total');
         });
+
     }
 
     /**
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pedidos_articulos');
+        Schema::dropIfExists('tb_pedidos');
     }
 };

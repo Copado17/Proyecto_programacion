@@ -4,6 +4,18 @@
 
 @section('contenido')
 
+@if (session()->has('pedidosEnviado'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'Se crearon los pedidos correctamente',
+        'Regresa a pedidos',
+        'success'
+    )
+
+</script>" !!}
+@endif
+
 
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>

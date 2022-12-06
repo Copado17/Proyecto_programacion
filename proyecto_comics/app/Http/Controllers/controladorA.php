@@ -118,6 +118,8 @@ class controladorA extends Controller
     public function destroy($id_articulo)
     {
         DB::table('tb_articulos')->where('id_articulo', $id_articulo)->delete();
+        DB::table('tb_inventario')->where('tipo_inventario', 2)->where('id_producto', $id_articulo)->delete();
+
         return redirect('/Inventario_super')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
 }

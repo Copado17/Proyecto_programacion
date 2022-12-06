@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('tb_carrito', function (Blueprint $table) {
             $table->increments('id_carrito');
-            $table->integer('tipo_producto');
-            $table->integer('id_producto');
+            $table->integer('id_inventario')->unsigned()->index()->nullable();
+            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+            $table->string('nombre_producto');
             $table->integer('cantidad');
+            $table->float('valor');
             $table->float('total');
+
         });
     }
 

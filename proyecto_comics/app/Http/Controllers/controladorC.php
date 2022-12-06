@@ -52,6 +52,12 @@ class controladorC extends Controller
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
          ]);
+         $consultarLast = DB::table('tb_comics')->latest('created_at')->first();
+         DB::table('tb_inventario')->insert([
+            "tipo_inventario" => 1,
+            "id_producto" => $consultarLast->id_comic
+         ]);
+
          return redirect('/Inventario_super')->with('Confirmacion','Tu recuerdo llego al controlador') ;
        
     }
@@ -100,6 +106,9 @@ class controladorC extends Controller
     public function destroy($id_comic)
     {
         DB::table('tb_comics')->where('id_comic', $id_comic)->delete();
+
+        DB::table('tb_inventario')->where('tipo_inventario', 1)->where('id_producto', $id_comic)->delete();
+
         return redirect('/Inventario_super')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
 }
