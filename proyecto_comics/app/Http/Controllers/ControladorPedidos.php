@@ -88,12 +88,61 @@ class ControladorPedidos extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
+
     {
-        //
+        $pedidos = DB::table('tb_pedidos')
+        ->join('tb_inventario', 'tb_pedidos.id_inventario', '=', 'tb_inventario.id_inventario')
+        ->select('tb_pedidos.*', 'tb_inventario.tipo_inventario')
+        ->get();
+
+        foreach($pedidos as $pedido){
+            if($pedido->tipo_inventario == 1) {
+                DB::table ('tb_pedidos_comics')->insert([
+                    "id_comic" => $pedido->id_inventario,
+                    "id_proveedor" => $pedido->id_proveedor, 
+                    "cantidad_pedido" => $pedido->cantidad_pedido,
+                    "total" => $pedido->total,
+                 ]);
+
+
+                 $stockActual = DB::table('tb_comics')->where('id_comic', $pedido->id_inventario)->pluck('disponibilidad');
+                 $cantidadPedido = $pedido->cantidad_pedido;
+                 $newStock = $stockActual[0] + $cantidadPedido;
+
+                 DB::table('tb_comics')->where('id_comic', $pedido->id_inventario)->update([
+                     "disponibilidad" => $newStock,
+                     "updated_at" => Carbon::now()
+                 ]);                        
+
+            };
+
+            if($pedido->tipo_inventario == 2) {
+                DB::table ('tb_pedidos_articulos')->insert([
+                    "id_articulo" => $pedido->id_inventario,
+                    "id_proveedor" => $pedido->id_proveedor, 
+                    "cantidad_pedido" => $pedido->cantidad_pedido,
+                    "total" => $pedido->total,
+                 ]);
+
+                 $stockActual = DB::table('tb_articulos')->where('id_articulo', $pedido->id_inventario)->pluck('disponibilidad');
+                 $cantidadPedido = $pedido->cantidad_pedido;
+                 $newStock = $stockActual + $cantidadPedido;
+
+                 DB::table('tb_articulos')->where('id_articulo', $pedido->id_inventario)->update([
+                     "disponibilidad" => $newStock,
+                     "updated_at" => Carbon::now()
+                 ]);                        
+
+            };
+        };
+
+        DB::table('tb_pedidos')->truncate();
+        return redirect('superusuario/Pedidos_super')->with('pedidosEnviado', 'Los pedidos fueron registrados');
+
+
     }
 
     /**

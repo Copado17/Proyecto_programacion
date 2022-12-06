@@ -124,9 +124,10 @@
 
             </tbody>
         </table>
+
         <div class="container p-2 mb-5">
             <div class="my-5 right">
-                <a class="waves-effect waves-light btn-small" href="">Crear Pedido</a>
+                <a href="{{route('Pedidos_Super.store')}}" type="submit" class="btn btn-primary">Crear Pedido</a>
             </div>
         </div>
     </div>
