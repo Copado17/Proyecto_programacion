@@ -135,6 +135,8 @@ Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create']
 Route::get('superusuario/Pedidos_super/store', [ControladorPedidos::class, 'store'])->name('Pedidos_Super.store');
 Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'destroy'])->name('Pedidos_Super.destroy');
 
+/// DB CONTROL PEDIDOS TABLA
+Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
 
 
 /* Vsitas de empleado*/

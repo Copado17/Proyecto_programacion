@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inventario</title>
+    <title>Pedidos Lista</title>
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
@@ -17,56 +17,17 @@
     @endsection
 
 
-    @if (session()->has('Confirmacion'))
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {!! "<script>
-        Swal.fire(
-            'Se agrego correctamente ',
-            'Verifica en el inventario',
-            'success'
-        )
-    
-    </script>" !!}
-@endif
-
-
-@if (session()->has('Eliminacion'))
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {!! "<script>
-        Swal.fire(
-            'Se elimino correctamente ',
-            'Verifica en el inventario',
-            'success'
-        )
-    
-    </script>" !!}
-@endif
-
-@if (session()->has('Editar'))
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {!! "<script>
-        Swal.fire(
-            'Se edito correctamente ',
-            'Verifica en el inventario',
-            'success'
-        )
-    
-    </script>" !!}
-@endif
-
     @section('contenido')
-        <title>Inventario</title>
+        <title>Lista Pedidos</title>
         <div class="slider-thumb">
-            <h2 class="center">Inventario</h2>
+            <h2 class="center">Lista Pedidos</h2>
 
         </div>
-        <a class="waves-effect waves-light btn-small" href="/Agregar_comic">Agregar comic</a>
+        <a class="waves-effect waves-light btn-small" href="{{route('Pedidos_Super.indexPedidos')}}">Crear Pedido</a>
 
-        <a class="waves-effect waves-light btn-small" href="/Agregar_producto">Agregar producto</a>
         <div class="container bg-light col-md-7 my-5 p-4 ">
             <h1 class="Dispaly-5 ">
                 Productos
-
             </h1>
 
             <div class=" col-mt-5">
@@ -74,19 +35,15 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
 
-            @include ('modals/ModalEliminarArticulos')
             <table class="table bg-light  my-5">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Precio venta</th>
-                        <th scope="col">Precio comprar</th>
-                        <th scope="col">Disponibilidad</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Fecha Pedido</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Correo Proveedor</th>
+                        <th scope="col">Numero de Pedidos</th>
+                        <th scope="col">Total Costo Pedido</th>
                     </tr>
                 </thead>
                 <tbody>
