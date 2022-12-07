@@ -133,6 +133,7 @@ Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy
 Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
 Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create'])->name('Pedidos_Super.create');
 Route::get('superusuario/Pedidos_super/store', [ControladorPedidos::class, 'store'])->name('Pedidos_Super.store');
+Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'destroy'])->name('Pedidos_Super.destroy');
 
 
 
