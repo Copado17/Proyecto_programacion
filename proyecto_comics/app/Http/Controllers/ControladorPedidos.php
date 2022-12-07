@@ -44,43 +44,50 @@ class ControladorPedidos extends Controller
      */
     public function create(validador_pedido $request)
     {
+        /// VALIDAR SI SE INTENTA INGRESAR MULTIPLES PROVEEDORES EN 1 PEDIDO
         $id = $request->PedidoID;
 
         $selectInv = DB::table('tb_inventario')->where('id_inventario', $id)->first();
         $tipo = $selectInv->tipo_inventario;
         $idProducto = $selectInv->id_producto;
 
-        $proveedorActual = DB::table('tb_pedidos_temp')->orderby('id_pedido_temp')->pluck('id_proveedor')[0];
-        if ($proveedorActual) {
-            if ($proveedorActual != $request->input('Proveedor')) {
-                return redirect('superusuario/Pedidos_super')->with('proveedorIncorrecto', 'Le pedido no se registro');
+        $proveedorActual = DB::table('tb_pedidos_temp')->select('id_proveedor')->first();
+
+        if(!is_null($proveedorActual)) {
+            if ($proveedorActual->id_proveedor != $request->input('Proveedor')) {
+                return redirect('superusuario/Pedidos_super')->with('errorProveedor', 'El pedido no se registro');
             }
             
         }
-    
 
+        /// IDENTIFICAR QUE TIPO DE PRODUCTO SE CREA EL PEDIDO TEMPORAL
         switch ($tipo) {
             case 1:
                 $tabla = 'tb_comics';
                 $id = 'id_comic';
+                $nombre = 'nombre_comic';
                 break;
             case 2:
                 $tabla = 'tb_articulos';
                 $id = 'id_articulo';
+                $nombre = 'nombre_articulo';
                 break;
             default:
-                return redirect('superusuario/Pedidos_super')->with('', 'Le pedido no se registro');
+                return redirect('superusuario/Pedidos_super')->with('errorTipo', 'El pedido no se registro');
         }
-        
 
+        /// QUERY PARA SACAR DATOS DE PRODUCTO
+        
         $queryPedido = DB::table($tabla)->where($id, $idProducto)->first();
 
         $pedidoCantidad = $request->input('NoOrden');
         $pedidoTotal = $pedidoCantidad * $queryPedido->precio_compra;
 
+        /// INSERT DE PEDIDO TEMPORAL
+
         DB::table('tb_pedidos_temp')->insert([
             "id_inventario" => $request->input('PedidoID'),
-            "nombre_producto" => $queryPedido->nombre_articulo,
+            "nombre_producto" => $queryPedido->$nombre,
             "id_proveedor" => $request->input('Proveedor'),
             "cantidad_pedido" => $pedidoCantidad,
             "compra" => $queryPedido->precio_compra,
@@ -92,69 +99,105 @@ class ControladorPedidos extends Controller
     }
 
     /**
-     * ESTA FUNCION ENVIA A LAS TABLAS DE LOS PEDIDOS DEPENDIENDO 
+     * ESTA FUNCION CREA LOS PEDIDOS
      *
      * @return \Illuminate\Http\Response
      */
     public function store()
     {
-        $pedidos = DB::table('tb_pedidos')
-            ->join('tb_inventario', 'tb_pedidos.id_inventario', '=', 'tb_inventario.id_inventario')
-            ->select('tb_pedidos.*', 'tb_inventario.tipo_inventario')
+
+        /// VERIFICA QUE NO ENVIES PEDIDO VACIO
+
+        $checkFirst = DB::table('tb_pedidos_temp')->select('id_proveedor')->first();
+
+        if(is_null($checkFirst)) {
+            return redirect('superusuario/Pedidos_super')->with('errorVacio', 'El pedido no se registro');            
+        }
+
+        /// CREA UN REGISTRO DE PEDIDO 
+
+        $numeroPedido = 0;
+        $totalPedido = 0;
+
+        DB::table('tb_pedidos')->insert([
+            "id_proveedor" => $checkFirst->id_proveedor,
+            "numero_pedidos" => $numeroPedido,
+            "total_pedido" => $totalPedido,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+        ]);
+
+        /// OBTENER DATOS DE LOS PEDIDOS TEMPORALES
+
+        $pedidosTemp = DB::table('tb_pedidos_temp')
+            ->join('tb_inventario', 'tb_pedidos_temp.id_inventario', '=', 'tb_inventario.id_inventario')
+            ->select('tb_pedidos_temp.*', 'tb_inventario.tipo_inventario')
             ->get();
 
-        foreach ($pedidos as $pedido) {
-            if ($pedido->tipo_inventario == 1) {
-                DB::table('tb_pedidos_comics')->insert([
-                    "id_inventario" => $pedido->id_inventario,
-                    "id_proveedor" => $pedido->id_proveedor,
-                    "cantidad_pedido" => $pedido->cantidad_pedido,
-                    "total" => $pedido->total,
-                    "created_at" => Carbon::now(),
-                    "updated_at" => Carbon::now()
-                ]);
 
+        // OBTENER EL ID DEL ULTIMO PEDIDO DE LOS CUALES LOS PEDIDOS INDIVIDUALES SERAN ASIGNADOS A
 
-                $stockActual = DB::table('tb_comics')->where('id_comic', $pedido->id_inventario)->pluck('disponibilidad');
-                $cantidadPedido = $pedido->cantidad_pedido;
-                $newStock = $stockActual[0] + $cantidadPedido;
+        $idPedido = DB::table('tb_pedidos')->latest('created_at')->first(); 
 
-                DB::table('tb_comics')->where('id_comic', $pedido->id_inventario)->update([
-                    "disponibilidad" => $newStock,
-                    "updated_at" => Carbon::now()
-                ]);
+        /// POR CADA PEDIDO TEMPORAL CREAMOS UN REGISTRO PERMANENTE EN PEDIDOS INDIVIDUALES
 
+        foreach ($pedidosTemp as $pedidoTemp) {
+
+            /// IDENTIFICAR QUE TIPO DE PRODUCTO SE CREA EL PEDIDO
+            $tipoP = $pedidoTemp->tipo_inventario;
+
+            switch ($tipoP) {
+                case 1:
+                    $tabla = 'tb_comics';
+                    $id = 'id_comic';
+                    $tipo = 'Comic';
+                    break;
+                case 2:
+                    $tabla = 'tb_articulos';
+                    $id = 'id_articulo';
+                    $tipo = 'Producto';
+                    break;
+                default:
+                    return redirect('superusuario/Pedidos_super')->with('errorTipo', 'El pedido no se registro');
             }
-            ;
 
-            if ($pedido->tipo_inventario == 2) {
-                DB::table('tb_pedidos_articulos')->insert([
-                    "id_inventario" => $pedido->id_inventario,
-                    "id_proveedor" => $pedido->id_proveedor,
-                    "cantidad_pedido" => $pedido->cantidad_pedido,
-                    "total" => $pedido->total,
-                    "created_at" => Carbon::now(),
-                    "updated_at" => Carbon::now()
+            /// INSERT DE PEDIDO INDIVIDUAL
+            DB::table('tb_pedidos_individuales')->insert([
+                "id_pedido" => $idPedido->id_pedido,
+                "id_inventario" => $pedidoTemp->id_inventario,
+                "tipo_pedido" => $tipo,
+                "cantidad_pedido_individual" => $pedidoTemp->cantidad_pedido,
+                "total_pedido_individual" => $pedidoTemp->total,
 
                 ]);
 
-                $stockActual = DB::table('tb_articulos')->where('id_articulo', $pedido->id_inventario)->pluck('disponibilidad');
-                $cantidadPedido = $pedido->cantidad_pedido;
-                $newStock = $stockActual + $cantidadPedido;
+            /// ACTUALIZACION DE PEDIDO # PEDIDOS Y TOTAL
+            $numeroPedido = $numeroPedido + 1;
+            $totalPedido = $totalPedido + $pedidoTemp->total;
 
-                DB::table('tb_articulos')->where('id_articulo', $pedido->id_inventario)->update([
-                    "disponibilidad" => $newStock,
-                    "updated_at" => Carbon::now()
-                ]);
+            DB::table('tb_pedidos')->where('id_pedido', $idPedido->id_pedido)->update([
+                "numero_pedidos" => $numeroPedido,
+                "total_pedido" => $totalPedido,
+                "updated_at" => Carbon::now()
+            ]);
+    
+            /// ACTUALIZACION DE DISPONIBILIDAD DESPUES DE QUE SE CREA EL PEDIDO
 
-            }
-            ;
+            $stockActual = DB::table($tabla)->where($id, $pedidoTemp->id_inventario)->value('disponibilidad');
+
+            $cantidadPedido = $pedidoTemp->cantidad_pedido;
+            $newStock = $stockActual + $cantidadPedido;
+
+            DB::table($tabla)->where($id, $pedidoTemp->id_inventario)->update([
+                "disponibilidad" => $newStock,
+                "updated_at" => Carbon::now()
+            ]);
+
         }
-        ;
 
-        DB::table('tb_pedidos')->truncate();
+        /// SE BORRAN TODOS LOS REGISTROS DE PEDIDOS TEMPORAL
+        DB::table('tb_pedidos_temp')->truncate();
         return redirect('superusuario/Pedidos_super')->with('pedidosEnviado', 'Los pedidos fueron registrados');
-
 
     }
 
@@ -164,30 +207,26 @@ class ControladorPedidos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function sendEmail($id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function makePDF($id)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function cancel()
     {
         //
     }
@@ -200,6 +239,9 @@ class ControladorPedidos extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('tb_pedidos_temp')->where('id_pedido_temp', $id)->delete();
+
+        return redirect('superusuario/Pedidos_super');
+
     }
 }

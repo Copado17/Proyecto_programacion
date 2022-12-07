@@ -15,6 +15,39 @@
 
 </script>" !!}
 @endif
+@if (session()->has('errorProveedor'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'No se creeo el pedido',
+        'No puedes crear pedidos de diferentes Proveedores',
+        'error'
+    )
+
+</script>" !!}
+@endif
+@if (session()->has('errorTipo'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'No se cree el pedido',
+        'Regresa a pedidos',
+        'error'
+    )
+
+</script>" !!}
+@endif
+@if (session()->has('errorVacio'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'No se cree el pedido',
+        'No puedes crear pedido vacio',
+        'error'
+    )
+
+</script>" !!}
+@endif
 
 
     <div class=" mt-5 left">
@@ -35,6 +68,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label>Proveedor</label>
+                                        <p>Puedes crear varios pedidos para un solo proveedor pero no pedidos para multiples proveedores</p>
 
                                         <select class="form-select" id="Proveedor" name="Proveedor">
                                             <option value="">Selecciona Proveedor</option>
@@ -122,14 +156,20 @@
                 @foreach ($resPedidos as $pedido)
 
                 <tr>
-                    <th scope="row">{{$pedido->id_pedido}}</th>
+                    <th scope="row">{{$pedido->id_pedido_temp}}</th>
                     <td>{{$pedido->nombre_proveedor}}</td>
                     <td>{{$pedido->nombre_producto}}</td>
                     <td>{{$pedido->cantidad_pedido}}</td>
                     <td>{{$pedido->compra}}</td>
                     <td>{{$pedido->total}}</td>
                     <td>
-                        <a class="waves-effect waves-light btn-small" href="">Eliminar</a>
+                        <form action="{{route('Pedidos_Super.destroy', $pedido->id_pedido_temp)}}" method="POST">
+                            @csrf
+                            @method('delete')
+                                    <button class="waves-effect waves-light btn-small" type="submit">
+                                Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
