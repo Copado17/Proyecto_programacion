@@ -29,8 +29,9 @@
                 <div class="col m-3">
                     <h1 class="display-5 ">Editar comic</h1>
                 </div>
-                <form action="Editar_comic" method="post">
+                <form action="{{route('Comics.update', $consultarId->id_comic)}}" method="post">
                     @csrf
+                    @method('put')
                     <div class="form-group">
                         <div class="col mt-2">
 
@@ -38,67 +39,69 @@
 
                             <div class="col mb-3">
                                 <h6>Ingresa el titulo del comic</h6>
-                                <input type="text" class="form-control" name="Titulo" placeholder="Titulo"
-                                    value="{{ old('Titulo') }}" aria-label="default input example">
-                                @if ($errors->has('Titulo'))
+                                <input type="text" class="form-control" name="nombre_comic" placeholder="Nombre del comic"
+                                value="{{$consultarId->nombre_comic}}" aria-label="default input example">
+                                @if ($errors->has('nombre_comic'))
                                     <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('Titulo') }}</strong>
+                                        <strong>{{ $errors->first('nombre_comic') }}</strong>
+                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                    </div>
+                                @endif
+
+                            </div>
+
+                            
+                            <div class="col mb-3">
+                                <h6>Ingresa la edicion del comic</h6>
+                                <input class="form-control" type="text" placeholder="Edicion" name="edicion"
+                                value="{{$consultarId->edicion}}" aria-label="default input example">
+                                @if ($errors->has('edicion'))
+                                    <div class="alert alert-warning col" role="alert">
+                                        <strong>{{ $errors->first('edicion') }}</strong>
+                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                    </div>
+                                @endif
+
+                            </div>
+                            
+                            <div class="col mb-3">
+                                <h6>Ingresa la disponibilidad</h6>
+                                <input class="form-control" type="text" placeholder="disponibilidad" name="disponibilidad"
+                                value="{{$consultarId->disponibilidad}}" aria-label="default input example">
+                                @if ($errors->has('disponibilidad'))
+                                    <div class="alert alert-warning col" role="alert">
+                                        <strong>{{ $errors->first('disponibilidad') }}</strong>
                                         <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                     </div>
                                 @endif
 
                             </div>
                             <div class="col mb-3">
-                                <h6>Ingresa la compañia del comic</h6>
-                                <input class="form-control" type="text" placeholder="Compañia" name="Compania"
-                                    value="{{ old('Compania') }}" aria-label="default input example">
-                                @if ($errors->has('Compania'))
+                                <h6>Ingresa año de publicacion</h6>
+                                <input class="form-control" type="text" placeholder="publicacion" name="publicacion"
+                                value="{{$consultarId->publicacion}}" aria-label="default input example">
+                                @if ($errors->has('publicacion'))
                                     <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('Compania') }}</strong>
+                                        <strong>{{ $errors->first('publicacion') }}</strong>
                                         <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                     </div>
                                 @endif
 
                             </div>
+
+                           
 
                             <div class="col mb-3">
                                 <h6>Ingresa el precio compra del comic</h6>
-                                <input class="form-control" type="number" placeholder="Precio compra" name="Precio_compra"
-                                    value="{{ old('Precio_compra') }}" aria-label="default input example">
-                                @if ($errors->has('Precio_compra'))
+                                <input class="form-control" type="number" step="0.01" placeholder="precio compra" name="precio_compra"
+                                value="{{$consultarId->precio_compra}}"  aria-label="default input example">
+                                @if ($errors->has('precio_compra'))
                                     <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('Precio_compra') }}</strong>
+                                        <strong>{{ $errors->first('precio_compra') }}</strong>
                                         <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                     </div>
                                 @endif
 
-
-                            </div>
-
-                            <div class="col mb-3">
-                                <h6>Ingresa el precio de venta del comic</h6>
-                                <input class="form-control" type="number" placeholder="Precio venta" name="Precio_venta"
-                                    value="{{ old('Precio_venta') }}" aria-label="default input example">
-                                @if ($errors->has('Precio_venta'))
-                                    <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('Precio_venta') }}</strong>
-                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                    </div>
-                                @endif
-
-
-                            </div>
-
-                            <div class="col mb-3">
-                                <h6>Ingresa la edicion del comic</h6>
-                                <input class="form-control" type="text" placeholder="Edicion" name="Edicion"
-                                    value="{{ old('Edicion') }}" aria-label="default input example">
-                                @if ($errors->has('Edicion'))
-                                    <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('Edicion') }}</strong>
-                                        <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                    </div>
-                                @endif
 
                             </div>
 

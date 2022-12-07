@@ -110,6 +110,10 @@ Route::post('/Agregar_comic/store',  [controladorC::class, 'store'])->name('Comi
 Route::get('/Inventario_super/{id}/show',  [controladorC::class, 'show'])->name('Comics.show');
 //DELETE comicss
 Route::delete('/Inventario_super/{id}',  [controladorC::class, 'destroy'])->name('Comics.destroy');
+//EDIT
+Route::get('/Editar_comic/{id}/edit',  [controladorC::class, 'edit'])->name('Comics.edit');
+//UPDATE
+Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics.update');
 
 
 

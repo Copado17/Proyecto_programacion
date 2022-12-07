@@ -149,7 +149,8 @@
                             <td>{{ $items->precio_venta }}</td>
                             <td>{{ $items->precio_compra }}</td>
                             <td>
-                                <a href="#" class="waves-effect waves-light btn-small">Editar</a>
+                                <a href="{{route('Comics.edit', $items->id_comic)}}" class="waves-effect waves-light btn-small">Editar</a>
+                              
                                 <button type="button" class="waves-effect waves-light btn-small" data-bs-toggle="modal" data-bs-target="#ModalEliminarComic{{$items->id_comic}}">
                                     <i class="bi bi-x-circle-fill"></i> Eliminar
                                 </button>

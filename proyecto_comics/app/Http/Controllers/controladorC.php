@@ -80,9 +80,10 @@ class controladorC extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_comic)
     {
-        //
+        $consultarId= DB::table('tb_comics')->where('id_comic', $id_comic)->first();
+        return view('superusuario/Editar_comic', compact('consultarId'));
     }
 
     /**
@@ -92,9 +93,22 @@ class controladorC extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(validador_comic $request, $id_comic)
     {
-        //
+   
+
+        $suma = $request->input('precio_compra') + $request->input('precio_compra') * 0.4;
+        DB::table('tb_comics')->where('id_comic', $id_comic)->update([
+            "nombre_comic" => $request->input ('nombre_comic'),
+            "edicion" => $request->input ('edicion'),
+            "disponibilidad" => $request->input ('disponibilidad'),
+            "publicacion" => $request->input ('publicacion'),
+            "precio_compra" => $request->input ('precio_compra'),
+            "precio_venta" => $suma,
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+         ]);
+         return redirect('/Inventario_super')->with('Editar','Tu recuerdo llego al controlador') ;
     }
 
     /**

@@ -24,12 +24,11 @@ class validador_editarC extends FormRequest
     public function rules()
     {
         return [
-            'Titulo' => 'required |min:3|max:50',
-            'Compania' => 'required |min:3|max:50',
-            'Precio_compra' => 'required |numeric |min:2|max:10000000',
-            'Precio_venta' => 'required |numeric |min:2|max:10000000',
-            'Edicion' => 'required |numeric ',
-            
+            'nombre_comic' => 'required',
+            'edicion' => 'required',
+            'disponibilidad' => 'required',
+            'publicacion' => 'required',
+            'precio_compra' => 'required',
             
         ];
     }
