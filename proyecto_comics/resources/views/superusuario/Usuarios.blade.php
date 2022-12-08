@@ -130,25 +130,17 @@
     </div>
 
     <div class="container bg-light col-md-6 my-5 p-3 ">
-        <div class=" col-mt-5">
-            <label for="exampleInputEmail1" class="form-label">Buscar</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="col-md-8">
-            <p>
-                <label>
-                    <input type="checkbox" />
-                    <span>Empleado</span>
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input type="checkbox" />
-                    <span>Supervisor</span>
-                </label>
-            </p>
-
-        </div>
+        <form action="{{route('Usuarios.buscar')}}" method="get">
+            <div class="row">
+                <div class="col-12">
+                    <label for="exampleInputEmail1" class="form-label">Buscar por nombre de usuario</label>
+                    <input type="search" class="form-control" id="exampleInputEmail1" value="{{$buscar}}" name="buscar">
+               
+                <input type="submit" class="btn btn-primary" value="Buscar">
+                </div>
+            </div>
+        </form>
+        
         @include ('modals/ModalEliminarUsuarios')
 
         <table class="table bg-light  ">
@@ -162,6 +154,11 @@
                 </tr>
             </thead>
             <tbody>
+                @if (count($resultRec) <= 0)
+                <tr>
+                    <td colspan="5" class="text-center">No hay registros</td>
+                </tr>
+            @else 
                 @foreach ($resultRec as $usuario)
                     <tr>
                         <th scope="row">{{ $usuario->id_usuario }}</th>
@@ -176,7 +173,7 @@
                         </td>
                     </tr>
                 @endforeach
-               
+            @endif
             </tbody>
         </table>
     </div>

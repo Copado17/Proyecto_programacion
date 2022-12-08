@@ -122,7 +122,7 @@ Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics
 //PROVEEDORES
 Route::get('/Lista_proveedores',  [ControladorP::class, 'index'])->name('Proveedores.index');
 //create proveedores
-Route::get('/Agregar_proveedores',  [ControladorP::class, 'create'])->name('Proveedores.create');
+
 //Agregar proveedores
 Route::post('/Agregar_proveedores/store',  [ControladorP::class, 'store'])->name('Proveedores.store');
 //Show proveedores
@@ -133,6 +133,8 @@ Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy
 Route::get('/Editar_proveedores/{id}/edit',  [ControladorP::class, 'edit'])->name('Proveedores.edit');
 //UPDATE
 Route::put('/Editar_proveedores/{id}',  [ControladorP::class, 'update'])->name('Proveedores.update');
+//BUSCAR
+Route::get('/Lista_proveedores',  [ControladorP::class, 'buscar'])->name('Proveedores.buscar');
 
 
 //USUARIOS
@@ -147,6 +149,8 @@ Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name
 Route::get('/Editar_usuarios/{id}/edit',  [ControladorU::class, 'edit'])->name('Usuarios.edit');
 //UPDATE
 Route::put('/Editar_usuarios/{id}',  [ControladorU::class, 'update'])->name('Usuarios.update');
+//BUSCAR
+Route::get('/Usuarios',  [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
 
 
 

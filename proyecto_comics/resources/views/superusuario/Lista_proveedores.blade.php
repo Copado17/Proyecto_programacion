@@ -12,11 +12,21 @@
     <a class="waves-effect waves-light btn-small" href="/Agregar_proveedores">Agregar proveedor</a>
     <div class="container bg-light my-5 p-4">
 
-        <div class=" col-mt-5">
-            <label for="exampleInputEmail1" class="form-label">Buscar proveedor</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
 
+        <form action="{{route('Proveedores.buscar')}}" method="get">
+            <div class="row">
+                <div class="col-12">
+                    <label for="exampleInputEmail1" class="form-label">Buscar proveedor</label>
+                    <input type="search" class="form-control" id="exampleInputEmail1" value="{{$buscar}}" name="buscar">
+               
+                <input type="submit" class="btn btn-primary" value="Buscar">
+                </div>
+            </div>
+        </form>
+        
+
+       
+  
 
         @if (session()->has('Eliminacion'))
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -68,6 +78,12 @@
                 </tr>
             </thead>
             <tbody>
+               @if (count($resultRec) <= 0)
+                    <tr>
+                        <td colspan="9" class="text-center">No hay registros</td>
+                    </tr>
+                @else 
+
                 @foreach ($resultRec as $item)
                     <tr>
                         <th scope="row">{{ $item->id_proveedor }}</th>
@@ -87,6 +103,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
     </div>
