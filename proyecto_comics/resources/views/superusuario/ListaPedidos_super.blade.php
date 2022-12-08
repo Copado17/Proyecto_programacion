@@ -24,7 +24,7 @@
             <h2 class="center">Lista Pedidos</h2>
 
         </div>
-        <a class="waves-effect waves-light btn-small" href="{{ route('Pedidos_Super.indexPedidos') }}">Crear Pedido</a>
+        <a class="waves-effect waves-light btn-small" href="{{ route('Pedidos_Super.index') }}">Crear Pedido</a>
 
         <div class="container bg-light col-md-7 my-5 p-4 ">
             <h1 class="Dispaly-5 ">
