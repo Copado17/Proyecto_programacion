@@ -8,46 +8,29 @@
 </head>
 <body>
     <h1>Weirdo Comics!</h1>
-
-    <p> Numero de Venta: {{$responceVentas->id_venta}}</p>
-    <p> Venta realizada por: {{$responceVentas->nombre_vendedor}}</p>
-    <p> Fecha de Venta: {{$responceVentas->fecha_venta}}</p>
+	<h2> Reporte de Ventas por {{$reporte->tipoReporte}} de {{$reporte->defReporte}}</h2>
 
     <table>
         <tr>
           <th>#</th>
+          <th>Fecha Venta</th>
           <th>Producto</th>
-          <th>Categoria</th>
-          <th>Precio</th>
-          <th>Cantidad</th>
+          <th>Nombre Vendedor</th>
+          <th>Nombre Cliente</th>
           <th>Total</th>
         </tr>
-        @foreach ($infoVentaInd as $dato)
+        @foreach ($datosReporte as $dato)
         <tr>
-            <td>{{$dato->id_venta_individual}}</td>
-            <td>{{$dato->nombre_producto_individual}}</td>
-            <td>{{$dato->tipo_venta_individual}}</td>
-            <td>{{($dato->total_venta_individual)/($dato->cantidad_venta_individual)}}</td>
-            <td>{{$dato->cantidad_venta_individual}}</td>
-            <td>{{$dato->total_venta_individual}}</td>
+            <td>{{$dato->id_venta}}</td>
+            <td>{{$dato->fecha_venta}}</td>
+            <td>{{$dato->nombre_vendedor}}</td>
+            <td>{{$dato->nombre_cliente}}</td>
+            <td>{{$dato->total_venta}}</td>
         </tr>
         
         @endforeach
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Total: </td>
-            <td> {{$responceVentas->total_venta}}</td>
-        </tr>
-
       </table>
-      
-
-
-
-    
+          
 </body>
 </html>
 
