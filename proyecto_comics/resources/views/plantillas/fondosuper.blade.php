@@ -28,7 +28,6 @@
             <div class="nav-wrapper">
                 <a href="Menu_super" class="brand-logo">Weirdo Comics</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="/punto_ventaSuper">Punto Venta</a></li>
                     <li><a href="/Inventario_super">Inventario</a></li>
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
                     <li><a href="{{route('Pedidos_Super.indexPedidos')}}">Pedidos</a></li>

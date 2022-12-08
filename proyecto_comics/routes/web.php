@@ -22,7 +22,6 @@ use App\Http\Controllers\ControladorVentas;
 */
 
 // Vista Login
-
 Route::get('/', function () {
     return view('login');
 });
@@ -32,7 +31,14 @@ Route::get('Menu_super', function () {
     return view('superusuario/Menu_super');
 });
 
+/* Vsitas de empleado*/
+Route::get('/Menu_Empleado', function () {
+    return view('empleado/Menu_Empleado');
+});
 
+Route::get('/Inventario_empleado', function () {
+    return view('empleado/Inventario_empleado');
+});
 
 
 Route::get('/Agregar_proveedores', function () {
@@ -54,12 +60,9 @@ Route::get('/Editar_proveedores', function () {
 });
 
 
-
 Route::get('/punto_ventaSuper', function () {
     return view('superusuario/punto_ventasuper');
 });
-
-
 
 
 
@@ -121,7 +124,6 @@ Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics
 
 //PROVEEDORES
 Route::get('/Lista_proveedores',  [ControladorP::class, 'index'])->name('Proveedores.index');
-//create proveedores
 
 //Agregar proveedores
 Route::post('/Agregar_proveedores/store',  [ControladorP::class, 'store'])->name('Proveedores.store');
@@ -154,30 +156,24 @@ Route::get('/Usuarios',  [ControladorU::class, 'buscar'])->name('Usuarios.buscar
 
 
 
-/// DB CONTROL PEDIDOS
+/// FUNCIONES DE PEDIDOS
+Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
+Route::get('superusuario/Pedidos/pdf/{id}', [ControladorPedidos::class, 'crearPDF'])->name('Pedidos_Super.crearPDF');
+
+// FUNCIONES DE CREAR PEDIDOS 
 Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
 Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create'])->name('Pedidos_Super.create');
 Route::get('superusuario/Pedidos_super/store', [ControladorPedidos::class, 'store'])->name('Pedidos_Super.store');
 Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'destroy'])->name('Pedidos_Super.destroy');
 
-/// DB CONTROL PEDIDOS TABLA
-Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
-Route::get('superusuario/Pedidos/pdf/{id}', [ControladorPedidos::class, 'crearPDF'])->name('Pedidos_Super.crearPDF');
 
-
-/// DB CONTRO VENTA
-Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
+/// FUNCIONES DE VENTAS
 Route::get('registro_venta', [ControladorVentas::class, 'indexVentas'])->name('punto_venta.indexVentas');
 Route::get('registro_venta/pdf/{id}', [ControladorVentas::class, 'crearPDF'])->name('punto_venta.crearPDF');
+
+/// FUNCIONES PARA CREAR VENTA 
+Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
 Route::post('punto_venta', [ControladorVentas::class, 'agregarCarrito'])->name('punto_venta.agregarCarrito');
 Route::post('punto_venta/store', [ControladorVentas::class, 'storeVenta'])->name('punto_venta.storeVenta');
 Route::delete('punto_venta/{id}', [ControladorVentas::class, 'destroy'])->name('punto_venta.destroy');
 
-/* Vsitas de empleado*/
-Route::get('/Menu_Empleado', function () {
-    return view('empleado/Menu_Empleado');
-});
-
-Route::get('/Inventario_empleado', function () {
-    return view('empleado/Inventario_empleado');
-});
