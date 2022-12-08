@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 use App\Http\Requests\validador_venta;
 use App\Http\Requests\validador_carrito;
+use App\Http\Requests\validador_reporte;
 
 class ControladorVentas extends Controller
 {
@@ -266,25 +267,56 @@ class ControladorVentas extends Controller
     {
         $responceVentas = DB::table('tb_ventas')->where('id_venta', $id)->first();
         $infoVentaInd = DB::table('tb_ventas_individuales')
-        ->where('id_venta', $id)
-        ->get();
+            ->where('id_venta', $id)
+            ->get();
 
         $hoy = Carbon::now()->format('Y-m-d');
-        $descarga = 'Venta_WeirdoComics_'.$hoy.'.pdf';
+        $descarga = 'Venta_WeirdoComics_' . $hoy . '.pdf';
 
-        $pdf = Pdf::loadView('\pdf\pdf_venta', ['responceVentas'=>$responceVentas], ['infoVentaInd'=>$infoVentaInd] );
+        $pdf = Pdf::loadView('\pdf\pdf_venta', ['responceVentas' => $responceVentas], ['infoVentaInd' => $infoVentaInd]);
         return $pdf->download($descarga);
     }
-
     /**
-     * Update the specified resource in storage.
      *
      * @return \Illuminate\Http\Response
      */
-    public function cancel()
+    public function crearReporte(validador_reporte $req)
     {
-        //
+        $tipo = $req->tipoReporte;
+        $busqueda = $req->defReporte;
+
+        if ($tipo == 1) {
+            /// por nombre empleado
+            $datosReporte = DB::table('tb_ventas')->where('nombre_vendedor', $busqueda)->get();
+        } elseif ($tipo == 2) {
+            /// por mes
+            $mes = substr($busqueda, 5, 2);
+            $year = substr($busqueda, 0, 4);
+
+            $date = Carbon::parse($year . "-" . $mes . "-01"); // universal truth month's first day is 1
+            $start = $date->startOfMonth()->format('Y-m-d H:i:s'); // 2000-02-01 00:00:00
+            $end = $date->endOfMonth()->format('Y-m-d H:i:s'); // 2000-02-29 23:59:59
+            $datosReporte = DB::table('tb_ventas')
+                ->whereBetween('fecha_venta', [$start, $end])
+                ->get();
+
+
+        } elseif ($tipo == 3) {
+            // por dia
+            $diaI = $busqueda . ' 00:00:00';
+            $diaF = $busqueda . ' 23:59:59';
+            $datosReporte = DB::table('tb_ventas')
+                ->whereBetween('fecha_venta', [$diaI, $diaF])
+                ->get();
+        }
+
+        $hoy = Carbon::now()->format('Y-m-d');
+        $descarga = 'Reporte_WeirdoComics_' . $hoy . '.pdf';
+
+        $pdf = Pdf::loadView('\pdf\pdf_reporte', ['datosReporte' => $datosReporte], ['reporte' => $req]);
+        return $pdf->download($descarga);
     }
+
 
     /**
      * Remove the specified resource from storage.

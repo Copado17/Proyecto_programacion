@@ -171,6 +171,7 @@ Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'de
 /// FUNCIONES DE VENTAS
 Route::get('registro_venta', [ControladorVentas::class, 'indexVentas'])->name('punto_venta.indexVentas');
 Route::get('registro_venta/pdf/{id}', [ControladorVentas::class, 'crearPDF'])->name('punto_venta.crearPDF');
+Route::post('registro_venta/pdf/', [ControladorVentas::class, 'crearReporte'])->name('punto_venta.crearReporte');
 
 /// FUNCIONES PARA CREAR VENTA 
 Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');

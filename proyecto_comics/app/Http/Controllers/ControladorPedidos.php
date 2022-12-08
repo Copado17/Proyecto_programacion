@@ -105,7 +105,7 @@ class ControladorPedidos extends Controller
 
         DB::table('tb_pedidos_temp')->insert([
             "id_inventario" => $request->input('PedidoID'),
-            "nombre_producto" => $queryPedido->nombre,
+            "nombre_producto" => $queryPedido->$nombre,
             "id_proveedor" => $request->input('Proveedor'),
             "cantidad_pedido" => $pedidoCantidad,
             "compra" => $queryPedido->precio_compra,
