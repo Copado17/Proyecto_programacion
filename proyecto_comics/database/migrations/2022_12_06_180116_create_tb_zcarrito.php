@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('id_inventario')->unsigned()->index()->nullable();
             $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
             $table->string('nombre_producto');
+            $table->string('tipo_producto');
             $table->integer('cantidad');
             $table->float('valor');
             $table->float('total');

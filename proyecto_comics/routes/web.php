@@ -6,6 +6,7 @@ use App\Http\Controllers\controladorA;
 use App\Http\Controllers\controladorC;
 use App\Http\Controllers\ControladorP;
 use App\Http\Controllers\ControladorPedidos;
+use App\Http\Controllers\ControladorVentas;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,18 +140,21 @@ Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create']
 Route::get('superusuario/Pedidos_super/store', [ControladorPedidos::class, 'store'])->name('Pedidos_Super.store');
 Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'destroy'])->name('Pedidos_Super.destroy');
 
+/// DB CONTROL PEDIDOS TABLA
+Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
 
+
+/// DB CONTRO VENTA
+Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
+Route::post('punto_venta', [ControladorVentas::class, 'agregarCarrito'])->name('punto_venta.agregarCarrito');
+Route::post('punto_venta/store', [ControladorVentas::class, 'storeVenta'])->name('punto_venta.storeVenta');
+Route::delete('punto_venta/{id}', [ControladorVentas::class, 'destroy'])->name('punto_venta.destroy');
 
 /* Vsitas de empleado*/
 Route::get('/Menu_Empleado', function () {
     return view('empleado/Menu_Empleado');
 });
-Route::get('/Punto_Venta', function () {
-    return view('empleado/punto_venta');
-});
+
 Route::get('/Inventario_empleado', function () {
     return view('empleado/Inventario_empleado');
-});
-Route::get('/punto_venta', function () {
-    return view('empleado/punto_venta');
 });
