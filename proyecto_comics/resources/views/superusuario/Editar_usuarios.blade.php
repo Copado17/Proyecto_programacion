@@ -34,7 +34,7 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Editar Usuario</h1>
                 </div>
-                <form href="{{route('Usuarios.update', $consultarId->id_usuario)}}" method="POST">
+                <form href="{{route('Usuarios.update', $consultarId->id_usuario)}}" method="post">
                     @csrf
                     @method('put')
                     <div class="form-group">
@@ -78,8 +78,8 @@
 
                                         <div class="col mt-3 p-3">
                                             <select  value="{{$consultarId->nivel_usuario}}"class="form-select" id="Tipo" name="Tipo" aria-label="Default select example">
-                                                <option  value="{{$consultarId->nivel_usuario}}">Empleado</option>
-                                                <option  value="{{$consultarId->nivel_usuario}}" >Supervisor</option>
+                                                <option value="Empleado">Empleado</option>
+                                                <option value="Supervisor">Supervisor</option>
                                             </select>
 
                                         </div>

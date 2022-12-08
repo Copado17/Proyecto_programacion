@@ -84,7 +84,6 @@ class controladorU extends Controller
         DB::table('tb_usuarios')->where('id_usuario', $id_usuario)->update([
             "nombre_completo" => $request->input ('nombre_completo'),
             "pass_usuario" => $request->input ('Password'),
-            "nivel_usuario" => $request->input ('Tipo'),
             "created_at" => Carbon::now(),
             "updated_at" => Carbon::now()
          ]);
@@ -101,5 +100,14 @@ class controladorU extends Controller
     {
         DB::table('tb_usuarios')->where('id_usuario', $id_usuario)->delete();
         return redirect('/Usuarios')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
+    }
+
+    public function buscar(Request $request)
+    {
+        $buscar =trim( $request->get('buscar'));
+        $resultRec= DB::table('tb_usuarios')-> select ('id_usuario','nombre_completo','pass_usuario','nivel_usuario')
+        ->where('nombre_completo', 'like', '%'.$buscar.'%') ->get();
+         return view('superusuario/Usuarios', compact('resultRec', 'buscar')); 
+
     }
 }

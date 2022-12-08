@@ -113,4 +113,16 @@ class controladorP extends Controller
         DB::table('tb_proveedores')->where('id_proveedor', $id_proveedor)->delete();
         return redirect('/Lista_proveedores')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
+  
+ 
+    
+
+    public function buscar(Request $request)
+    {
+        $buscar = trim($request->get('buscar'));
+        $resultRec= DB::table('tb_proveedores')-> select ('id_proveedor','nombre_proveedor','direccion','contacto','pais','numero_fijo','numero_celular','correo')
+        ->where('nombre_proveedor', 'like', '%'.$buscar.'%') ->get();
+         return view('superusuario/Lista_proveedores', compact('resultRec', 'buscar')); 
+
+    }
 }
