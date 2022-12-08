@@ -5,6 +5,7 @@ use App\Http\Controllers\Controlador;
 use App\Http\Controllers\controladorA;
 use App\Http\Controllers\controladorC;
 use App\Http\Controllers\ControladorP;
+use App\Http\Controllers\ControladorU;
 use App\Http\Controllers\ControladorPedidos;
 
 /*
@@ -129,7 +130,19 @@ Route::get('/Lista_proveedores/{id}/show',  [ControladorP::class, 'show'])->name
 //DELETE
 Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy'])->name('Proveedores.destroy');
 //EDIT
+Route::get('/Editar_proveedores/{id}/edit',  [ControladorP::class, 'edit'])->name('Proveedores.edit');
+//UPDATE
+Route::put('/Editar_proveedores/{id}',  [ControladorP::class, 'update'])->name('Proveedores.update');
 
+
+//USUARIOS
+Route::get('/Usuarios',  [ControladorU::class, 'index'])->name('Usuarios.index');
+//Agregar usuarios
+Route::post('/Agregar_usuario/store',  [ControladorU::class, 'store'])->name('Usuarios.store');
+//Show usuarios
+Route::get('/Usuarios/{id}/show',  [ControladorU::class, 'show'])->name('Usuarios.show');
+//DELETE
+Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
 
 
 

@@ -72,9 +72,10 @@ class controladorP extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_proveedor)
     {
-        //
+        $consultarId= DB::table('tb_proveedores')->where('id_proveedor', $id_proveedor)->first();
+        return view('superusuario/Editar_proveedores', compact('consultarId'));
     }
 
     /**
@@ -84,9 +85,21 @@ class controladorP extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_proveedor)
+    public function update(validador_proveedores $request, $id_proveedor)
     {
-        //
+
+        DB::table('tb_proveedores')->where('id_proveedor', $id_proveedor)->update([
+            "nombre_proveedor" => $request->input ('nombre_proveedor'),
+            "direccion" => $request->input ('direccion'),
+            "contacto" => $request->input ('contacto'),
+            "pais" => $request->input ('pais'),
+            "numero_fijo" => $request->input ('numero_fijo'),
+            "numero_celular" => $request->input ('numero_celular'),
+            "correo" => $request->input ('correo'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+         ]);
+         return redirect('/Lista_proveedores')->with('Editar','Tu recuerdo llego al controlador') ;
     }
 
     /**

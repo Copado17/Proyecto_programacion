@@ -30,8 +30,9 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Editar proveedores</h1>
                 </div>
-                <form action="Editar_proveedores" method="post">
+                <form action="{{route('Proveedores.update', $consultarId->id_proveedor)}}" method="post">
                     @csrf
+                    @method('put')
                     <div class="form-group">
                         <div class="col mt-2">
 
@@ -39,22 +40,22 @@
 
                                 <div class="col mb-3">
                                     <h6>Ingresa el nombre de la Empresa</h6>
-                                    <input type="text" class="form-control" name="Empresa" placeholder="Empresa"
-                                        value="{{ old('Empresa') }}" aria-label="default input example">
-                                    @if ($errors->has('Empresa'))
+                                    <input type="text" class="form-control" name="nombre_proveedor" placeholder="Nombre"
+                                    value="{{$consultarId->nombre_proveedor}}" aria-label="default input example">
+                                    @if ($errors->has('nombre_proveedor'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Empresa') }}</strong>
+                                            <strong>{{ $errors->first('nombre_proveedor') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
                                 </div>
                                 <div class="col mb-3">
                                     <h6>Ingresa la direccion del proveedor</h6>
-                                    <input class="form-control" type="text" placeholder="Direccion" name="Direccion"
-                                        value="{{ old('Direccion') }}" aria-label="default input example">
-                                    @if ($errors->has('Direccion'))
+                                    <input class="form-control" type="text" placeholder="Direccion" name="direccion"
+                                    value="{{$consultarId->direccion}}" aria-label="default input example">
+                                    @if ($errors->has('direccion'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Direccion') }}</strong>
+                                            <strong>{{ $errors->first('direccion') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -62,11 +63,24 @@
 
                                 <div class="col mb-3">
                                     <h6>Ingresa el nombre del Contacto del proveedor</h6>
-                                    <input class="form-control" type="text" placeholder="Contacto" name="Contacto"
-                                        value="{{ old('Contacto') }}" aria-label="default input example">
-                                    @if ($errors->has('Contacto'))
+                                    <input class="form-control" type="text" placeholder="Contacto" name="contacto"
+                                    value="{{$consultarId->contacto}}" aria-label="default input example">
+                                    @if ($errors->has('contacto'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Contacto') }}</strong>
+                                            <strong>{{ $errors->first('contacto') }}</strong>
+                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                                <div class="col mb-3">
+                                    <h6>Ingresa el pais de procedencia</h6>
+                                    <input class="form-control" type="text" placeholder="pais" name="pais"
+                                    value="{{$consultarId->pais}}" aria-label="default input example">
+                                    @if ($errors->has('pais'))
+                                        <div class="alert alert-warning col" role="alert">
+                                            <strong>{{ $errors->first('pais') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -76,11 +90,11 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa el telefono fijo del proveedor</h6>
                                     <input class="form-control" type="number" placeholder="Telfono fijo"
-                                        name="Telefono_Fijo" value="{{ old('Telefono_Fijo') }}"
+                                        name="numero_fijo" value="{{$consultarId->numero_fijo}}"
                                         aria-label="default input example">
-                                    @if ($errors->has('Telefono_Fijo'))
+                                    @if ($errors->has('numero_fijo'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Telefono_Fijo') }}</strong>
+                                            <strong>{{ $errors->first('numero_fijo') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -90,11 +104,11 @@
                                 <div class="col mb-3">
                                     <h6>Ingresa el telefono celular del proveedor</h6>
                                     <input class="form-control" type="number" placeholder="Telefono celular"
-                                        name="Telefono_Celular" value="{{ old('Telefono_Celular') }}"
+                                        name="numero_celular" value="{{$consultarId->numero_celular}}"
                                         aria-label="default input example">
-                                    @if ($errors->has('Telefono_Celular'))
+                                    @if ($errors->has('numero_celular'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Telefono_Celular') }}</strong>
+                                            <strong>{{ $errors->first('numero_celular') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
@@ -102,22 +116,23 @@
 
                                 <div class="col mb-3">
                                     <h6>Ingresa el correo del proveedor</h6>
-                                    <input class="form-control" type="Email" placeholder="Correo" name="Correo"
-                                        value="{{ old('Correo') }}" aria-label="default input example">
-                                    @if ($errors->has('Correo'))
+                                    <input class="form-control" type="Email" placeholder="Correo" name="correo"
+                                    value="{{$consultarId->correo}}" aria-label="default input example">
+                                    @if ($errors->has('correo'))
                                         <div class="alert alert-warning col" role="alert">
-                                            <strong>{{ $errors->first('Correo') }}</strong>
+                                            <strong>{{ $errors->first('correo') }}</strong>
                                             <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                         </div>
                                     @endif
                                 </div>
 
 
+
                             </div>
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Editar proveedor</button>
                     </div>
                 </form>
             </div>

@@ -11,7 +11,7 @@
 
     </div>
 
-        @if (session()->has('Mensaje'))
+        @if (session()->has('Confirmacion'))
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {!! "<script>
             Swal.fire(
@@ -22,6 +22,40 @@
 
         </script>" !!}
         @endif
+        @if (session()->has('Confirmacion'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {!! "<script>
+            Swal.fire(
+                'Se agrego correctamente el usuario',
+                'Regresa a la lista de usuarios',
+                'success'
+            )
+
+        </script>" !!}
+        @endif
+        @if (session()->has('Eliminacion'))
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {!! "<script>
+        Swal.fire(
+            'Se elimino correctamente ',
+            'Verifica la lista de usuarios',
+            'success'
+        )
+    
+    </script>" !!}
+@endif
+
+@if (session()->has('Editar'))
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {!! "<script>
+        Swal.fire(
+            'Se edito correctamente el usuario ',
+            'Verifica la lista de usuarios',
+            'success'
+        )
+    
+    </script>" !!}
+@endif
 
     <div class=" mt-5 left">
         <a class="waves-effect waves-light btn-small" href="/Menu_super">Regresar a menu</a>
@@ -33,7 +67,7 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Agregar Usuarios</h1>
                 </div>
-                <form action="Agregar_usuario" method="POST">
+                <form action="{{ route('Usuarios.store') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <div class="col mt-2">
@@ -87,9 +121,9 @@
 
 
                                         <div class="col mt-3 p-3">
-                                            <select class="form-select" id="Tipo">
-                                                <option value="1">Empleado</option>
-                                                <option value="2">Supervisor</option>
+                                            <select class="form-select" id="Tipo" name="Tipo" aria-label="Default select example">
+                                                <option value="Empleado">Empleado</option>
+                                                <option value="Supervisor">Supervisor</option>
                                             </select>
 
                                         </div>
@@ -100,7 +134,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-3">
-                        <button type="submit" class="waves-effect waves-light btn-small">Registrar</button>
+                        <button type="submit" class="waves-effect waves-light btn-small">Registrar usuario</button>
                     </div>
                 </form>
             </div>
@@ -127,6 +161,7 @@
             </p>
 
         </div>
+        @include ('modals/ModalEliminarUsuarios')
 
         <table class="table bg-light  ">
             <thead>
@@ -139,39 +174,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Pedro Jesus Copado Andrade</td>
-                    <td>Pedro_copado</td>
-                    <td>Supervisor</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Carlos Antes de la mora</td>
-                    <td>Carlos Ante</td>
-                    <td>Empleado</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-
-                    <td>Karol Muñoz Vazquez</td>
-                    <td>Karol Muñoz</td>
-                    <td>Empleado</td>
-                    <td><a class="waves-effect waves-light btn-small" href="/Editar_usuarios">Editar</a>
-                        <a class="waves-effect waves-light btn-small" href="/Eliminar_Usuario">Eliminar</a>
-                    </td>
-                </tr>
+                @foreach ($resultRec as $usuario)
+                    <tr>
+                        <th scope="row">{{ $usuario->id_usuario }}</th>
+                        <td>{{ $usuario->nombre_usuario}}</td>
+                        <td>{{ $usuario->pass_usuario }}</td>
+                        <td>{{ $usuario->nivel_usuario }}</td>
+                        <td>
+                            <button type="button" class="waves-effect waves-light btn-small" data-bs-toggle="modal" data-bs-target="#ModalEliminarUsuarios{{$usuario->id_usuario}}">
+                                <i class="bi bi-x-circle-fill"></i> Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+               
             </tbody>
         </table>
     </div>

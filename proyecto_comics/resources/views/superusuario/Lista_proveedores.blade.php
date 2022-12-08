@@ -29,6 +29,29 @@
     
     </script>" !!}
 @endif
+@if (session()->has('Confirmacion'))
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{!! "<script>
+    Swal.fire(
+        'Se agrego correctamente ',
+        'Verifica la lista de proveedores',
+        'success'
+    )
+
+</script>" !!}
+@endif
+
+@if (session()->has('Editar'))
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {!! "<script>
+        Swal.fire(
+            'Se edito correctamente ',
+            'Verifica la lista de proveedores',
+            'success'
+        )
+    
+    </script>" !!}
+@endif
 @include ('modals/ModalEliminarProveedor')
         <table class="table bg-light  my-5">
             <thead>
@@ -56,7 +79,8 @@
                         <td>{{ $item->numero_celular }}</td>
                         <td>{{ $item->correo }}</td>
                         <td>
-                            <a class="waves-effect waves-light btn-small" >Editar</a>
+                           
+                            <a href="{{route('Proveedores.edit', $item->id_proveedor)}}" class="waves-effect waves-light btn-small">Editar</a>
                             <button type="button" class="waves-effect waves-light btn-small" data-bs-toggle="modal" data-bs-target="#ModalEliminarProveedor{{$item->id_proveedor}}">
                                 <i class="bi bi-x-circle-fill"></i> Eliminar
                             </button>
