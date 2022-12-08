@@ -18,7 +18,7 @@
 
                 <div class="text-dark">
 
-                    <p class="fw-bold">Nombre: {{$items->nombre_usuario}}</p>
+                    <p class="fw-bold">Nombre: {{$items->nombre_completo}}</p>
                     <p class="fw-bold">Rol: {{$items->nivel_usuario}}</p>
                    
                 </div>

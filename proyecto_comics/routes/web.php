@@ -144,6 +144,10 @@ Route::post('/Agregar_usuario/store',  [ControladorU::class, 'store'])->name('Us
 Route::get('/Usuarios/{id}/show',  [ControladorU::class, 'show'])->name('Usuarios.show');
 //DELETE
 Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
+//EDIT
+Route::get('/Editar_usuarios/{id}/edit',  [ControladorU::class, 'edit'])->name('Usuarios.edit');
+//UPDATE
+Route::put('/Editar_usuarios/{id}',  [ControladorU::class, 'update'])->name('Usuarios.update');
 
 
 

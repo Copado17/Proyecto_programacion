@@ -24,8 +24,7 @@ class validador_usuario extends FormRequest
     public function rules()
     {
         return [
-            'Nombre' => 'required',
-            'Nombre_usuario'=> 'required|min:3|max:20',
+            'nombre_completo'=> 'required|min:7|max:20',
             'Password' => 'required|min:8|max:20'
         ];
     }

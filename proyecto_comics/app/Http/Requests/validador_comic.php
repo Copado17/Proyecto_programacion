@@ -27,7 +27,7 @@ class validador_comic extends FormRequest
             'nombre_comic' => 'required',
             'edicion' => 'required',
             'disponibilidad' => 'required',
-            'publicacion' => 'required',
+            'compania' => 'required',
             'precio_compra' => 'required',
         ];
             

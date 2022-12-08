@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id_comic');
             $table->string('nombre_comic');
             $table->string('edicion');
-            $table->string('publicacion');
+            $table->string('compania');
             $table->integer('disponibilidad');
             $table->float('precio_venta');
             $table->float('precio_compra');

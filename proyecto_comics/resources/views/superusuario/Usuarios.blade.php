@@ -75,26 +75,14 @@
                             <div class="text-start">
                                 <div class="row">
                                     <div class="col s6">
-                                        <div class="col ">
-                                            <h6>Ingresa tu nombre completo</h6>
-                                            <input type="text" class="form-control" name="Nombre" placeholder="Nombre"
-                                                value="{{ old('Nombre') }}" aria-label="default input example">
-                                            @if ($errors->has('Nombre'))
-                                                <div class="alert alert-warning col" role="alert">
-                                                    <strong>{{ $errors->first('Nombre') }}</strong>
-                                                    <button type="button" class="btn-close right"
-                                                        data-bs-dismiss="alert"></button>
-                                                </div>
-                                            @endif
-                                        </div>
                                         <div class="col  ">
-                                            <h6>Ingresa tu nombre de usuario</h6>
-                                            <input class="form-control" type="text" placeholder="Nombre de Usuario"
-                                                name="Nombre_usuario" value="{{ old('Nombre_usuario') }}"
+                                            <h6>Ingresa tu nombre completo de usuarios</h6>
+                                            <input class="form-control" type="text" placeholder="Nombre completo "
+                                                name="nombre_completo" value="{{ old('nombre_completo') }}"
                                                 aria-label="default input example">
-                                            @if ($errors->has('Nombre_usuario'))
+                                            @if ($errors->has('nombre_completo'))
                                                 <div class="alert alert-warning col" role="alert">
-                                                    <strong>{{ $errors->first('Nombre_usuario') }}</strong>
+                                                    <strong>{{ $errors->first('nombre_completo') }}</strong>
                                                     <button type="button" class="btn-close right"
                                                         data-bs-dismiss="alert"></button>
                                                 </div>
@@ -168,7 +156,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Usuario</th>
+                    <th scope="col">Contraseña</th>
                     <th scope="col">Rol</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -177,10 +165,11 @@
                 @foreach ($resultRec as $usuario)
                     <tr>
                         <th scope="row">{{ $usuario->id_usuario }}</th>
-                        <td>{{ $usuario->nombre_usuario}}</td>
+                        <td>{{ $usuario->nombre_completo}}</td>
                         <td>{{ $usuario->pass_usuario }}</td>
                         <td>{{ $usuario->nivel_usuario }}</td>
                         <td>
+                            <a href="{{route('Usuarios.edit', $usuario->id_usuario)}}" class="waves-effect waves-light btn-small">Editar</a>
                             <button type="button" class="waves-effect waves-light btn-small" data-bs-toggle="modal" data-bs-target="#ModalEliminarUsuarios{{$usuario->id_usuario}}">
                                 <i class="bi bi-x-circle-fill"></i> Eliminar
                             </button>

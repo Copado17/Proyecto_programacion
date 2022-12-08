@@ -28,7 +28,7 @@ class controladorU extends Controller
      */
     public function create()
     {
-        //
+        return view('superusuario/Editar_usuarios');
     }
 
     /**
@@ -40,7 +40,7 @@ class controladorU extends Controller
     public function store(validador_usuario $request)
     {
         DB::table ('tb_usuarios')->insert([
-            "nombre_usuario" => $request->input ('Nombre_usuario'),
+            "nombre_completo" => $request->input ('nombre_completo'),
             "pass_usuario" => $request->input ('Password'),
             "nivel_usuario" => $request->input ('Tipo'),
             "created_at" => Carbon::now(),
@@ -66,9 +66,10 @@ class controladorU extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_usuario)
     {
-        //
+        $consultarId= DB::table('tb_usuarios')->where('id_usuario', $id_usuario)->first();
+        return view('superusuario/Editar_usuarios', compact('consultarId'));
     }
 
     /**
@@ -78,9 +79,16 @@ class controladorU extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_usuario)
+    public function update(validador_usuario $request, $id_usuario)
     {
-        //
+        DB::table('tb_usuarios')->where('id_usuario', $id_usuario)->update([
+            "nombre_completo" => $request->input ('nombre_completo'),
+            "pass_usuario" => $request->input ('Password'),
+            "nivel_usuario" => $request->input ('Tipo'),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
+         ]);
+         return redirect('/Usuarios')->with('Confirmacion','Tu recuerdo llego al controlador') ;
     }
 
     /**

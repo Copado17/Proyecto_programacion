@@ -131,7 +131,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Edicion</th>
                         <th scope="col">Disponibilidad</th>
-                        <th scope="col">Publicacion</th>
+                        <th scope="col">Compañia</th>
                         <th scope="col">Precio venta</th>
                         <th scope="col">Precio comprar</th>
                         <th scope="col">Acciones</th>
@@ -145,7 +145,7 @@
                             <td>{{ $items->nombre_comic}}</td>
                             <td>{{ $items->edicion}}</td>
                             <td>{{ $items->disponibilidad}}</td>
-                            <td>{{ $items->publicacion }}</td>
+                            <td>{{ $items->compania }}</td>
                             <td>{{ $items->precio_venta }}</td>
                             <td>{{ $items->precio_compra }}</td>
                             <td>

@@ -77,12 +77,12 @@
 
                             </div>
                             <div class="col mb-3">
-                                <h6>Ingresa año de publicacion</h6>
-                                <input class="form-control" type="text" placeholder="publicacion" name="publicacion"
-                                value="{{$consultarId->publicacion}}" aria-label="default input example">
-                                @if ($errors->has('publicacion'))
+                                <h6>Ingresa la compañia de creacion</h6>
+                                <input class="form-control" type="text" placeholder="Compañia" name="compania"
+                                value="{{$consultarId->compania}}" aria-label="default input example">
+                                @if ($errors->has('compania'))
                                     <div class="alert alert-warning col" role="alert">
-                                        <strong>{{ $errors->first('publicacion') }}</strong>
+                                        <strong>{{ $errors->first('compania') }}</strong>
                                         <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
                                     </div>
                                 @endif

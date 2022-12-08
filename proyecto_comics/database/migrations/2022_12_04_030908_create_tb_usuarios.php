@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_usuarios', function (Blueprint $table) {
             $table->increments('id_usuario');
-            $table->string('nombre_usuario');
+            $table->string('nombre_completo');
             $table->string('pass_usuario');
             $table->string('nivel_usuario');
             $table->timestamps();
