@@ -31,7 +31,7 @@
                     <li><a href="/punto_ventaSuper">Punto Venta</a></li>
                     <li><a href="/Inventario_super">Inventario</a></li>
                     <li><a href="/Lista_proveedores">Proveedores</a></li>
-                    <li><a href="{{route('Pedidos_Super.index')}}">Pedidos</a></li>
+                    <li><a href="{{route('Pedidos_Super.indexPedidos')}}">Pedidos</a></li>
                     <li><a href="/Registro_venta">Registro de ventas</a></li>
                     
                     <li><a href="/Usuarios">Usuarios</a></li>

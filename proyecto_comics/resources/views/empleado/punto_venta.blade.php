@@ -58,21 +58,58 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-
     </style>
 
 </head>
 
 <body>
 
-    @extends('plantillas/fondo')
+    @extends('plantillas/fondosuper')
 
-    @section('barra')
+    @section('barra_super')
     @endsection
 
     @section('contenido')
-    
-
+        @if (session()->has('errorSock'))
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            {!! "<script>
+                                                                    Swal.fire(
+                                                                        'Error para añadir al carrito de ventas',
+                                                                        'No hay existencias suficientes para crear venta',
+                                                                        'error'
+                                                                    )    
+                                                                </script>" !!}
+        @endif
+        @if (session()->has('errorVacio'))
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            {!! "<script>
+                                                                    Swal.fire(
+                                                                        'Error para crear venta',
+                                                                        'No puedes crear una venta vacia',
+                                                                        'error'
+                                                                    )    
+                                                                </script>" !!}
+        @endif
+        @if (session()->has('errorTipo'))
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            {!! "<script>
+                                                                    Swal.fire(
+                                                                        'Error para crear venta',
+                                                                        'Hubo un error de BD',
+                                                                        'error'
+                                                                    )    
+                                                                </script>" !!}
+        @endif
+        @if (session()->has('ventaEnviada'))
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            {!! "<script>
+                                                                    Swal.fire(
+                                                                        'Venta Creada',
+                                                                        'La venta fue creada y los articulos actualizados',
+                                                                        'success'
+                                                                    )    
+                                                                </script>" !!}
+        @endif
         <div class="card bg-light">
 
             <div class=" text-center">
@@ -80,116 +117,161 @@
             </div>
 
             <div class="row ">
-                <div class=" col-lg-4 order-md-last">
+                <div class=" col-lg-5 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-primary">Carrito</span>
-                        <span class="badge bg-primary rounded-pill" style="color: aliceblue">3</span>
+                        <span class="badge bg-primary rounded-pill" style="color: aliceblue">{{ $resNoItems }}</span>
                     </h4>
                     <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Producto</h6>
-                                <small class="text-muted">Descripcion</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">x1</h6>
-                            </div>
-                            <span class="text-muted">$90.89</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Comic</h6>
-                                <small class="text-muted">Descripcion</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">x1</h6>
-                            </div>
-                            <span class="text-muted">$43.99</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                                <h6 class="my-0">Comic</h6>
-                                <small class="text-muted">Description</small>
-                            </div>
-                            <div>
-                                <h6 class="my-0">x1</h6>
-                            </div>
-                            <span class="text-muted">$50.55</span>
-                        </li>
 
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total</span>
-                            <strong>$1805.42</strong>
-                        </li>
+                        @foreach ($resCarrito as $carrito)
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0">{{ $carrito->tipo_producto }}</h6>
+                                    <small class="text-muted">{{ $carrito->nombre_producto }}</small>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted">{{ $carrito->valor }} $</h6>
+                                    <h6 class="my-0">x{{ $carrito->cantidad }}</h6>
+                                </div>
+                                <span class="text-muted">{{ $carrito->total }} $</span>
+                                <form action="{{ route('punto_venta.destroy', $carrito->id_carrito) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-outline-danger btn-small" type="submit">
+                                        X
+                                    </button>
+                                </form>
+                            </li>
+                        @endforeach
+
                     </ul>
+
+                    <button form="formVenta" class="w-100 waves-effect waves-light btn-small" type="submit">Crear Venta</button>
 
                 </div>
 
-                <div class="col-md-7 col-lg-8">
+                    <div class="col-md-7 col-lg-7">
+                        <form id="formVenta" action="{{ route('punto_venta.storeVenta') }}" method="POST">
+                            @csrf
 
-                    <h4 class="mb-3">Informacion Cliente</h4>
-                    <form class="needs-validation" novalidate>
+                        <h4 class="mb-3">Empleado que realiza Venta</h4>
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+
+                                <select class="form-select" id="idVendedor" name="idVendedor">
+                                    <option value="">Selecciona Empleado</option>
+                                    @foreach ($resEmpleados as $empleado)
+                                        <option value="{{ $empleado->id_usuario }}">
+                                            {{ $empleado->nombre_usuario }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('idVendedor'))
+                                <div class="alert alert-warning col" role="alert">
+                                    <small>Selecciona un Empleado</small>
+                                    <button type="button" class="btn-close right"
+                                        data-bs-dismiss="alert"></button>
+                                </div>
+                            @endif
+
+                            </div>
+                        </div>
+
+                        <h4 class="mb-3">Informacion Cliente</h4>
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="Nombre" value="">
+                                <input type="text" class="form-control" id="NombreCliente" name="NombreCliente" value="{{old('NombreCliente')}}">
                             </div>
+                            @if ($errors->has('NombreCliente'))
+                            <div class="alert alert-warning col" role="alert">
+                                <small>Ingresa el Nombre del Cliente</small>
+                                <button type="button" class="btn-close right"
+                                    data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
 
                             <div class="col-sm-6">
                                 <label class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="Telefono" value="">
+                                <input type="text" class="form-control" id="TelefonoCliente" name="TelefonoCliente" value="{{old('TelefonoCliente')}}">
                             </div>
+                            @if ($errors->has('TelefonoCliente'))
+                            <div class="alert alert-warning col" role="alert">
+                                <small>Ingresa un numero de telefono valido</small>
+                                <button type="button" class="btn-close right"
+                                    data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
 
                             <div class="col-12">
                                 <label class="form-label">Correo<span class="text-muted">(Opcional)</span></label>
-                                <input type="email" class="form-control" id="Correo" placeholder="correo@ejemplo.com">
+                                <input type="email" class="form-control"id="CorreoCliente" name="CorreoCliente" value="{{old('CorreoCliente')}}">
                             </div>
-
-
-
-                            <h4 class="mb-3">Agregar Producto/Comic</h4>
-
-                            <div class="row gy-3">
-                                <div class="col-12">
-                                    <label class="form-label">Codigo</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                </div>
-
-                                <div class="col-12">
-
-                                    <label class="form-label">Buscar</label>
-                                    <select class="form-select" data-live-search="true">
-                                        <option>Ejemplo 1</option>
-                                        <option>Ejemplo 2</option>
-                                        <option>Ejemplo 3</option>
-                                    </select>
-
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="number" value="1" min="1" max="1000" step="1" />
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="w-100 waves-effect waves-light btn-small"
-                                        type="submit">Agregar</button>
-
-                                </div>
+                            @if ($errors->has('CorreoCliente'))
+                            <div class="alert alert-warning col" role="alert">
+                                <small>Ingresa un correo valido</small>
+                                <button type="button" class="btn-close right"
+                                    data-bs-dismiss="alert"></button>
                             </div>
+                        @endif
 
-
-                            <button class="w-100 waves-effect waves-light btn-small" type="submit">Continuar al
-                                checkout</button>
+                        </div>
                     </form>
-                </div>
+                    </div>
+
+
+            </div>
+
+            <div class="row">
+                <h4 class="mb-3">Agregar Producto/Comic</h4>
+
+                <form action="{{ route('punto_venta.agregarCarrito') }}" method="POST">
+                    @csrf
+
+                    <div class="row gy-3">
+                        <div class="col-12">
+                            <input class="form-control" list="datalistOptions" id="IDProducto" name="IDProducto"
+                                placeholder="Buscar producto...">
+                            <datalist id="datalistOptions">
+                                <option value=""></option>
+                                @foreach ($resComics as $comic)
+                                    <option value="{{ $comic->id_inventario }}"> {{ $comic->nombre_comic }} Stock
+                                        actual: {{ $comic->disponibilidad }}</option>
+                                @endforeach
+
+                                @foreach ($resArticulos as $articulo)
+                                    <option value="{{ $articulo->id_inventario }}">{{ $articulo->nombre_articulo }}
+                                        Stock actual: {{ $articulo->disponibilidad }}</option>
+                                @endforeach
+                            </datalist>
+                            @if ($errors->has('IDProducto'))
+                                <div class="alert alert-warning col" role="alert">
+                                    <small>Selecciona un Pedido</small>
+                                    <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
+                                </div>
+                            @endif
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="Cantidad">Cantidad</label>
+                            <input type="number" value="1" min="1" max="1000" step="1"
+                                name="Cantidad" id="Cantidad" />
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="w-100 waves-effect waves-light btn-small" type="submit">Agregar</button>
+
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-   
-    
+    @endsection
+
+    @section('footer')
+    @endsection
+
+
+
 </body>
 
 </html>
-@endsection
-
-@section('footer')
-
-@endsection

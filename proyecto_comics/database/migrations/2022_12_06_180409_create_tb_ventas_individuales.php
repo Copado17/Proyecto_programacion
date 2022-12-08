@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('id_venta')->references('id_venta')->on('tb_ventas');
             $table->integer('id_inventario')->unsigned()->index()->nullable();
             $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+            $table->string('tipo_venta_individual');
             $table->integer('cantidad_venta_individual');
             $table->float('total_venta_individual');
 
