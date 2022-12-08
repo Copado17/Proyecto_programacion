@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id_venta');
             $table->string('nombre_cliente');
             $table->string('telefono_cliente');
-            $table->string('correo_cliente');
+            $table->string('correo_cliente')->nullable();
             $table->integer('id_vendedor')->unsigned()->index()->nullable();
             $table->foreign('id_vendedor')->references('id_usuario')->on('tb_usuarios');
             $table->float('total_venta');

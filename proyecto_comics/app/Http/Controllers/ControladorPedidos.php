@@ -45,9 +45,8 @@ class ControladorPedidos extends Controller
     {
 
         $responsePedidos = DB::table('tb_pedidos')
-            ->join('tb_proveedores', 'tb_pedidos_temp.id_proveedor', '=', 'tb_proveedores.id_proveedor')
+            ->join('tb_proveedores', 'tb_pedidos.id_proveedor', '=', 'tb_proveedores.id_proveedor')
             ->get();
-
 
         return view('superusuario\ListaPedidos_super', compact('responsePedidos'));
 
@@ -223,7 +222,7 @@ class ControladorPedidos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function sendEmail($id)
+    public function enviarEmail($id)
     {
         //
     }
@@ -232,7 +231,7 @@ class ControladorPedidos extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function makePDF($id)
+    public function crearPDF($id)
     {
         
     }

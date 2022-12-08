@@ -4,50 +4,50 @@
 
 @section('contenido')
 
-@if (session()->has('pedidosEnviado'))
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{!! "<script>
-    Swal.fire(
-        'Se crearon los pedidos correctamente',
-        'Regresa a pedidos',
-        'success'
-    )
-
-</script>" !!}
-@endif
-@if (session()->has('errorProveedor'))
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{!! "<script>
-    Swal.fire(
-        'No se creeo el pedido',
-        'No puedes crear pedidos de diferentes Proveedores',
-        'error'
-    )
-
-</script>" !!}
-@endif
-@if (session()->has('errorTipo'))
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{!! "<script>
-    Swal.fire(
-        'No se cree el pedido',
-        'Regresa a pedidos',
-        'error'
-    )
-
-</script>" !!}
-@endif
-@if (session()->has('errorVacio'))
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{!! "<script>
-    Swal.fire(
-        'No se cree el pedido',
-        'No puedes crear pedido vacio',
-        'error'
-    )
-
-</script>" !!}
-@endif
+    @if (session()->has('pedidosEnviado'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {!! "<script>
+            Swal.fire(
+                'Se crearon los pedidos correctamente',
+                'Regresa a pedidos',
+                'success'
+            )
+        
+        </script>" !!}
+    @endif
+    @if (session()->has('errorProveedor'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {!! "<script>
+            Swal.fire(
+                'No se creeo el pedido',
+                'No puedes crear pedidos de diferentes Proveedores',
+                'error'
+            )
+        
+        </script>" !!}
+    @endif
+    @if (session()->has('errorTipo'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {!! "<script>
+            Swal.fire(
+                'No se cree el pedido',
+                'Regresa a pedidos',
+                'error'
+            )
+        
+        </script>" !!}
+    @endif
+    @if (session()->has('errorVacio'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {!! "<script>
+            Swal.fire(
+                'No se cree el pedido',
+                'No puedes crear pedido vacio',
+                'error'
+            )
+        
+        </script>" !!}
+    @endif
 
 
     <div class=" mt-5 left">
@@ -59,7 +59,7 @@
                 <div class="col mb-3">
                     <h1 class="display-5 ">Realizar Pedido</h1>
                 </div>
-                <form action="{{route('Pedidos_Super.create')}}" method="POST">
+                <form action="{{ route('Pedidos_Super.create') }}" method="POST">
                     @csrf
 
                     <div class="form-group">
@@ -68,7 +68,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <label>Proveedor</label>
-                                        <p>Puedes crear varios pedidos para un solo proveedor pero no pedidos para multiples proveedores</p>
+                                        <p>Puedes crear varios pedidos para un solo proveedor pero no pedidos para multiples
+                                            proveedores</p>
 
                                         <select class="form-select" id="Proveedor" name="Proveedor">
                                             <option value="">Selecciona Proveedor</option>
@@ -78,11 +79,12 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('Proveedor'))
-                                        <div class="alert alert-warning col" role="alert">
-                                            <strong>Selecciona un Proveedor</strong>
-                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    @endif
+                                            <div class="alert alert-warning col" role="alert">
+                                                <strong>Selecciona un Proveedor</strong>
+                                                <button type="button" class="btn-close right"
+                                                    data-bs-dismiss="alert"></button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row">
@@ -90,30 +92,34 @@
                                         <h6>Pedido</h6>
 
                                         <label for="Pedido" class="form-label">Producto a Pedir</label>
-                                        <input class="form-control" list="datalistOptions" id="PedidoID" name="PedidoID" placeholder="Selecciona Pedido.."
-                                            placeholder="Ingresa pedido para buscar...">
-                                            <datalist id="datalistOptions">
+                                        <input class="form-control" list="datalistOptions" id="PedidoID" name="PedidoID"
+                                            placeholder="Selecciona Pedido.." placeholder="Ingresa pedido para buscar...">
+                                        <datalist id="datalistOptions">
                                             <option value=""></option>
 
                                             @foreach ($resComics as $comic)
-                                                <option value="{{$comic->id_inventario}}"> {{$comic->nombre_comic}} Stock actual: {{$comic->disponibilidad}}</option>
+                                                <option value="{{ $comic->id_inventario }}"> {{ $comic->nombre_comic }}
+                                                    Stock actual: {{ $comic->disponibilidad }}</option>
                                             @endforeach
                                             @foreach ($resArticulos as $articulo)
-                                                <option value="{{$articulo->id_inventario}}">{{$articulo->nombre_articulo }} Stock actual: {{$articulo->disponibilidad}}</option>
+                                                <option value="{{ $articulo->id_inventario }}">
+                                                    {{ $articulo->nombre_articulo }} Stock actual:
+                                                    {{ $articulo->disponibilidad }}</option>
                                             @endforeach
-                                            </datalist>
+                                        </datalist>
                                         @if ($errors->has('PedidoID'))
-                                        <div class="alert alert-warning col" role="alert">
-                                            <strong>Selecciona un Pedido</strong>
-                                            <button type="button" class="btn-close right" data-bs-dismiss="alert"></button>
-                                        </div>
-                                    @endif
+                                            <div class="alert alert-warning col" role="alert">
+                                                <strong>Selecciona un Pedido</strong>
+                                                <button type="button" class="btn-close right"
+                                                    data-bs-dismiss="alert"></button>
+                                            </div>
+                                        @endif
 
 
                                     </div>
                                 </div>
 
-                                
+
                             </div>
                             <div class="row">
                                 <div class="col s6">
@@ -154,24 +160,23 @@
             </thead>
             <tbody>
                 @foreach ($resPedidos as $pedido)
-
-                <tr>
-                    <th scope="row">{{$pedido->id_pedido_temp}}</th>
-                    <td>{{$pedido->nombre_proveedor}}</td>
-                    <td>{{$pedido->nombre_producto}}</td>
-                    <td>{{$pedido->cantidad_pedido}}</td>
-                    <td>{{$pedido->compra}}</td>
-                    <td>{{$pedido->total}}</td>
-                    <td>
-                        <form action="{{route('Pedidos_Super.destroy', $pedido->id_pedido_temp)}}" method="POST">
-                            @csrf
-                            @method('delete')
-                                    <button class="waves-effect waves-light btn-small" type="submit">
-                                Eliminar
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row">{{ $pedido->id_pedido_temp }}</th>
+                        <td>{{ $pedido->nombre_proveedor }}</td>
+                        <td>{{ $pedido->nombre_producto }}</td>
+                        <td>{{ $pedido->cantidad_pedido }}</td>
+                        <td>{{ $pedido->compra }}</td>
+                        <td>{{ $pedido->total }}</td>
+                        <td>
+                            <form action="{{ route('Pedidos_Super.destroy', $pedido->id_pedido_temp) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="waves-effect waves-light btn-small" type="submit">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
 
             </tbody>
@@ -179,7 +184,7 @@
 
         <div class="container p-2 mb-5">
             <div class="my-5 right">
-                <a href="{{route('Pedidos_Super.store')}}" type="submit" class="btn btn-primary">Crear Pedido</a>
+                <a href="{{ route('Pedidos_Super.store') }}" type="submit" class="btn btn-primary">Crear Pedido</a>
             </div>
         </div>
     </div>

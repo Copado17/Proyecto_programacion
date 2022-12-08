@@ -79,6 +79,9 @@
     </div>
 
     <div class="row ">
+        <form action="{{route('Pedidos_Super.create')}}" method="POST">
+            @csrf
+
         <div class=" col-lg-4 order-md-last">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-primary">Carrito</span>
@@ -122,12 +125,14 @@
                 </li>
             </ul>
 
+            <button class="w-100 waves-effect waves-light btn-small" type="submit">Crear Venta</button>
+            
+
         </div>
 
         <div class="col-md-7 col-lg-8">
 
             <h4 class="mb-3">Informacion Cliente</h4>
-            <form class="needs-validation" novalidate>
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <label class="form-label">Nombre</label>
@@ -144,7 +149,22 @@
                         <input type="email" class="form-control" id="Correo" placeholder="correo@ejemplo.com">
                     </div>
 
+            <h4 class="mb-3">Empleado que realiza Venta</h4>
+            <label>Proveedor</label>
+            <p>Puedes crear varios pedidos para un solo proveedor pero no pedidos para multiples proveedores</p>
 
+            <select class="form-select" id="Proveedor" name="Proveedor">
+                <option value="">Selecciona Proveedor</option>
+                @foreach ($resEmpleados as $empleado)
+                    <option value="{{ $empleado->id_usuario }}">
+                        {{ $empleado->nombre_usuario }}</option>
+                @endforeach
+            </select>
+
+
+            </form>
+
+                <form class="needs-validation" >
 
                     <h4 class="mb-3">Agregar Producto/Comic</h4>
 
@@ -173,10 +193,6 @@
 
                         </div>
                     </div>
-
-
-                    <button class="w-100 waves-effect waves-light btn-small" type="submit">Continuar al
-                        checkout</button>
             </form>
         </div>
     </div>

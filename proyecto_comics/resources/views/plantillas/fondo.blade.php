@@ -28,7 +28,7 @@
             <div class="nav-wrapper">
                 <a href="/Menu_Empleado" class="brand-logo">Weirdo Comics</a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="/punto_venta">Punto Venta</a></li>
+                    <li><a href="{{route('punto_venta.indexCarrito')}}">Punto Venta</a></li>
                     <li><a href="/Inventario_empleado">Inventario</a></li>
  
                     <a class="waves-effect waves-light btn-small" href="/">Salir</a>
