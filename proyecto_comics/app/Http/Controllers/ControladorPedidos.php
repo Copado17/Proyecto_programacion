@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CorreoPedido;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use App\Http\Requests\validador_pedido;
 use DB;
@@ -257,6 +258,18 @@ class ControladorPedidos extends Controller
      */
     public function crearPDF($id)
     {
+        $responcePedidos = DB::table('tb_pedidos')->where('id_pedido', $id)
+        ->leftJoin('tb_proveedores', 'tb_proveedores.id_proveedor', '=', 'tb_pedidos.id_proveedor')
+        ->first();
+        $infoPedidoIndv = DB::table('tb_pedidos_individuales')
+        ->where('id_pedido', $id)
+        ->get();
+
+        $hoy = Carbon::now()->format('Y-m-d');
+        $descarga = 'Pedido_WeirdoComics_'.$hoy.'.pdf';
+
+        $pdf = Pdf::loadView('\pdf\pdf_pedido', ['responcePedidos'=>$responcePedidos], ['infoPedidoIndv'=>$infoPedidoIndv] );
+        return $pdf->download($descarga);
 
     }
 

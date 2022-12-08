@@ -8,12 +8,14 @@
 </head>
 <body>
     <h1>Weirdo Comics!</h1>
+    <h3>Pedido: {{$responcePedidos->id_pedido}}</h3>
 
-    <p>{{$datosPedido->contacto}}, queremos crear esta orden de pedidos por parte de Weirdo Comics para {{$datosPedido->nombre_proveedor}}</p>
+    <p> Compañia: {{$responcePedidos->nombre_proveedor}}</p>
+    <p> Contacto: {{$responcePedidos->contacto}}</p>
 
-    <p> Numero de Pedido: {{$datosPedido->id_pedido}}</p>
-    <p> Numero de Articulos a Pedir: {{$datosPedido->numero_pedidos}}</p>
-    <p> Fecha de Pedido: {{$datosPedido->created_at}}</p>
+
+    <p> Numero de Articulos a Pedir: {{$responcePedidos->numero_pedidos}}</p>
+    <p> Fecha de Pedido: {{$responcePedidos->created_at}}</p>
 
     <table>
         <tr>
@@ -24,7 +26,7 @@
           <th>Cantidad</th>
           <th>Total</th>
         </tr>
-        @foreach ($datosIndividuales as $dato)
+        @foreach ($infoPedidoIndv as $dato)
         <tr>
             <td>{{$dato->id_pedido_individual}}</td>
             <td>{{$dato->nombre_producto}}</td>
@@ -41,7 +43,7 @@
             <td></td>
             <td></td>
             <td>Total: </td>
-            <td> {{$datosPedido->total_pedido}}</td>
+            <td> {{$responcePedidos->total_pedido}}</td>
         </tr>
 
       </table>

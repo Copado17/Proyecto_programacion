@@ -23,7 +23,6 @@ use App\Http\Controllers\controladorEmpleado;
 */
 
 // Vista Login
-
 Route::get('/', function () {
     return view('login');
 });
@@ -33,7 +32,14 @@ Route::get('Menu_super', function () {
     return view('superusuario/Menu_super');
 });
 
+/* Vsitas de empleado*/
+Route::get('/Menu_Empleado', function () {
+    return view('empleado/Menu_Empleado');
+});
 
+Route::get('/Inventario_empleado', function () {
+    return view('empleado/Inventario_empleado');
+});
 
 
 Route::get('/Agregar_proveedores', function () {
@@ -55,12 +61,9 @@ Route::get('/Editar_proveedores', function () {
 });
 
 
-
 Route::get('/punto_ventaSuper', function () {
     return view('superusuario/punto_ventasuper');
 });
-
-
 
 
 
@@ -83,110 +86,94 @@ route::post('Agregar_usuario', [Controlador::class, 'validador_usuario']);
 route::post('Editar_usuarios', [Controlador::class, 'validador_editarU']);
 
 //vISTA DE TABLAS DE INVENTARIO
-
-//Inventario
-Route::get('/Inventario_super',  [controladorC::class, 'index'])->name('Comics.index');
-
-//Inventario_empleado
-Route::get('/Inventario_empleado',  [controladorEmpleado::class, 'index']);
+//articulos
+Route::get('/Inventario_super', [controladorA::class, 'index'])->name('Articulos.index');
+//comics
+Route::get('/Inventario_super', [controladorC::class, 'index'])->name('Comics.index');
 
 
 //CRUD DE ARTICULOS
 //create productos
-Route::get('/Agregar_producto',  [controladorA::class, 'create'])->name('Articulos.create');
+Route::get('/Agregar_producto', [controladorA::class, 'create'])->name('Articulos.create');
 //Agregar productos
-Route::post('/Agregar_producto/store',  [controladorA::class, 'store'])->name('Articulos.store');
+Route::post('/Agregar_producto/store', [controladorA::class, 'store'])->name('Articulos.store');
 //Show productos
-Route::get('/Inventario_super/{id}/show',  [controladorA::class, 'show'])->name('Articulos.show');
+Route::get('/Inventario_super/{id}/show', [controladorA::class, 'show'])->name('Articulos.show');
 //DELETE
-Route::delete('/Inventario_super/{id}/destroy',  [controladorA::class, 'destroy'])->name('Articulos.destroy');
+Route::delete('/Inventario_super/{id}/destroy', [controladorA::class, 'destroy'])->name('Articulos.destroy');
 //EDIT
-Route::get('/Editar_producto/{id}/edit',  [controladorA::class, 'edit'])->name('Articulos.edit');
+Route::get('/Editar_producto/{id}/edit', [controladorA::class, 'edit'])->name('Articulos.edit');
 //UPDATE
-Route::put('/Editar_producto/{id}',  [controladorA::class, 'update'])->name('Articulos.update');
-
+Route::put('/Editar_producto/{id}', [controladorA::class, 'update'])->name('Articulos.update');
 
 //CRUD DE COMICS
 //create productos
-Route::get('/Agregar_comic',  [controladorC::class, 'create'])->name('Comics.create');
+Route::get('/Agregar_comic', [controladorC::class, 'create'])->name('Comics.create');
 //Agregar productos
-Route::post('/Agregar_comic/store',  [controladorC::class, 'store'])->name('Comics.store');
+Route::post('/Agregar_comic/store', [controladorC::class, 'store'])->name('Comics.store');
 //Show comics
-Route::get('/Inventario_super/{id}/show',  [controladorC::class, 'show'])->name('Comics.show');
+Route::get('/Inventario_super/{id}/show', [controladorC::class, 'show'])->name('Comics.show');
 //DELETE comicss
-Route::delete('/Inventario_super/{id}',  [controladorC::class, 'destroy'])->name('Comics.destroy');
+Route::delete('/Inventario_super/{id}', [controladorC::class, 'destroy'])->name('Comics.destroy');
 //EDIT
-Route::get('/Editar_comic/{id}/edit',  [controladorC::class, 'edit'])->name('Comics.edit');
+Route::get('/Editar_comic/{id}/edit', [controladorC::class, 'edit'])->name('Comics.edit');
 //UPDATE
-Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics.update');
-//Buscar
-Route::get('/Inventario_super',  [controladorC::class, 'buscar'])->name('Comics.buscar');
-//Buscar en empleado
-Route::get('/Inventario_empleado',  [controladorEmpleado::class, 'buscar'])->name('ComicsE.buscar');
-
-
-
-
-
+Route::put('/Editar_comic/{id}', [controladorC::class, 'update'])->name('Comics.update');
 
 
 
 
 //PROVEEDORES
-Route::get('/Lista_proveedores',  [ControladorP::class, 'index'])->name('Proveedores.index');
-//create proveedores
+Route::get('/Lista_proveedores', [ControladorP::class, 'index'])->name('Proveedores.index');
 
 //Agregar proveedores
-Route::post('/Agregar_proveedores/store',  [ControladorP::class, 'store'])->name('Proveedores.store');
+Route::post('/Agregar_proveedores/store', [ControladorP::class, 'store'])->name('Proveedores.store');
 //Show proveedores
-Route::get('/Lista_proveedores/{id}/show',  [ControladorP::class, 'show'])->name('Proveedores.show');
+Route::get('/Lista_proveedores/{id}/show', [ControladorP::class, 'show'])->name('Proveedores.show');
 //DELETE
-Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy'])->name('Proveedores.destroy');
+Route::delete('/Lista_proveedores/{id}/destroy', [ControladorP::class, 'destroy'])->name('Proveedores.destroy');
 //EDIT
-Route::get('/Editar_proveedores/{id}/edit',  [ControladorP::class, 'edit'])->name('Proveedores.edit');
+Route::get('/Editar_proveedores/{id}/edit', [ControladorP::class, 'edit'])->name('Proveedores.edit');
 //UPDATE
-Route::put('/Editar_proveedores/{id}',  [ControladorP::class, 'update'])->name('Proveedores.update');
+Route::put('/Editar_proveedores/{id}', [ControladorP::class, 'update'])->name('Proveedores.update');
 //BUSCAR
-Route::get('/Lista_proveedores',  [ControladorP::class, 'buscar'])->name('Proveedores.buscar');
+Route::get('/Lista_proveedores', [ControladorP::class, 'buscar'])->name('Proveedores.buscar');
 
 
 //USUARIOS
-Route::get('/Usuarios',  [ControladorU::class, 'index'])->name('Usuarios.index');
+Route::get('/Usuarios', [ControladorU::class, 'index'])->name('Usuarios.index');
 //Agregar usuarios
-Route::post('/Agregar_usuario/store',  [ControladorU::class, 'store'])->name('Usuarios.store');
+Route::post('/Agregar_usuario/store', [ControladorU::class, 'store'])->name('Usuarios.store');
 //Show usuarios
-Route::get('/Usuarios/{id}/show',  [ControladorU::class, 'show'])->name('Usuarios.show');
+Route::get('/Usuarios/{id}/show', [ControladorU::class, 'show'])->name('Usuarios.show');
 //DELETE
-Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
+Route::delete('/Usuarios/{id}/destroy', [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
 //EDIT
-Route::get('/Editar_usuarios/{id}/edit',  [ControladorU::class, 'edit'])->name('Usuarios.edit');
+Route::get('/Editar_usuarios/{id}/edit', [ControladorU::class, 'edit'])->name('Usuarios.edit');
 //UPDATE
-Route::put('/Editar_usuarios/{id}/update',  [ControladorU::class, 'update'])->name('Usuarios.update');
+Route::put('/Editar_usuarios/{id}', [ControladorU::class, 'update'])->name('Usuarios.update');
 //BUSCAR
-Route::get('/Usuarios',  [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
+Route::get('/Usuarios', [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
 
 
 
-/// DB CONTROL PEDIDOS
+/// FUNCIONES DE PEDIDOS
+Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
+Route::get('superusuario/Pedidos/pdf/{id}', [ControladorPedidos::class, 'crearPDF'])->name('Pedidos_Super.crearPDF');
+
+// FUNCIONES DE CREAR PEDIDOS 
 Route::get('superusuario/Pedidos_super', [ControladorPedidos::class, 'index'])->name('Pedidos_Super.index');
 Route::post('superusuario/Pedidos_create', [ControladorPedidos::class, 'create'])->name('Pedidos_Super.create');
 Route::get('superusuario/Pedidos_super/store', [ControladorPedidos::class, 'store'])->name('Pedidos_Super.store');
 Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'destroy'])->name('Pedidos_Super.destroy');
 
-/// DB CONTROL PEDIDOS TABLA
-Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
 
-
-/// DB CONTRO VENTA
-Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
+/// FUNCIONES DE VENTAS
 Route::get('registro_venta', [ControladorVentas::class, 'indexVentas'])->name('punto_venta.indexVentas');
 Route::get('registro_venta/pdf/{id}', [ControladorVentas::class, 'crearPDF'])->name('punto_venta.crearPDF');
+
+/// FUNCIONES PARA CREAR VENTA 
+Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
 Route::post('punto_venta', [ControladorVentas::class, 'agregarCarrito'])->name('punto_venta.agregarCarrito');
 Route::post('punto_venta/store', [ControladorVentas::class, 'storeVenta'])->name('punto_venta.storeVenta');
 Route::delete('punto_venta/{id}', [ControladorVentas::class, 'destroy'])->name('punto_venta.destroy');
-
-/* Vsitas de empleado*/
-Route::get('/Menu_Empleado', function () {
-    return view('empleado/Menu_Empleado');
-});
-

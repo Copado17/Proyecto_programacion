@@ -64,10 +64,9 @@
 
 <body>
 
-    @extends('plantillas/fondosuper')
-
-    @section('barra_super')
-    @endsection
+    @extends('plantillas/fondo')
+    @section('barra')
+        @endsection
 
     @section('contenido')
         @if (session()->has('errorSock'))

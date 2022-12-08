@@ -269,12 +269,11 @@ class ControladorVentas extends Controller
         ->where('id_venta', $id)
         ->get();
 
+        $hoy = Carbon::now()->format('Y-m-d');
+        $descarga = 'Venta_WeirdoComics_'.$hoy.'.pdf';
+
         $pdf = Pdf::loadView('\pdf\pdf_venta', ['responceVentas'=>$responceVentas], ['infoVentaInd'=>$infoVentaInd] );
-        return $pdf->download('VentaWeirdoComics.pdf');
-
-
-        // return view('\pdf\pdf_venta', compact('responceVentas', 'infoVentaInd'));
-
+        return $pdf->download($descarga);
     }
 
     /**
