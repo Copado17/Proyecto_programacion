@@ -58,10 +58,8 @@
                             <td>{{ $item->correo }}</td>
                             <td>{{ $item->numero_pedidos }}</td>
                             <td>{{ $item->total_pedido }}</td>
-                            <td>
-                                <button type="button" class="waves-effect waves-light btn-small">
-                                    <i class="bi bi-x-circle-fill"></i> Descargar PDF
-                                </button>
+
+                            <td><a class="waves-effect waves-light btn-small" href="{{route('Pedidos_Super.crearPDF', $item->id_pedido)}}">Descargar PDF</a>
                             </td>
                         </tr>
                     @endforeach

@@ -158,6 +158,7 @@ Route::delete('superusuario/Pedidos_super/{id}', [ControladorPedidos::class, 'de
 
 /// DB CONTROL PEDIDOS TABLA
 Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])->name('Pedidos_Super.indexPedidos');
+Route::get('superusuario/Pedidos/pdf/{id}', [ControladorPedidos::class, 'crearPDF'])->name('Pedidos_Super.crearPDF');
 
 
 /// DB CONTRO VENTA
