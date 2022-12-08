@@ -8,11 +8,12 @@
 </head>
 <body>
     <h1>Weirdo Comics!</h1>
-    <p>Tu ticket de venta digital esta aqui!</p>
 
-    <p> Numero de Venta: {{$datosVenta->id_venta}}</p>
-    <p> Venta realizada por: {{$datosVenta->nombre_vendedor}}</p>
-    <p> Fecha de Venta: {{$datosVenta->fecha_venta}}</p>
+    <p>{{$datosPedido->contacto}}, queremos crear esta orden de pedidos por parte de Weirdo Comics para {{$datosPedido->nombre_proveedor}}</p>
+
+    <p> Numero de Pedido: {{$datosPedido->id_pedido}}</p>
+    <p> Numero de Articulos a Pedir: {{$datosPedido->numero_pedidos}}</p>
+    <p> Fecha de Pedido: {{$datosPedido->created_at}}</p>
 
     <table>
         <tr>
@@ -25,12 +26,12 @@
         </tr>
         @foreach ($datosIndividuales as $dato)
         <tr>
-            <td>{{$dato->id_venta_individual}}</td>
-            <td>{{$dato->nombre_producto_individual}}</td>
-            <td>{{$dato->tipo_venta_individual}}</td>
-            <td>{{($dato->total_venta_individual)/($dato->cantidad_venta_individual)}}</td>
-            <td>{{$dato->cantidad_venta_individual}}</td>
-            <td>{{$dato->total_venta_individual}}</td>
+            <td>{{$dato->id_pedido_individual}}</td>
+            <td>{{$dato->nombre_producto}}</td>
+            <td>{{$dato->tipo_pedido}}</td>
+            <td>{{($dato->total_pedido_individual)/($dato->cantidad_pedido_individual)}}</td>
+            <td>{{$dato->cantidad_pedido_individual}}</td>
+            <td>{{$dato->total_pedido_individual}}</td>
         </tr>
         
         @endforeach
@@ -40,7 +41,7 @@
             <td></td>
             <td></td>
             <td>Total: </td>
-            <td> {{$datosVenta->total_venta}}</td>
+            <td> {{$datosPedido->total_pedido}}</td>
         </tr>
 
       </table>

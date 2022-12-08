@@ -8,11 +8,10 @@
 </head>
 <body>
     <h1>Weirdo Comics!</h1>
-    <p>Tu ticket de venta digital esta aqui!</p>
 
-    <p> Numero de Venta: {{$datosVenta->id_venta}}</p>
-    <p> Venta realizada por: {{$datosVenta->nombre_vendedor}}</p>
-    <p> Fecha de Venta: {{$datosVenta->fecha_venta}}</p>
+    <p> Numero de Venta: {{$responceVentas->id_venta}}</p>
+    <p> Venta realizada por: {{$responceVentas->nombre_vendedor}}</p>
+    <p> Fecha de Venta: {{$responceVentas->fecha_venta}}</p>
 
     <table>
         <tr>
@@ -23,7 +22,7 @@
           <th>Cantidad</th>
           <th>Total</th>
         </tr>
-        @foreach ($datosIndividuales as $dato)
+        @foreach ($infoVentaInd as $dato)
         <tr>
             <td>{{$dato->id_venta_individual}}</td>
             <td>{{$dato->nombre_producto_individual}}</td>
@@ -40,7 +39,7 @@
             <td></td>
             <td></td>
             <td>Total: </td>
-            <td> {{$datosVenta->total_venta}}</td>
+            <td> {{$responceVentas->total_venta}}</td>
         </tr>
 
       </table>

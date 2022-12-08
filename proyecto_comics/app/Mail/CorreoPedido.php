@@ -13,14 +13,19 @@ class CorreoPedido extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $subjectCorreo = "Informacion de Pedido - Weirdo Comics ";
+    public $datosPedido;
+    public $datosIndividuales;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($datosPedido, $ventaIndInfo)
     {
-        //
+        $this->datosPedido = $datosPedido;
+        $this->datosIndividuales = $ventaIndInfo;
     }
 
     /**
@@ -28,32 +33,9 @@ class CorreoPedido extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
-    public function envelope()
+    public function build()
     {
-        return new Envelope(
-            subject: 'Correo Pedido',
-        );
+        return $this->view('correos/correo_pedido')->subject($this->subjectCorreo);
     }
 
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
-     */
-    public function content()
-    {
-        return new Content(
-            view: 'view.name',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
-    public function attachments()
-    {
-        return [];
-    }
 }

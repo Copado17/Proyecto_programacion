@@ -17,8 +17,7 @@ return new class extends Migration
             $table->increments('id_pedido_individual');
             $table->integer('id_pedido')->unsigned()->index()->nullable();
             $table->foreign('id_pedido')->references('id_pedido')->on('tb_pedidos');
-            $table->integer('id_inventario')->unsigned()->index()->nullable();
-            $table->foreign('id_inventario')->references('id_inventario')->on('tb_inventario');
+            $table->string('nombre_producto');
             $table->string('tipo_pedido');
             $table->integer('cantidad_pedido_individual');
             $table->float('total_pedido_individual');

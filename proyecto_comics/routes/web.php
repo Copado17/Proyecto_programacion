@@ -38,9 +38,7 @@ Route::get('Menu_super', function () {
 Route::get('/Agregar_proveedores', function () {
     return view('superusuario/Agregar_proveedores');
 });
-Route::get('/Registro_venta', function () {
-    return view('superusuario/Registro_venta');
-});
+
 Route::get('/Usuarios', function () {
     return view('superusuario/Usuarios');
 });
@@ -164,6 +162,8 @@ Route::get('superusuario/Pedidos', [ControladorPedidos::class, 'indexPedidos'])-
 
 /// DB CONTRO VENTA
 Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('punto_venta.indexCarrito');
+Route::get('registro_venta', [ControladorVentas::class, 'indexVentas'])->name('punto_venta.indexVentas');
+Route::get('registro_venta/pdf/{id}', [ControladorVentas::class, 'crearPDF'])->name('punto_venta.crearPDF');
 Route::post('punto_venta', [ControladorVentas::class, 'agregarCarrito'])->name('punto_venta.agregarCarrito');
 Route::post('punto_venta/store', [ControladorVentas::class, 'storeVenta'])->name('punto_venta.storeVenta');
 Route::delete('punto_venta/{id}', [ControladorVentas::class, 'destroy'])->name('punto_venta.destroy');

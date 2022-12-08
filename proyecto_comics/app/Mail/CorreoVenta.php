@@ -14,16 +14,19 @@ class CorreoVenta extends Mailable
     use Queueable, SerializesModels;
 
     public $subjectCorreo = "Informacion de Venta - Weirdo Comics ";
-    public $datos;
+    public $datosVenta;
+
+    public $datosIndividuales;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($ventaInfo)
+    public function __construct($ventaInfo, $ventaIndInfo)
     {
-        $this->datos = $ventaInfo;
+        $this->datosVenta = $ventaInfo;
+        $this->datosIndividuales = $ventaIndInfo;
     }
 
     /**
@@ -33,7 +36,7 @@ class CorreoVenta extends Mailable
      */
     public function build()
     {
-        return $this->view('correos/correo_venta');
+        return $this->view('correos/correo_venta')->subject($this->subjectCorreo);
     }
 
 }

@@ -162,8 +162,8 @@
                                 <select class="form-select" id="idVendedor" name="idVendedor">
                                     <option value="">Selecciona Empleado</option>
                                     @foreach ($resEmpleados as $empleado)
-                                        <option value="{{ $empleado->id_usuario }}">
-                                            {{ $empleado->nombre_usuario }}</option>
+                                        <option value="{{ $empleado->nombre_completo }}">
+                                            {{ $empleado->nombre_completo }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('idVendedor'))
