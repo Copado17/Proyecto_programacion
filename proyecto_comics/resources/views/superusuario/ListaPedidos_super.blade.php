@@ -26,7 +26,7 @@
         </div>
         <a class="waves-effect waves-light btn-small" href="{{ route('Pedidos_Super.index') }}">Crear Pedido</a>
 
-        <div class="container bg-light col-md-7 my-5 p-4 ">
+        <div class="container bg-light col-md-10 my-5 p-4 ">
             <h1 class="Dispaly-5 ">
                 Pedidos
             </h1>
