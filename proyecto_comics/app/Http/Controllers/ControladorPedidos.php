@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CorreoPedido;
+
 use App\Http\Requests\validador_pedido;
 use DB;
-use Mail;
 use Carbon\Carbon;
 
 class ControladorPedidos extends Controller
@@ -68,11 +70,11 @@ class ControladorPedidos extends Controller
 
         $proveedorActual = DB::table('tb_pedidos_temp')->select('id_proveedor')->first();
 
-        if(!is_null($proveedorActual)) {
+        if (!is_null($proveedorActual)) {
             if ($proveedorActual->id_proveedor != $request->input('Proveedor')) {
                 return redirect('superusuario/Pedidos_super')->with('errorProveedor', 'El pedido no se registro');
             }
-            
+
         }
 
         /// IDENTIFICAR QUE TIPO DE PRODUCTO SE CREA EL PEDIDO TEMPORAL
@@ -92,7 +94,7 @@ class ControladorPedidos extends Controller
         }
 
         /// QUERY PARA SACAR DATOS DE PRODUCTO
-        
+
         $queryPedido = DB::table($tabla)->where($id, $idProducto)->first();
 
         $pedidoCantidad = $request->input('NoOrden');
@@ -102,12 +104,14 @@ class ControladorPedidos extends Controller
 
         DB::table('tb_pedidos_temp')->insert([
             "id_inventario" => $request->input('PedidoID'),
-            "nombre_producto" => $queryPedido->$nombre,
+            "nombre_producto" => $queryPedido->nombre,
             "id_proveedor" => $request->input('Proveedor'),
             "cantidad_pedido" => $pedidoCantidad,
             "compra" => $queryPedido->precio_compra,
             "total" => $pedidoTotal,
         ]);
+
+
 
 
         return redirect('superusuario/Pedidos_super');
@@ -125,8 +129,8 @@ class ControladorPedidos extends Controller
 
         $checkFirst = DB::table('tb_pedidos_temp')->select('id_proveedor')->first();
 
-        if(is_null($checkFirst)) {
-            return redirect('superusuario/Pedidos_super')->with('errorVacio', 'El pedido no se registro');            
+        if (is_null($checkFirst)) {
+            return redirect('superusuario/Pedidos_super')->with('errorVacio', 'El pedido no se registro');
         }
 
         /// CREA UN REGISTRO DE PEDIDO 
@@ -146,13 +150,12 @@ class ControladorPedidos extends Controller
 
         $pedidosTemp = DB::table('tb_pedidos_temp')
             ->join('tb_inventario', 'tb_pedidos_temp.id_inventario', '=', 'tb_inventario.id_inventario')
-            ->select('tb_pedidos_temp.*', 'tb_inventario.tipo_inventario')
             ->get();
 
 
         // OBTENER EL ID DEL ULTIMO PEDIDO DE LOS CUALES LOS PEDIDOS INDIVIDUALES SERAN ASIGNADOS A
 
-        $idPedido = DB::table('tb_pedidos')->latest('created_at')->first(); 
+        $idPedido = DB::table('tb_pedidos')->latest('created_at')->first();
 
         /// POR CADA PEDIDO TEMPORAL CREAMOS UN REGISTRO PERMANENTE EN PEDIDOS INDIVIDUALES
 
@@ -165,11 +168,13 @@ class ControladorPedidos extends Controller
                 case 1:
                     $tabla = 'tb_comics';
                     $id = 'id_comic';
+                    $nombre = 'nombre_comic';
                     $tipo = 'Comic';
                     break;
                 case 2:
                     $tabla = 'tb_articulos';
                     $id = 'id_articulo';
+                    $nombre = 'nombre_articulo';
                     $tipo = 'Producto';
                     break;
                 default:
@@ -177,14 +182,16 @@ class ControladorPedidos extends Controller
             }
 
             /// INSERT DE PEDIDO INDIVIDUAL
+            $nombreP = DB::table($tabla)->where($id, $pedidoTemp->id_producto)->value($nombre);
+            
             DB::table('tb_pedidos_individuales')->insert([
                 "id_pedido" => $idPedido->id_pedido,
-                "id_inventario" => $pedidoTemp->id_inventario,
+                "nombre_producto" => $nombreP,
                 "tipo_pedido" => $tipo,
                 "cantidad_pedido_individual" => $pedidoTemp->cantidad_pedido,
                 "total_pedido_individual" => $pedidoTemp->total,
 
-                ]);
+            ]);
 
             /// ACTUALIZACION DE PEDIDO # PEDIDOS Y TOTAL
             $numeroPedido = $numeroPedido + 1;
@@ -195,7 +202,7 @@ class ControladorPedidos extends Controller
                 "total_pedido" => $totalPedido,
                 "updated_at" => Carbon::now()
             ]);
-    
+
             /// ACTUALIZACION DE DISPONIBILIDAD DESPUES DE QUE SE CREA EL PEDIDO
 
             $stockActual = DB::table($tabla)->where($id, $pedidoTemp->id_inventario)->value('disponibilidad');
@@ -210,6 +217,20 @@ class ControladorPedidos extends Controller
 
         }
 
+        /// CREAR CORREO
+        $infoPedido = DB::table('tb_pedidos')
+            ->leftJoin('tb_proveedores', 'tb_pedidos.id_proveedor', '=', 'tb_proveedores.id_proveedor')
+            ->select('tb_pedidos.*', 'tb_proveedores.nombre_proveedor','tb_proveedores.correo','tb_proveedores.contacto')
+            ->latest('created_at')
+            ->first();
+
+        $correoProv = $infoPedido->correo;
+
+        $infoInd = DB::table('tb_pedidos_individuales')->where('id_pedido', $infoPedido->id_pedido)->get();
+
+        $this->enviarEmail($correoProv, $infoPedido, $infoInd);
+
+
         /// SE BORRAN TODOS LOS REGISTROS DE PEDIDOS TEMPORAL
         DB::table('tb_pedidos_temp')->truncate();
         return redirect('superusuario/Pedidos_super')->with('pedidosEnviado', 'Los pedidos fueron registrados');
@@ -222,9 +243,12 @@ class ControladorPedidos extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function enviarEmail($id)
+    public function enviarEmail($recipiente, $infoPedido, $infoIndividual)
     {
-        //
+        $correo = new CorreoPedido($infoPedido, $infoIndividual);
+
+        Mail::to($recipiente)->send($correo);
+
     }
 
     /**
@@ -233,7 +257,7 @@ class ControladorPedidos extends Controller
      */
     public function crearPDF($id)
     {
-        
+
     }
 
     /**

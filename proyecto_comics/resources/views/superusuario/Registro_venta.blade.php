@@ -1,11 +1,11 @@
 @extends('plantillas/fondosuper')
 @section('barra_super')
-   
+
 @endsection
 
 @section('contenido')
 
-    
+
     <title>Registro de ventas</title>
     <div class="slider-thumb">
         <h2 class="center">Registro de ventas</h2>
@@ -23,51 +23,31 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Fecha de venta</th>
-                    <th scope="col">Productos</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Precio</th>
+                    <th scope="col">Nombre Cliente</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Vendedor</th>
+                    <th scope="col">Total</th>
                     <th scope="col">Ticket</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>10/02/22</td>
-                    <td>Born again</td>
-                    <td>Oscar Silvestre</td>
-                    <td>$200</td>
+                @foreach ($responceVentas as $venta)
+                    <tr>
+                        <th scope="row">{{ $venta->id_venta }}</th>
+                        <td>{{ $venta->fecha_venta }}</td>
+                        <td>{{ $venta->nombre_cliente }}</td>
+                        <td>{{ $venta->correo_cliente }}</td>
+                        <td>{{ $venta->nombre_vendedor }}</td>
+                        <td>{{ $venta->total_venta }}</td>
 
-                    <td><a class="waves-effect waves-light btn-small" href="#">Descargar </a>
+                        <td><a class="waves-effect waves-light btn-small" href="{{route('punto_venta.crearPDF', $venta->id_venta)}}">Descargar</a>
 
-                    </td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>10/02/22</td>
-                    <td>Secret wars</td>
-                    <td>John Jimenez</td>
-                    <td>$300</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="#">Descargar</a>
+                        </td>
+                    </tr>
 
 
+                        @endforeach
 
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-
-                    <td>10/02/22</td>
-                    <td>Infinite war</td>
-
-                    <td>Sergiño De la madrid</td>
-                    <td>$1000</td>
-
-                    <td><a class="waves-effect waves-light btn-small" href="#">Descargar</a>
-
-
-                </tr>
             </tbody>
         </table>
     </div>

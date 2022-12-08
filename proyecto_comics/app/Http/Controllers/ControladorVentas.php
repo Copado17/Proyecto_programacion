@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CorreoVenta;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use DB;
 use Carbon\Carbon;
@@ -44,13 +45,11 @@ class ControladorVentas extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexVenta()
+    public function indexVentas()
     {
-        // $responsePedidos = DB::table('tb_pedidos')
-        //     ->join('tb_proveedores', 'tb_pedidos.id_proveedor', '=', 'tb_proveedores.id_proveedor')
-        //     ->get();
+        $responceVentas = DB::table('tb_ventas')->get();
 
-        // return view('superusuario\ListaPedidos_super', compact('responsePedidos'));
+        return view('superusuario\Registro_venta', compact('responceVentas'));
     }
 
     /**
@@ -139,20 +138,23 @@ class ControladorVentas extends Controller
             'nombre_cliente' => $request->NombreCliente,
             'telefono_cliente' => $request->TelefonoCliente,
             'correo_cliente' => $request->CorreoCliente,
-            'id_vendedor' => $request->idVendedor,
+            'nombre_vendedor' => $request->idVendedor,
             'total_venta' => $totalVenta,
             'fecha_venta' => Carbon::now(),
         ]);
 
         /// OBTENER DATOS DEL CARRITO ACTUAL
         $carritoTemp = DB::table('tb_carrito')
-            ->join('tb_inventario', 'tb_carrito.id_inventario', '=', 'tb_carrito.id_inventario')
+            ->leftJoin('tb_inventario', 'tb_carrito.id_inventario', '=', 'tb_inventario.id_inventario')
             ->get();
 
         // OBTENER EL ID DEL REGISTRO DE VENTAS CREADO DE LOS CUALES LAS VENTAS INDIVIDUALES SERAN ASIGNADOS A
-        $idVenta = DB::table('tb_ventas')
+        $registroVenta = DB::table('tb_ventas')
             ->latest('fecha_venta')
-            ->value('id_venta');
+            ->first();
+
+        $idVenta = $registroVenta->id_venta;
+
 
         /// POR CADA ITEM EN CARRITO CREAMOS UN REGISTRO PERMANENTE EN VENTAS INDIVIDUALES
 
@@ -195,7 +197,7 @@ class ControladorVentas extends Controller
             }
 
             DB::table($tabla)
-                ->where($id, $item->id_producto)
+                ->where($id, $selectInv->id_producto)
                 ->update([
                     'disponibilidad' => $newStock,
                     'updated_at' => Carbon::now(),
@@ -204,7 +206,7 @@ class ControladorVentas extends Controller
             /// INSERT DE VENTA INDIVIDUAL
             DB::table('tb_ventas_individuales')->insert([
                 'id_venta' => $idVenta,
-                'nombre_producto' => $item->nombre_producto,
+                'nombre_producto_individual' => $item->nombre_producto,
                 'tipo_venta_individual' => $tipo,
                 'cantidad_venta_individual' => $cantidad,
                 'total_venta_individual' => $item->total,
@@ -213,25 +215,26 @@ class ControladorVentas extends Controller
             /// ACTUALIZACION DE VENTA # VENTA Y TOTAL
             $totalVenta = $totalVenta + $item->total;
 
-            DB::table('tb_pedidos')
-                ->where('id_pedido', $idVenta)
+            DB::table('tb_ventas')
+                ->where('id_venta', $idVenta)
                 ->update([
-                    'total_pedido' => $totalVenta,
-                    'updated_at' => Carbon::now(),
+                    'total_venta' => $totalVenta,
                 ]);
         }
 
         /// CREAR CORREO
-        $correoVenta = DB::table('tb_ventas')
+        $infoVenta = DB::table('tb_ventas')
             ->latest('fecha_venta')
-            ->value('correo_cliente');
+            ->first();
 
-        if (!is_null($correoVenta)) {
-            $informacionVenta = DB::table('tb_ventas_individuales')
+        $checkCorreo = $infoVenta->correo_cliente;
+
+        if (!is_null($checkCorreo)) {
+            $infoVentaInd = DB::table('tb_ventas_individuales')
                 ->where('id_venta', $idVenta)
                 ->get();
 
-            $this->enviarEmail($correoVenta, $informacionVenta);
+            $this->enviarEmail($checkCorreo, $infoVenta, $infoVentaInd);
         }
 
 
@@ -247,10 +250,10 @@ class ControladorVentas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function enviarEmail($recipiente, $infoVenta)
+    public function enviarEmail($recipiente, $infoVenta, $infoIndividual)
     {
 
-        $correo = new CorreoVenta($infoVenta);
+        $correo = new CorreoVenta($infoVenta, $infoIndividual);
 
         Mail::to($recipiente)->send($correo);
     }
@@ -261,6 +264,17 @@ class ControladorVentas extends Controller
      */
     public function crearPDF($id)
     {
+        $responceVentas = DB::table('tb_ventas')->where('id_venta', $id)->first();
+        $infoVentaInd = DB::table('tb_ventas_individuales')
+        ->where('id_venta', $id)
+        ->get();
+
+        $pdf = Pdf::loadView('\pdf\pdf_venta', ['responceVentas'=>$responceVentas], ['infoVentaInd'=>$infoVentaInd] );
+        return $pdf->download('VentaWeirdoComics.pdf');
+
+
+        // return view('\pdf\pdf_venta', compact('responceVentas', 'infoVentaInd'));
+
     }
 
     /**

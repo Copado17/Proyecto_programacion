@@ -27,7 +27,7 @@ class validador_venta extends FormRequest
             'NombreCliente' => 'required',
             'TelefonoCliente' => 'required|min_digits:8',
             'CorreoCliente' => 'email',
-            'idVendedor' => 'required|numeric',
+            'idVendedor' => 'required',
         ];
     }
 }
