@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a class="waves-effect waves-light btn-small" href="/Pedidos_super">Vamos para alla</a>
+                    <a class="waves-effect waves-light btn-small" href="{{route('Pedidos_Super.indexPedidos')}}">Vamos para alla</a>
 
                 </div>
             </div>

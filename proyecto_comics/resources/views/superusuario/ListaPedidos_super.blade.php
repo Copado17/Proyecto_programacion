@@ -28,7 +28,7 @@
 
         <div class="container bg-light col-md-7 my-5 p-4 ">
             <h1 class="Dispaly-5 ">
-                Productos
+                Pedidos
             </h1>
 
             <div class=" col-mt-5">

@@ -86,73 +86,73 @@ route::post('Editar_usuarios', [Controlador::class, 'validador_editarU']);
 
 //vISTA DE TABLAS DE INVENTARIO
 //articulos
-Route::get('/Inventario_super',  [controladorA::class, 'index'])->name('Articulos.index');
+Route::get('/Inventario_super', [controladorA::class, 'index'])->name('Articulos.index');
 //comics
-Route::get('/Inventario_super',  [controladorC::class, 'index'])->name('Comics.index');
+Route::get('/Inventario_super', [controladorC::class, 'index'])->name('Comics.index');
 
 
 //CRUD DE ARTICULOS
 //create productos
-Route::get('/Agregar_producto',  [controladorA::class, 'create'])->name('Articulos.create');
+Route::get('/Agregar_producto', [controladorA::class, 'create'])->name('Articulos.create');
 //Agregar productos
-Route::post('/Agregar_producto/store',  [controladorA::class, 'store'])->name('Articulos.store');
+Route::post('/Agregar_producto/store', [controladorA::class, 'store'])->name('Articulos.store');
 //Show productos
-Route::get('/Inventario_super/{id}/show',  [controladorA::class, 'show'])->name('Articulos.show');
+Route::get('/Inventario_super/{id}/show', [controladorA::class, 'show'])->name('Articulos.show');
 //DELETE
-Route::delete('/Inventario_super/{id}/destroy',  [controladorA::class, 'destroy'])->name('Articulos.destroy');
+Route::delete('/Inventario_super/{id}/destroy', [controladorA::class, 'destroy'])->name('Articulos.destroy');
 //EDIT
-Route::get('/Editar_producto/{id}/edit',  [controladorA::class, 'edit'])->name('Articulos.edit');
+Route::get('/Editar_producto/{id}/edit', [controladorA::class, 'edit'])->name('Articulos.edit');
 //UPDATE
-Route::put('/Editar_producto/{id}',  [controladorA::class, 'update'])->name('Articulos.update');
+Route::put('/Editar_producto/{id}', [controladorA::class, 'update'])->name('Articulos.update');
 
 //CRUD DE COMICS
 //create productos
-Route::get('/Agregar_comic',  [controladorC::class, 'create'])->name('Comics.create');
+Route::get('/Agregar_comic', [controladorC::class, 'create'])->name('Comics.create');
 //Agregar productos
-Route::post('/Agregar_comic/store',  [controladorC::class, 'store'])->name('Comics.store');
+Route::post('/Agregar_comic/store', [controladorC::class, 'store'])->name('Comics.store');
 //Show comics
-Route::get('/Inventario_super/{id}/show',  [controladorC::class, 'show'])->name('Comics.show');
+Route::get('/Inventario_super/{id}/show', [controladorC::class, 'show'])->name('Comics.show');
 //DELETE comicss
-Route::delete('/Inventario_super/{id}',  [controladorC::class, 'destroy'])->name('Comics.destroy');
+Route::delete('/Inventario_super/{id}', [controladorC::class, 'destroy'])->name('Comics.destroy');
 //EDIT
-Route::get('/Editar_comic/{id}/edit',  [controladorC::class, 'edit'])->name('Comics.edit');
+Route::get('/Editar_comic/{id}/edit', [controladorC::class, 'edit'])->name('Comics.edit');
 //UPDATE
-Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics.update');
+Route::put('/Editar_comic/{id}', [controladorC::class, 'update'])->name('Comics.update');
 
 
 
 
 //PROVEEDORES
-Route::get('/Lista_proveedores',  [ControladorP::class, 'index'])->name('Proveedores.index');
+Route::get('/Lista_proveedores', [ControladorP::class, 'index'])->name('Proveedores.index');
 
 //Agregar proveedores
-Route::post('/Agregar_proveedores/store',  [ControladorP::class, 'store'])->name('Proveedores.store');
+Route::post('/Agregar_proveedores/store', [ControladorP::class, 'store'])->name('Proveedores.store');
 //Show proveedores
-Route::get('/Lista_proveedores/{id}/show',  [ControladorP::class, 'show'])->name('Proveedores.show');
+Route::get('/Lista_proveedores/{id}/show', [ControladorP::class, 'show'])->name('Proveedores.show');
 //DELETE
-Route::delete('/Lista_proveedores/{id}/destroy',  [ControladorP::class, 'destroy'])->name('Proveedores.destroy');
+Route::delete('/Lista_proveedores/{id}/destroy', [ControladorP::class, 'destroy'])->name('Proveedores.destroy');
 //EDIT
-Route::get('/Editar_proveedores/{id}/edit',  [ControladorP::class, 'edit'])->name('Proveedores.edit');
+Route::get('/Editar_proveedores/{id}/edit', [ControladorP::class, 'edit'])->name('Proveedores.edit');
 //UPDATE
-Route::put('/Editar_proveedores/{id}',  [ControladorP::class, 'update'])->name('Proveedores.update');
+Route::put('/Editar_proveedores/{id}', [ControladorP::class, 'update'])->name('Proveedores.update');
 //BUSCAR
-Route::get('/Lista_proveedores',  [ControladorP::class, 'buscar'])->name('Proveedores.buscar');
+Route::get('/Lista_proveedores', [ControladorP::class, 'buscar'])->name('Proveedores.buscar');
 
 
 //USUARIOS
-Route::get('/Usuarios',  [ControladorU::class, 'index'])->name('Usuarios.index');
+Route::get('/Usuarios', [ControladorU::class, 'index'])->name('Usuarios.index');
 //Agregar usuarios
-Route::post('/Agregar_usuario/store',  [ControladorU::class, 'store'])->name('Usuarios.store');
+Route::post('/Agregar_usuario/store', [ControladorU::class, 'store'])->name('Usuarios.store');
 //Show usuarios
-Route::get('/Usuarios/{id}/show',  [ControladorU::class, 'show'])->name('Usuarios.show');
+Route::get('/Usuarios/{id}/show', [ControladorU::class, 'show'])->name('Usuarios.show');
 //DELETE
-Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
+Route::delete('/Usuarios/{id}/destroy', [ControladorU::class, 'destroy'])->name('Usuarios.destroy');
 //EDIT
-Route::get('/Editar_usuarios/{id}/edit',  [ControladorU::class, 'edit'])->name('Usuarios.edit');
+Route::get('/Editar_usuarios/{id}/edit', [ControladorU::class, 'edit'])->name('Usuarios.edit');
 //UPDATE
-Route::put('/Editar_usuarios/{id}',  [ControladorU::class, 'update'])->name('Usuarios.update');
+Route::put('/Editar_usuarios/{id}', [ControladorU::class, 'update'])->name('Usuarios.update');
 //BUSCAR
-Route::get('/Usuarios',  [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
+Route::get('/Usuarios', [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
 
 
 
@@ -176,4 +176,3 @@ Route::get('punto_venta', [ControladorVentas::class, 'indexCarrito'])->name('pun
 Route::post('punto_venta', [ControladorVentas::class, 'agregarCarrito'])->name('punto_venta.agregarCarrito');
 Route::post('punto_venta/store', [ControladorVentas::class, 'storeVenta'])->name('punto_venta.storeVenta');
 Route::delete('punto_venta/{id}', [ControladorVentas::class, 'destroy'])->name('punto_venta.destroy');
-
