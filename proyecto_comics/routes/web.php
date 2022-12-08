@@ -9,6 +9,7 @@ use App\Http\Controllers\ControladorP;
 use App\Http\Controllers\ControladorU;
 use App\Http\Controllers\ControladorPedidos;
 use App\Http\Controllers\ControladorVentas;
+use App\Http\Controllers\controladorEmpleado;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,10 +83,12 @@ route::post('Agregar_usuario', [Controlador::class, 'validador_usuario']);
 route::post('Editar_usuarios', [Controlador::class, 'validador_editarU']);
 
 //vISTA DE TABLAS DE INVENTARIO
-//articulos
-Route::get('/Inventario_super',  [controladorA::class, 'index'])->name('Articulos.index');
-//comics
+
+//Inventario
 Route::get('/Inventario_super',  [controladorC::class, 'index'])->name('Comics.index');
+
+//Inventario_empleado
+Route::get('/Inventario_empleado',  [controladorEmpleado::class, 'index']);
 
 
 //CRUD DE ARTICULOS
@@ -102,6 +105,7 @@ Route::get('/Editar_producto/{id}/edit',  [controladorA::class, 'edit'])->name('
 //UPDATE
 Route::put('/Editar_producto/{id}',  [controladorA::class, 'update'])->name('Articulos.update');
 
+
 //CRUD DE COMICS
 //create productos
 Route::get('/Agregar_comic',  [controladorC::class, 'create'])->name('Comics.create');
@@ -115,6 +119,15 @@ Route::delete('/Inventario_super/{id}',  [controladorC::class, 'destroy'])->name
 Route::get('/Editar_comic/{id}/edit',  [controladorC::class, 'edit'])->name('Comics.edit');
 //UPDATE
 Route::put('/Editar_comic/{id}',  [controladorC::class, 'update'])->name('Comics.update');
+//Buscar
+Route::get('/Inventario_super',  [controladorC::class, 'buscar'])->name('Comics.buscar');
+//Buscar en empleado
+Route::get('/Inventario_empleado',  [controladorEmpleado::class, 'buscar'])->name('ComicsE.buscar');
+
+
+
+
+
 
 
 
@@ -148,7 +161,7 @@ Route::delete('/Usuarios/{id}/destroy',  [ControladorU::class, 'destroy'])->name
 //EDIT
 Route::get('/Editar_usuarios/{id}/edit',  [ControladorU::class, 'edit'])->name('Usuarios.edit');
 //UPDATE
-Route::put('/Editar_usuarios/{id}',  [ControladorU::class, 'update'])->name('Usuarios.update');
+Route::put('/Editar_usuarios/{id}/update',  [ControladorU::class, 'update'])->name('Usuarios.update');
 //BUSCAR
 Route::get('/Usuarios',  [ControladorU::class, 'buscar'])->name('Usuarios.buscar');
 
@@ -177,6 +190,3 @@ Route::get('/Menu_Empleado', function () {
     return view('empleado/Menu_Empleado');
 });
 
-Route::get('/Inventario_empleado', function () {
-    return view('empleado/Inventario_empleado');
-});

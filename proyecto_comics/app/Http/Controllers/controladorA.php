@@ -122,4 +122,6 @@ class controladorA extends Controller
 
         return redirect('/Inventario_super')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
+
+    
 }

@@ -36,7 +36,7 @@
                 </div>
                 <form href="{{route('Usuarios.update', $consultarId->id_usuario)}}" method="post">
                     @csrf
-                    @method('put')
+                    @method('patch')
                     <div class="form-group">
                         <div class="col mt-2">
 

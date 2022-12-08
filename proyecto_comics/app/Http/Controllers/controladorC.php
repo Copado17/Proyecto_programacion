@@ -125,4 +125,18 @@ class controladorC extends Controller
 
         return redirect('/Inventario_super')->with('Eliminacion','Tu recuerdo se ha eliminado') ;
     }
+
+    public function buscar(Request $request)
+    {
+        $buscar = trim($request->get('buscar'));
+        $buscar2 = trim($request->get('buscar2'));
+
+        $resultRec3= DB::table('tb_comics')-> select ('id_comic','nombre_comic', 'edicion', 'disponibilidad','compania','precio_venta','precio_compra')
+        ->where('nombre_comic', 'like', '%'.$buscar.'%') ->get();
+        $resultRec= DB::table('tb_articulos' )->select ('id_articulo','nombre_articulo', 'tipo', 'marca','disponibilidad', 'descripcion', 'precio_venta', 'precio_compra')
+
+-> where('nombre_articulo', 'like', '%'.$buscar2.'%') ->get();
+         return view('superusuario/Inventario_super', compact('resultRec', 'resultRec3', 'buscar', 'buscar2'));
+
+    }
 }

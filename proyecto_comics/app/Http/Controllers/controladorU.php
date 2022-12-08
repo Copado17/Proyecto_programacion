@@ -84,7 +84,7 @@ class controladorU extends Controller
         DB::table('tb_usuarios')->where('id_usuario', $id_usuario)->update([
             "nombre_completo" => $request->input ('nombre_completo'),
             "pass_usuario" => $request->input ('Password'),
-            "created_at" => Carbon::now(),
+            "nivel_usuario" => $request->input ('Tipo'),
             "updated_at" => Carbon::now()
          ]);
          return redirect('/Usuarios')->with('Confirmacion','Tu recuerdo llego al controlador') ;

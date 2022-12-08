@@ -69,10 +69,17 @@
 
             </h1>
 
-            <div class=" col-mt-5">
-                <label for="exampleInputEmail1" class="form-label">Buscar</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
+            <form action="{{route('Comics.buscar')}}" method="get">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="exampleInputEmail1" class="form-label">Buscar Producto</label>
+                        <input type="search" class="form-control" id="exampleInputEmail1" value="{{$buscar2}}" name="buscar2">
+                   
+                    <input type="submit" class="btn btn-primary" value="Buscar">
+                    </div>
+                </div>
+             
+            </form>
 
             @include ('modals/ModalEliminarArticulos')
             <table class="table bg-light  my-5">
@@ -90,6 +97,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (count($resultRec) <= 0)
+                    <tr>
+                        <td colspan="9" class="text-center">No hay registros</td>
+                    </tr>
+                @else 
+
                     @foreach ($resultRec as $item)
                         <tr>
                             <th scope="row">{{ $item->id_articulo}}</th>
@@ -109,6 +122,7 @@
                             </td>
                         </tr>
                     @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
@@ -119,10 +133,18 @@
                 Comics
 
             </h1>
-            <div class=" col-mt-5">
-                <label for="exampleInputEmail1" class="form-label">Buscar</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
+            <form action="{{route('Comics.buscar')}}" method="get">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="exampleInputEmail1" class="form-label">Buscar Comics</label>
+                        <input type="search" class="form-control" id="exampleInputEmail1" value="{{$buscar}}" name="buscar">
+                   
+                    <input type="submit" class="btn btn-primary" value="Buscar">
+                    </div>
+                </div>
+             
+            </form>
+            
  @include ('modals/ModalEliminarComic')
             <table class="table bg-light  my-5">
                 <thead>
@@ -138,7 +160,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                   
+                    
+                    @if (count($resultRec3) <= 0)
+                    <tr>
+                        <td colspan="8" class="text-center">No hay registros</td>
+                    </tr>
+                @else 
                    @foreach ($resultRec3 as $items)
                         <tr>
                             <th scope="row">{{ $items->id_comic}}</th>
@@ -158,6 +185,8 @@
                             
                         </tr>
                    @endforeach
+                @endif
+                
                 </tbody>
             </table>
         </div>
